@@ -1,12 +1,21 @@
 export const login = (onNavigate) => {
+
+  const divLogin = document.createElement('div');
+  divLogin.className = "div-login";
+
   const formLogin = document.createElement('form');
   formLogin.className = "form-login";
+
+  const imageLogin = document.createElement('img');
+  imageLogin.className = "img-login";
+
 
   const title = document.createElement('h2');
   title.textContent = "Ingrese a su cuenta";
   formLogin.appendChild(title);
 
   const email = document.createElement('input');
+  email.setAttribute("id", "inputprueba")
   email.className = "input-email";
   email.type = 'text';
   email.placeholder = "Ingresa tu email";
