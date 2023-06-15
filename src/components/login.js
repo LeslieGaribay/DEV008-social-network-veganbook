@@ -1,37 +1,55 @@
-import { onNavigate } from "../main.js";
+export const login = (onNavigate) => {
+  const formLogin = document.createElement('form');
+  formLogin.className = "form-login";
 
+  const title = document.createElement('h2');
+  title.textContent = "Ingrese a su cuenta";
+  formLogin.appendChild(title);
 
-// export const home = () => {
-//   // const homeDiv = document.createElement('div');
-//   const buttonRegister = document.createElement('button');
-//   const buttonLogin = document.createElement('button');
+  const email = document.createElement('input');
+  email.className = "input-email";
+  email.type = 'text';
+  email.placeholder = "Ingresa tu email";
+  email.value = "";
+  formLogin.appendChild(email);
 
-//   buttonRegister.textContent = 'Registrate';
-//   buttonLogin.textContent = 'Inicia sesión';
+  const password = document.createElement('input');
+  password.className = "input-password";
+  password.type = 'password';
+  password.placeholder = "Contraseña";
+  password.value = "";
+  formLogin.appendChild(password);
 
-//   buttonRegister.addEventListener('click', () => onNavigate('/register'));
-//   buttonLogin.addEventListener('click', () => onNavigate('/login'));
-//   homeDiv.appendChild(buttonRegister);
-//   homeDiv.appendChild(buttonLogin);
-
-//   return homeDiv;
-
-// }
-
-export const login = () => {
-  const loginDiv = document.createElement('div');
-  loginDiv.textContent = "Bienvenida a VeganBook";
   const buttonLogin = document.createElement('button');
-  const buttonRegister = document.createElement('button');
-
-  buttonLogin.textContent = 'Iniciar sesión';
-  buttonRegister.textContent = 'Crear cuenta';
+  buttonLogin.className = "button-login";
+  buttonLogin.textContent = "Iniciar Sesión";
+  buttonLogin.type = 'submit';
+  formLogin.appendChild(buttonLogin);
 
   buttonLogin.addEventListener('click', () => onNavigate('/')); //muro red social
+
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = "button-google";
+  buttonGoogle.textContent = "Iniciar Sesión con Google";
+  buttonGoogle.type = 'submit';
+  formLogin.appendChild(buttonGoogle);
+
+  buttonLogin.addEventListener('click', () => onNavigate('/')); //muro red social
+
+  const hr = document.createElement('hr');
+  formLogin.appendChild(hr);
+
+  const optionalText = document.createElement('h3');
+  optionalText.textContent = "¿Eres nuevo en VeganBook?";
+  formLogin.appendChild(optionalText);
+
+  const buttonRegister = document.createElement('button');
+  buttonRegister.className = "button-register";
+  buttonRegister.textContent = "¡Registrate!";
+  buttonRegister.type = 'submit';
+  formLogin.appendChild(buttonRegister);
+
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
 
-  loginDiv.appendChild(buttonLogin);
-  loginDiv.appendChild(buttonRegister);
-
-  return loginDiv;
+  return formLogin;
 };
