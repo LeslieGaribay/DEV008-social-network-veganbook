@@ -1,6 +1,6 @@
 import { register } from './components/register.js';
 import { login } from './components/login.js';
-import { initializeFirebase } from "./firebase.js"; 
+//import { initializeFirebase } from "./firebase.js"; 
 
 
 const rootDiv = document.getElementById('root');
@@ -30,4 +30,4 @@ window.onpopstate = () => {
 
 rootDiv.appendChild(component(onNavigate));
 
-initializeFirebase();
+//initializeFirebase();

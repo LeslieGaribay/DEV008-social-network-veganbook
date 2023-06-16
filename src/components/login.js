@@ -15,19 +15,21 @@ export const login = (onNavigate) => {
   title.textContent = 'Ingrese a su cuenta';
   formLogin.appendChild(title);
 
-  const email = document.createElement('input');
-  email.className = 'input-email';
-  email.type = 'text';
-  email.placeholder = 'Ingresa tu email';
-  email.value = '';
-  formLogin.appendChild(email);
+  const inputEmail = document.createElement('input');
+  inputEmail.className = 'input-email';
+  inputEmail.type = 'text';
+  inputEmail.placeholder = 'Ingresa tu email';
+  inputEmail.value = '';
+  formLogin.appendChild(inputEmail);
 
-  const password = document.createElement('input');
-  password.className = 'input-password';
-  password.type = 'password';
-  password.placeholder = 'Contraseña';
-  password.value = '';
-  formLogin.appendChild(password);
+  const inputPassword = document.createElement('input');
+  inputPassword.className = 'input-password';
+  inputPassword.type = 'password';
+  inputPassword.placeholder = 'Contraseña';
+  inputPassword.value = '';
+  formLogin.appendChild(inputPassword);
+
+  
 
   const buttonLogin = document.createElement('button');
   buttonLogin.className = 'button-login';

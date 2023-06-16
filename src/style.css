@@ -13,63 +13,72 @@
 }*/
 
 /*Celular*/
-@media only screen and (max-width: 480px){
-.img-login {
-    max-width: 70%;
-    margin-top: 30px;    
-}
+@media only screen and (max-width: 480px) {
+    .img-login {
+        max-width: 70%;
+        margin-top: 30px;
+    }
 
-h2{
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 33px;
-    text-align: center;
-    color: #194F37;
-    margin-top: 50px;
-}
+    h2 {
+        font-family: 'Raleway', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33px;
+        text-align: center;
+        color: #194F37;
+        margin-top: 50px;
+    }
 
-.input-email{
-box-sizing: border-box;
-margin-top: 35px;
-width: 290px;
-height: 38px;
-background: #FFFFFF;
-border: 1px solid #8CA961;
-border-radius: 8px;
-outline:none;
-}
-.input-email::placeholder{
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-padding-left: 8px;
-line-height: 19px;
-color: rgba(0, 0, 0, 0.54);
-}
+    .input-email {
+        box-sizing: border-box;
+        margin-top: 35px;
+        width: 290px;
+        height: 38px;
+        background: #FFFFFF;
+        border: 1px solid #8CA961;
+        border-radius: 8px;
+        outline: none;
+    }
 
-.input-password{
-    box-sizing: border-box;
-    margin-top: 27px;
-    width: 290px;
-    height: 38px;
-    background: #FFFFFF;
-    border: 1px solid #8CA961;
-    border-radius: 8px;   
-    outline:none;
-}
-.input-password::placeholder{
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-padding-left: 8px;
-line-height: 19px;
-color: rgba(0, 0, 0, 0.54);
-}
-.button-login{
+    .input-email::placeholder {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        padding-left: 8px;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .input-password {
+        box-sizing: border-box;
+        margin-top: 27px;
+        width: 290px;
+        height: 38px;
+        background: #FFFFFF;
+        border: 1px solid #8CA961;
+        border-radius: 8px;
+        outline: none;
+    }
+
+    .input-password::placeholder {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        padding-left: 8px;
+        line-height: 19px;
+        color: rgba(0, 0, 0, 0.54);
+    }
+
+    .button-login {
+        background: #E89A9F;
+        border: 3px solid #8CA961;
+        border-radius: 39px;
+        width: 276px;
+        height: 39px;
+        margin-top: 99px;
     
-}
+    }
 }
 
 /*Tablet*/

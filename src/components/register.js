@@ -1,4 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUser } from '../firebase';
 
 
 export const register = (onNavigate) => {
@@ -41,25 +42,15 @@ export const register = (onNavigate) => {
   buttonCreateAccount.className = "button-create-account";
   buttonCreateAccount.textContent = "Crear cuenta";
   buttonCreateAccount.type = 'submit';
-  buttonCreateAccount.addEventListener('click', () => {
-    const auth = getAuth();
+  buttonCreateAccount.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log("im here");
+    createUser(inputEmail.value, inputPassword.value)
+    .then((response) => {console.log(response)})
+    .catch(console.log);
 
-    createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // muro red social
-        onNavigate('/timeline');
-        alert(user.email);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-        // ..
-      });
   });
+
   formRegister.appendChild(buttonCreateAccount);
 
   const buttonGoogle = document.createElement('button');
