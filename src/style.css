@@ -1,0 +1,26 @@
+* {
+    background-color: white;
+    margin: 0;
+}
+
+#root {
+    margin-top: 50%;
+}
+
+.img-login {
+    
+}
+
+
+
+/* .index-header {
+    background: url(img/background.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 750px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
