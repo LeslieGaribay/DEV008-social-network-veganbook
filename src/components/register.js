@@ -1,3 +1,6 @@
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+
 export const register = (onNavigate) => {
   const formRegister = document.createElement("form");
   formRegister.className = "form-register";
@@ -6,49 +9,66 @@ export const register = (onNavigate) => {
   title.textContent = "¡Regístrate!";
   formRegister.appendChild(title);
 
-  const name = document.createElement('input');
-  name.className = "input-name";
-  name.type = 'text';
-  name.placeholder = "Nombre";
-  name.value = "";
-  formRegister.appendChild(name);
+  const inputName = document.createElement('input');
+  inputName.className = "input-name";
+  inputName.type = 'text';
+  inputName.placeholder = "Nombre";
+  inputName.value = "";
+  formRegister.appendChild(inputName);
 
-  const lastName = document.createElement('input');
-  lastName.className = "input-lastname";
-  lastName.type = 'text';
-  lastName.placeholder = "Apellido";
-  lastName.value = "";
-  formRegister.appendChild(lastName);
+  const inputLastName = document.createElement('input');
+  inputLastName.className = "input-lastname";
+  inputLastName.type = 'text';
+  inputLastName.placeholder = "Apellido";
+  inputLastName.value = "";
+  formRegister.appendChild(inputLastName);
 
-  const email = document.createElement('input');
-  email.className = "input-email";
-  email.type = 'text';
-  email.placeholder = "Ingresa tu correo electrónico";
-  email.value = "";
-  formRegister.appendChild(email);
+  const inputEmail = document.createElement('input');
+  inputEmail.className = "input-email";
+  inputEmail.type = 'text';
+  inputEmail.placeholder = "Ingresa tu correo electrónico";
+  inputEmail.value = "";
+  formRegister.appendChild(inputEmail);
 
-  const password = document.createElement('input');
-  password.className = "input-password";
-  password.type = 'password';
-  password.placeholder = "Contraseña";
-  password.value = "";
-  formRegister.appendChild(password);
+  const inputPassword = document.createElement('input');
+  inputPassword.className = "input-password";
+  inputPassword.type = 'password';
+  inputPassword.placeholder = "Contraseña";
+  inputPassword.value = "";
+  formRegister.appendChild(inputPassword);
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.className = "button-create-account";
   buttonCreateAccount.textContent = "Crear cuenta";
   buttonCreateAccount.type = 'submit';
-  formRegister.appendChild(buttonCreateAccount);
+  buttonCreateAccount.addEventListener('click', () => {
+    const auth = getAuth();
 
-  formRegister.addEventListener('click', () => onNavigate('/')); //muro red social
+    createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // muro red social
+        onNavigate('/timeline');
+        alert(user.email);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+        // ..
+      });
+  });
+  formRegister.appendChild(buttonCreateAccount);
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = "button-google";
   buttonGoogle.textContent = "Continuar con Google";
   buttonGoogle.type = 'submit';
+  buttonGoogle.addEventListener('click', () => onNavigate('/')); //muro red social
   formRegister.appendChild(buttonGoogle);
 
-  formRegister.addEventListener('click', () => onNavigate('/')); //muro red social
 
   const hr = document.createElement('hr');
   formRegister.appendChild(hr);

@@ -1,17 +1,19 @@
-import { register } from "./components/register.js";
-import { login } from "./components/login.js";
+import { register } from './components/register.js';
+import { login } from './components/login.js';
+import { initializeFirebase } from "./firebase.js"; 
 
-const rootDiv = document.getElementById("root");
+
+const rootDiv = document.getElementById('root');
 
 const routes = {
-  "/": login,
-  "/register": register,
+  '/': login,
+  '/register': register,
 };
 export const onNavigate = (pathname) => {
   window.history.pushState(
     {}, //estado
     pathname, // titulo
-    window.location.origin + pathname // ruta
+    window.location.origin + pathname// ruta
   );
 
   while (rootDiv.firstChild) {
@@ -27,3 +29,5 @@ window.onpopstate = () => {
 };
 
 rootDiv.appendChild(component(onNavigate));
+
+initializeFirebase();
