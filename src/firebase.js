@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -13,20 +13,17 @@ const firebaseConfig = {
   storageBucket: 'veganbook-dev.appspot.com',
   messagingSenderId: '727951856811',
   appId: '1:727951856811:web:97b69cb179790d913e53ee',
-  measurementId: 'G-SCVJPF1654'
+  measurementId: 'G-SCVJPF1654',
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-
 export function createUser(email, password)
-{
+{ 
   return createUserWithEmailAndPassword(auth, email, password);
 }
-
 
 /*
 createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)

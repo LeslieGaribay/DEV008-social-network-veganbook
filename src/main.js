@@ -1,7 +1,6 @@
 import { register } from './components/register.js';
 import { login } from './components/login.js';
-//import { initializeFirebase } from "./firebase.js"; 
-
+// import { initializeFirebase } from "./firebase.js";
 
 const rootDiv = document.getElementById('root');
 
@@ -11,9 +10,9 @@ const routes = {
 };
 export const onNavigate = (pathname) => {
   window.history.pushState(
-    {}, //estado
+    {}, // estado
     pathname, // titulo
-    window.location.origin + pathname// ruta
+    window.location.origin + pathname, // ruta
   );
 
   while (rootDiv.firstChild) {
@@ -30,4 +29,4 @@ window.onpopstate = () => {
 
 rootDiv.appendChild(component(onNavigate));
 
-//initializeFirebase();
+// initializeFirebase();

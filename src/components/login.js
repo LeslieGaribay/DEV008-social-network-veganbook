@@ -29,15 +29,13 @@ export const login = (onNavigate) => {
   inputPassword.value = '';
   formLogin.appendChild(inputPassword);
 
-  
-
   const buttonLogin = document.createElement('button');
   buttonLogin.className = 'button-login';
   buttonLogin.textContent = 'Iniciar Sesión';
   buttonLogin.type = 'submit';
   formLogin.appendChild(buttonLogin);
 
-  buttonLogin.addEventListener('click', () => onNavigate('/')); //muro red social
+  buttonLogin.addEventListener('click', () => onNavigate('/')); // muro red social
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = 'button-google';
@@ -45,7 +43,7 @@ export const login = (onNavigate) => {
   buttonGoogle.type = 'submit';
   formLogin.appendChild(buttonGoogle);
 
-  buttonLogin.addEventListener('click', () => onNavigate('/')); //muro red social
+  buttonLogin.addEventListener('click', () => onNavigate('/')); // muro red social
 
   const hr = document.createElement('hr');
   formLogin.appendChild(hr);
