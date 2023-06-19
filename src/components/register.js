@@ -2,8 +2,17 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { createUser } from '../firebase';
 
 export const register = (onNavigate) => {
+  const divRegister = document.createElement('div');
+  divRegister.className = 'div-register';
+
   const formRegister = document.createElement('form');
   formRegister.className = 'form-register';
+
+  const imageRegister = document.createElement('img');
+  imageRegister.className = 'img-logo';
+  imageRegister.src = './images/LogoVBB.png';
+  imageRegister.alt = 'logo de Vegan Book';
+  formRegister.appendChild(imageRegister);
 
   const title = document.createElement('h2');
   title.textContent = '¡Regístrate!';
@@ -56,16 +65,22 @@ export const register = (onNavigate) => {
   buttonGoogle.textContent = 'Continuar con Google';
   buttonGoogle.type = 'submit';
   buttonGoogle.addEventListener('click', () => onNavigate('/')); // muro red social
+  const imgGoogle = document.createElement('img');
+  imgGoogle.className = 'img-google';
+  imgGoogle.src = './images/google.png';
+  imgGoogle.alt = 'imagen Google';
+  buttonGoogle.appendChild(imgGoogle);
   formRegister.appendChild(buttonGoogle);
 
   const hr = document.createElement('hr');
   formRegister.appendChild(hr);
 
-  const optionalText = document.createElement('h3');
+  const optionalText = document.createElement('h4');
   optionalText.textContent = '¿Ya tienes cuenta?';
   formRegister.appendChild(optionalText);
 
   const buttonLoginBack = document.createElement('button');
+  buttonLoginBack.className = 'button-login-back';
   buttonLoginBack.textContent = 'Iniciar sesión';
 
   buttonLoginBack.addEventListener('click', () => onNavigate('/'));

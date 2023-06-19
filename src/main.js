@@ -1,5 +1,6 @@
 import { register } from './components/register.js';
 import { login } from './components/login.js';
+// import { timeline } from './components/timeline.js';
 // import { initializeFirebase } from "./firebase.js";
 
 const rootDiv = document.getElementById('root');
@@ -7,6 +8,7 @@ const rootDiv = document.getElementById('root');
 const routes = {
   '/': login,
   '/register': register,
+  // '/timeline': timeline,
 };
 export const onNavigate = (pathname) => {
   window.history.pushState(
