@@ -1,13 +1,16 @@
+
+
+
 export const login = (onNavigate) => {
   const divLogin = document.createElement('div');
   divLogin.className = 'div-login';
 
-  const divPink = document.createElement('div');
-  divPink.className = 'div-pink';
-  divLogin.appendChild(divPink);
+  const divPinkLogin = document.createElement('div');
+  divPinkLogin.className = 'div-pink-login';
+  divLogin.appendChild(divPinkLogin);
 
   const formLogin = document.createElement('div');
-  divLogin.className = 'form-login';
+  formLogin.className = 'form-login';
   divLogin.appendChild(formLogin);
 
   const imageLogin = document.createElement('img');
@@ -16,27 +19,31 @@ export const login = (onNavigate) => {
   imageLogin.alt = 'logo de Vegan Book';
   formLogin.appendChild(imageLogin);
 
+  const borderContainerLogin = document.createElement('div');
+  borderContainerLogin.className = 'border-container-login';
+  formLogin.appendChild(borderContainerLogin);
+
   const title = document.createElement('h2');
-  title.textContent = 'Ingrese a su cuenta';
-  formLogin.appendChild(title);
+  title.textContent = 'Ingresa a tu cuenta';
+  borderContainerLogin.appendChild(title);
 
   const inputEmail = document.createElement('input');
   inputEmail.className = 'input-email';
   inputEmail.type = 'text';
-  inputEmail.placeholder = 'Ingresa tu email';
+  inputEmail.placeholder = 'Email';
   inputEmail.value = '';
-  formLogin.appendChild(inputEmail);
+  borderContainerLogin.appendChild(inputEmail);
 
   const inputPassword = document.createElement('input');
   inputPassword.className = 'input-password';
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
   inputPassword.value = '';
-  formLogin.appendChild(inputPassword);
+  borderContainerLogin.appendChild(inputPassword);
 
   const divRemember = document.createElement('div');
   divRemember.className = 'div-remember';
-  formLogin.appendChild(divRemember);
+  borderContainerLogin.appendChild(divRemember);
 
   const inputRemember = document.createElement('input');
   inputRemember.className = 'input-remember';
@@ -57,7 +64,7 @@ export const login = (onNavigate) => {
   buttonLogin.className = 'button-login';
   buttonLogin.textContent = 'Iniciar sesión';
   buttonLogin.type = 'submit';
-  formLogin.appendChild(buttonLogin);
+  borderContainerLogin.appendChild(buttonLogin);
 
   buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
 
@@ -65,7 +72,7 @@ export const login = (onNavigate) => {
   buttonGoogle.className = 'button-google';
   buttonGoogle.textContent = 'Iniciar sesión con Google';
   buttonGoogle.type = 'submit';
-  formLogin.appendChild(buttonGoogle);
+  borderContainerLogin.appendChild(buttonGoogle);
 
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'img-google';
@@ -76,17 +83,17 @@ export const login = (onNavigate) => {
   buttonLogin.addEventListener('click', () => onNavigate('/')); // autentificación con google
 
   const hr = document.createElement('hr');
-  formLogin.appendChild(hr);
+  borderContainerLogin.appendChild(hr);
 
   const optionalText = document.createElement('h4');
   optionalText.textContent = '¿Eres nuevo en VeganBook?';
-  formLogin.appendChild(optionalText);
+  borderContainerLogin.appendChild(optionalText);
 
   const buttonRegister = document.createElement('button');
   buttonRegister.className = 'button-register';
-  buttonRegister.textContent = '¡Registrate!';
+  buttonRegister.textContent = '¡Regístrate!';
   buttonRegister.type = 'submit';
-  formLogin.appendChild(buttonRegister);
+  borderContainerLogin.appendChild(buttonRegister);
 
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
 

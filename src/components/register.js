@@ -5,8 +5,13 @@ export const register = (onNavigate) => {
   const divRegister = document.createElement('div');
   divRegister.className = 'div-register';
 
+  const divPinkRegister = document.createElement('div');
+  divPinkRegister.className = 'div-pink-register';
+  divRegister.appendChild(divPinkRegister);
+
   const formRegister = document.createElement('form');
   formRegister.className = 'form-register';
+  divRegister.appendChild(formRegister);
 
   const imageRegister = document.createElement('img');
   imageRegister.className = 'img-logo';
@@ -14,37 +19,60 @@ export const register = (onNavigate) => {
   imageRegister.alt = 'logo de Vegan Book';
   formRegister.appendChild(imageRegister);
 
+  const borderContainerRegister = document.createElement('div');
+  borderContainerRegister.className = 'border-container-register';
+  formRegister.appendChild(borderContainerRegister);
+
   const title = document.createElement('h2');
   title.textContent = '¡Regístrate!';
-  formRegister.appendChild(title);
+  borderContainerRegister.appendChild(title);
 
   const inputName = document.createElement('input');
   inputName.className = 'input-name';
   inputName.type = 'text';
   inputName.placeholder = 'Nombre';
   inputName.value = '';
-  formRegister.appendChild(inputName);
+  borderContainerRegister.appendChild(inputName);
 
   const inputLastName = document.createElement('input');
   inputLastName.className = 'input-lastname';
   inputLastName.type = 'text';
-  inputLastName.placeholder = 'Apellido';
+  inputLastName.placeholder = 'Apellidos';
   inputLastName.value = '';
-  formRegister.appendChild(inputLastName);
+  borderContainerRegister.appendChild(inputLastName);
 
   const inputEmail = document.createElement('input');
   inputEmail.className = 'input-email';
   inputEmail.type = 'text';
-  inputEmail.placeholder = 'Ingresa tu correo electrónico';
+  inputEmail.placeholder = 'Correo electrónico';
   inputEmail.value = '';
-  formRegister.appendChild(inputEmail);
+  borderContainerRegister.appendChild(inputEmail);
 
   const inputPassword = document.createElement('input');
   inputPassword.className = 'input-password';
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Contraseña';
   inputPassword.value = '';
-  formRegister.appendChild(inputPassword);
+  borderContainerRegister.appendChild(inputPassword);
+
+  const divRemember = document.createElement('div');
+  divRemember.className = 'div-remember';
+  borderContainerRegister.appendChild(divRemember);
+
+  const inputRemember = document.createElement('input');
+  inputRemember.className = 'input-remember';
+  inputRemember.type = 'checkbox';
+  divRemember.appendChild(inputRemember);
+
+  const textRemember = document.createElement('p');
+  textRemember.className = 'text-remember';
+  textRemember.textContent = 'Recordar';
+  divRemember.appendChild(textRemember);
+
+  const forgetPassword = document.createElement('p');
+  forgetPassword.className = 'forget-password';
+  forgetPassword.textContent = '¿Olvidaste la contraseña?';
+  divRemember.appendChild(forgetPassword);
 
   const buttonCreateAccount = document.createElement('button');
   buttonCreateAccount.className = 'button-create-account';
@@ -58,7 +86,7 @@ export const register = (onNavigate) => {
       .catch(console.log);
   });
 
-  formRegister.appendChild(buttonCreateAccount);
+  borderContainerRegister.appendChild(buttonCreateAccount);
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = 'button-google';
@@ -70,21 +98,21 @@ export const register = (onNavigate) => {
   imgGoogle.src = './images/google.png';
   imgGoogle.alt = 'imagen Google';
   buttonGoogle.appendChild(imgGoogle);
-  formRegister.appendChild(buttonGoogle);
+  borderContainerRegister.appendChild(buttonGoogle);
 
   const hr = document.createElement('hr');
-  formRegister.appendChild(hr);
+  borderContainerRegister.appendChild(hr);
 
   const optionalText = document.createElement('h4');
   optionalText.textContent = '¿Ya tienes cuenta?';
-  formRegister.appendChild(optionalText);
+  borderContainerRegister.appendChild(optionalText);
 
   const buttonLoginBack = document.createElement('button');
   buttonLoginBack.className = 'button-login-back';
   buttonLoginBack.textContent = 'Iniciar sesión';
 
   buttonLoginBack.addEventListener('click', () => onNavigate('/'));
-  formRegister.appendChild(buttonLoginBack);
+  borderContainerRegister.appendChild(buttonLoginBack);
 
-  return formRegister;
+  return divRegister;
 };
