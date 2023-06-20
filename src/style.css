@@ -279,6 +279,10 @@ body {
         margin-top: 20px;
         margin-left: 165px;
     }
+
+    .img-people {
+        max-width: 80%;
+    }
     
     .div-login {
         display: flex;

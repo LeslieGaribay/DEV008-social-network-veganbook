@@ -1,6 +1,3 @@
-
-
-
 export const login = (onNavigate) => {
   const divLogin = document.createElement('div');
   divLogin.className = 'div-login';
@@ -12,6 +9,12 @@ export const login = (onNavigate) => {
   const formLogin = document.createElement('div');
   formLogin.className = 'form-login';
   divLogin.appendChild(formLogin);
+
+//  const imageLoginPeople = document.createElement('img');
+//   imageLoginPeople.className = 'img-people';
+//   imageLoginPeople.src = './images/image-login.png';
+//   imageLoginPeople.alt = 'Vegan Book picture';
+//   formLogin.appendChild(imageLoginPeople);
 
   const imageLogin = document.createElement('img');
   imageLogin.className = 'img-logo';
