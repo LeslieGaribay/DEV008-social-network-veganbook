@@ -1,44 +1,49 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { initializeApp } from "firebase/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyAnGqUN7btBK8WWW9uzxMt3HZrxuaj6SP0',
-  authDomain: 'veganbook-dev.firebaseapp.com',
-  projectId: 'veganbook-dev',
-  storageBucket: 'veganbook-dev.appspot.com',
-  messagingSenderId: '727951856811',
-  appId: '1:727951856811:web:97b69cb179790d913e53ee',
-  measurementId: 'G-SCVJPF1654',
+  apiKey: "AIzaSyAnGqUN7btBK8WWW9uzxMt3HZrxuaj6SP0",
+  authDomain: "veganbook-dev.firebaseapp.com",
+  projectId: "veganbook-dev",
+  storageBucket: "veganbook-dev.appspot.com",
+  messagingSenderId: "727951856811",
+  appId: "1:727951856811:web:97b69cb179790d913e53ee",
+  measurementId: "G-SCVJPF1654",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export function createUser(email, password)
-{ 
+export function createUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
-/*
-createUserWithEmailAndPassword(auth, inputEmail.value, inputPassword.value)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // muro red social
-    onNavigate('/timeline');
-    alert(user.email);
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
-    // ..
-  });
-  */
+export function signIn(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+// Configura un observador de estado de autenticación y obtén datos del usuario //opcional
+
+// function observator() {
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       console.log('existe usuario activo');
+//       // User is signed in, see docs for a list of available properties
+//       // https://firebase.google.com/docs/reference/js/v8/firebase.User
+//       var uid = user.uid;
+//       // ...
+//     } else {
+//       // User is signed out
+//       console.log('no existe usuario activo');
+//       // ...
+//     }
+//   });
+// }
+// observator();
