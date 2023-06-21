@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700;800&display=swap');
 
+* {
+    margin: 0 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     width: 100%;
-    height: 100%
+    height: 100%;
+    padding: 0;
+
 }
 
-.root {
-    margin: 0;
-    width: 100%;
-    height: 100%  
-}
 
 /* ************** Celular ************ */
 
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 420px) {
 
 /* **** login **** */
 
@@ -28,8 +31,13 @@ body {
     }
 
     .img-logo {
-        max-width: 70%;
-        margin-top: 30px;
+        max-width: 85%;
+        margin-top: 40px;
+        justify-content: center;
+    }
+
+    .img-people {
+        display: none;
     }
 
     h2 {
@@ -155,7 +163,7 @@ body {
     }
 
    .img-google {
-        width: 20px;
+        width: 28px;
         padding-right: 10px;
    }
 
@@ -188,6 +196,10 @@ body {
        font-size: 15px;
        cursor: pointer;
     }
+    .img-people-register{
+        display: none;
+    }
+  
 
     /* **** register **** */
 
@@ -280,7 +292,7 @@ body {
     }
 
     .img-logo {
-        max-width: 70%;
+        max-width: 80%;
         margin-top: 35px;
         margin-bottom: 40px;
     }
@@ -485,14 +497,14 @@ body {
     }
 
     .img-logo {
-        max-width: 70%;
+        max-width: 80%;
         margin-bottom: 40px;
     }
 
     .div-register {
         display: flex;
         flex-direction: row;
-        margin-left: 45px;
+        margin: 0;
     }
 
     .border-container-register {
@@ -627,15 +639,18 @@ body {
     .div-pink-login {
         background-color: #E89A9F;
         width: 45%;
-        height: auto;
+        height: 150%;
+        position: absolute;
     }
 
     .form-login {
-       width: 600px;
+       width: 45%;
        flex-direction: column;
        display: flex;
        align-items: center;
        padding-left: 30px;
+       position: relative;
+       margin-left: 45%;
     }
 
     .border-container-login {
@@ -776,7 +791,7 @@ body {
     }
 
    .img-google {
-        width: 20px;
+        width: 28px;
         padding-right: 10px;
    }
 
@@ -845,10 +860,10 @@ body {
     }
 
     .img-people-register{
-        max-width: 80%;
+        max-width: 200%;
         position: absolute;
-        margin-left: 110px;
-        margin-top: 155px;
+        margin-left: 80px;
+        margin-top: 210px;
     }
 
     .div-register {
@@ -859,7 +874,8 @@ body {
     .div-pink-register {
         background-color: #E89A9F;
         width: 45%;
-        height: auto;
+        height: 100%;
+        position: absolute;
     }
 
     .border-container-register {
@@ -952,14 +968,15 @@ body {
         font-size: 15px;    
         cursor: pointer;    
     }
-
-    .form-register {
-       width: 600px;
-       flex-direction: column;
-       display: flex;
-       align-items: center;
-       padding-left: 30px;
-    }
+.form-register {
+    width: 600px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    position: absolute;
+    margin-left: 45%;
+}
 
     .div-remember {
         display: flex;
