@@ -13,6 +13,12 @@ export const register = (onNavigate) => {
   formRegister.className = "form-register";
   divRegister.appendChild(formRegister);
 
+  const imageRegisterPeople = document.createElement('img');
+  imageRegisterPeople.className = 'img-people-register';
+  imageRegisterPeople.src = './images/image-register.png';
+  imageRegisterPeople.alt = 'Vegan Book picture';
+  divRegister.appendChild(imageRegisterPeople);
+
   const imageRegister = document.createElement("img");
   imageRegister.className = "img-logo";
   imageRegister.src = "./images/LogoVBB.png";
@@ -56,25 +62,6 @@ export const register = (onNavigate) => {
   inputPassword.placeholder = "Contraseña";
   inputPassword.value = "";
   borderContainerRegister.appendChild(inputPassword);
-
-  const divRemember = document.createElement("div");
-  divRemember.className = "div-remember";
-  borderContainerRegister.appendChild(divRemember);
-
-  const inputRemember = document.createElement("input");
-  inputRemember.className = "input-remember";
-  inputRemember.type = "checkbox";
-  divRemember.appendChild(inputRemember);
-
-  const textRemember = document.createElement("p");
-  textRemember.className = "text-remember";
-  textRemember.textContent = "Recordar";
-  divRemember.appendChild(textRemember);
-
-  const forgetPassword = document.createElement("p");
-  forgetPassword.className = "forget-password";
-  forgetPassword.textContent = "¿Olvidaste la contraseña?";
-  divRemember.appendChild(forgetPassword);
 
   const buttonCreateAccount = document.createElement("button");
   buttonCreateAccount.className = "button-create-account";

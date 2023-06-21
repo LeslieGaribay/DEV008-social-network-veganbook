@@ -12,11 +12,11 @@ export const login = (onNavigate) => {
   formLogin.className = "form-login";
   divLogin.appendChild(formLogin);
 
-  //  const imageLoginPeople = document.createElement('img');
-  //   imageLoginPeople.className = 'img-people';
-  //   imageLoginPeople.src = './images/image-login.png';
-  //   imageLoginPeople.alt = 'Vegan Book picture';
-  //   formLogin.appendChild(imageLoginPeople);
+  const imageLoginPeople = document.createElement('img');
+  imageLoginPeople.className = 'img-people';
+  imageLoginPeople.src = './images/image-login.png';
+  imageLoginPeople.alt = 'Vegan Book picture';
+  divLogin.appendChild(imageLoginPeople);
 
   const imageLogin = document.createElement("img");
   imageLogin.className = "img-logo";
