@@ -17,10 +17,10 @@ export const register = (onNavigate) => {
   imageRegisterPeople.className = 'img-people-register';
   imageRegisterPeople.src = './images/image-register.png';
   imageRegisterPeople.alt = 'Vegan Book picture';
-  divRegister.appendChild(imageRegisterPeople);
+  divPinkRegister.appendChild(imageRegisterPeople);
 
   const imageRegister = document.createElement("img");
-  imageRegister.className = "img-logo";
+  imageRegister.className = "img-logo-register";
   imageRegister.src = "./images/LogoVBB.png";
   imageRegister.alt = "logo de Vegan Book";
   formRegister.appendChild(imageRegister);
@@ -33,19 +33,23 @@ export const register = (onNavigate) => {
   title.textContent = "¡Regístrate!";
   borderContainerRegister.appendChild(title);
 
+  const divUserName = document.createElement('div');
+  divUserName.className = "div-username";
+  borderContainerRegister.appendChild(divUserName);
+
   const inputName = document.createElement("input");
   inputName.className = "input-name";
   inputName.type = "text";
   inputName.placeholder = "Nombre";
   inputName.value = "";
-  borderContainerRegister.appendChild(inputName);
+  divUserName.appendChild(inputName);
 
   const inputLastName = document.createElement("input");
   inputLastName.className = "input-lastname";
   inputLastName.type = "text";
-  inputLastName.placeholder = "Apellidos";
+  inputLastName.placeholder = "Apellido";
   inputLastName.value = "";
-  borderContainerRegister.appendChild(inputLastName);
+  divUserName.appendChild(inputLastName);
 
   const inputEmail = document.createElement("input");
   inputEmail.className = "input-email";

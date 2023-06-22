@@ -16,7 +16,7 @@ export const login = (onNavigate) => {
   imageLoginPeople.className = 'img-people';
   imageLoginPeople.src = './images/image-login.png';
   imageLoginPeople.alt = 'Vegan Book picture';
-  divLogin.appendChild(imageLoginPeople);
+  divPinkLogin.appendChild(imageLoginPeople);
 
   const imageLogin = document.createElement("img");
   imageLogin.className = "img-logo";

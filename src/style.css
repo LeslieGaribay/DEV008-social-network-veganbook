@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700;800&display=swap');
 
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.root {
+    width: 100%;
+    height: 100%;
+}
+
 * {
     margin: 0 0;
     padding: 0;
@@ -11,16 +21,19 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-
 }
 
 
+/***************************************/
 /* ************** Celular ************ */
+/***************************************/
 
 
-@media only screen and (max-width: 420px) {
+@media (max-width: 480px) {
 
-/* **** login **** */
+    /*******************/
+    /* **** login **** */
+    /*******************/
 
     * {
         background-color: white;
@@ -34,10 +47,6 @@ body {
         max-width: 85%;
         margin-top: 40px;
         justify-content: center;
-    }
-
-    .img-people {
-        display: none;
     }
 
     h2 {
@@ -64,7 +73,7 @@ body {
         font-size: 16px;
     }
 
-    .input-email[type=text]{
+    .input-email[type=text] {
         padding-left: 8px;
     }
 
@@ -106,8 +115,8 @@ body {
         margin-top: 27px;
         margin-bottom: -10px;
         flex-direction: row;
-        align-content:center;
-        justify-content:space-around        
+        align-content: center;
+        justify-content: space-around
     }
 
     .input-remember[type='checkbox'] {
@@ -118,7 +127,7 @@ body {
     .text-remember {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 12px; 
+        font-size: 12px;
         margin-right: 80px;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -126,7 +135,7 @@ body {
     .forget-password {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 10px;  
+        font-size: 10px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -148,7 +157,7 @@ body {
     .button-google {
         width: 271px;
         height: 39px;
-        margin-top: 12px; 
+        margin-top: 12px;
         background: #FFFFFF;
         border: 3px solid #8CA961;
         border-radius: 39px;
@@ -156,52 +165,50 @@ body {
         font-weight: 500;
         display: flex;
         font-size: 15px;
-        color:#194F37;
-        flex-direction: row-reverse; 
+        color: #194F37;
+        flex-direction: row-reverse;
         cursor: pointer;
         align-items: center;
     }
 
-   .img-google {
+    .img-google {
         width: 28px;
         padding-right: 10px;
-   }
+    }
 
-    hr {  
-        width: 150px; 
+    hr {
+        width: 150px;
         border-color: #E89A9F;
         opacity: 40%;
         margin-top: 30px;
         margin-bottom: 20px;
-     }
+    }
 
     h4 {
         font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
-        color:#194F37;
+        color: #194F37;
         font-size: 15px;
     }
 
     .button-register {
-       width: 145px;
-       height: 39px;
-       margin-top: 25px;
-       background: #9A4C4C;
-       border-radius: 39px; 
-       color: #FFFFFF;
-       border: none;
-       font-weight: 500;
-       justify-content: center;
-       font-size: 15px;
-       cursor: pointer;
+        width: 145px;
+        height: 39px;
+        margin-top: 25px;
+        background: #9A4C4C;
+        border-radius: 39px;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 500;
+        justify-content: center;
+        font-size: 15px;
+        cursor: pointer;
     }
-    .img-people-register{
-        display: none;
-    }
-  
 
+    /**********************/
     /* **** register **** */
+    /**********************/
 
     .input-name {
         box-sizing: border-box;
@@ -235,7 +242,7 @@ body {
         background: #FFFFFF;
         border: 1px solid #8CA961;
         border-radius: 8px;
-        outline: none; 
+        outline: none;
         font-size: 16px;
     }
 
@@ -270,22 +277,26 @@ body {
         height: 39px;
         margin-top: 25px;
         background: #9A4C4C;
-        border-radius: 39px; 
+        border-radius: 39px;
         color: #FFFFFF;
         border: none;
         font-weight: 500;
         justify-content: center;
-        font-size: 15px;    
-        cursor: pointer;    
+        font-size: 15px;
+        cursor: pointer;
     }
 
 }
 
+/********************************************/
 /* *****************Tablet***************** */
+/********************************************/
 
-@media only screen and (min-width: 481px){
-    
+@media (min-width: 481px) {
+
+    /*******************/
     /* **** Login **** */
+    /*******************/
 
     body {
         flex-direction: row;
@@ -297,17 +308,20 @@ body {
         margin-bottom: 40px;
     }
 
+    .img-people {
+    }
+
     .div-login {
         display: flex;
-        flex-direction: row;  
+        flex-direction: row;
     }
 
     .form-login {
-       width: 600px;
-       flex-direction: column;
-       display: flex;
-       align-items: center;
-       padding-left: 10%;
+        width: 600px;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        padding-left: 10%;
     }
 
     .border-container-login {
@@ -392,8 +406,9 @@ body {
         flex-direction: row;
         align-content: center;
         justify-content: space-around;
-        
+
     }
+
     .input-remember[type='checkbox'] {
         accent-color: #9A4C4C;
         cursor: pointer;
@@ -402,7 +417,7 @@ body {
     .text-remember {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 13px; 
+        font-size: 13px;
         margin-right: 80px;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -410,7 +425,7 @@ body {
     .forget-password {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 12px;  
+        font-size: 12px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -432,66 +447,60 @@ body {
     .button-google {
         width: 330px;
         height: 39px;
-        margin-top: 12px; 
+        margin-top: 12px;
         background: #FFFFFF;
         border: 3px solid #8CA961;
         border-radius: 39px;
         justify-content: center;
         font-weight: 500;
         font-size: 15px;
-        color:#194F37;
+        color: #194F37;
         display: flex;
-        flex-direction: row-reverse; 
+        flex-direction: row-reverse;
         cursor: pointer;
         align-items: center;
     }
 
-   .img-google {
+    .img-google {
         width: 20px;
         padding-right: 10px;
-   }
+    }
 
     h4 {
         font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
-        color:#194F37;
+        color: #194F37;
         font-size: 15px;
         margin-bottom: 0px;
     }
 
-    hr {  
-        width: 200px; 
+    hr {
+        width: 200px;
         border-color: #E89A9F;
         opacity: 40%;
         margin-top: 30px;
-     }
-
-    h4 {
-        font-family: 'Raleway', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        color:#194F37;
-        font-size: 15px;
     }
 
     .button-register {
-       width: 145px;
-       height: 39px;
-       margin-top: 30px;
-       background: #9A4C4C;
-       border-radius: 39px; 
-       color: #FFFFFF;
-       border: none;
-       font-weight: 500;
-       justify-content: center;
-       font-size: 15px;
-       cursor: pointer;
+        width: 145px;
+        height: 39px;
+        margin-top: 30px;
+        background: #9A4C4C;
+        border-radius: 39px;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 500;
+        justify-content: center;
+        font-size: 15px;
+        cursor: pointer;
     }
 
+    /**********************/
     /* **** Register **** */
+    /**********************/
 
-   
+
     body {
         flex-direction: row;
     }
@@ -505,6 +514,11 @@ body {
         display: flex;
         flex-direction: row;
         margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img-people-register {
     }
 
     .border-container-register {
@@ -521,7 +535,7 @@ body {
         margin-bottom: 40px;
     }
 
-   .input-name {
+    .input-name {
         box-sizing: border-box;
         margin-top: 20px;
         width: 330px;
@@ -553,7 +567,7 @@ body {
         background: #FFFFFF;
         border: 1px solid #8CA961;
         border-radius: 8px;
-        outline: none; 
+        outline: none;
         font-size: 16px;
     }
 
@@ -582,75 +596,69 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
-    
+
     .button-login-back {
         width: 145px;
         height: 39px;
         margin-top: 25px;
         background: #9A4C4C;
-        border-radius: 39px; 
+        border-radius: 39px;
         color: #FFFFFF;
         border: none;
         font-weight: 500;
         justify-content: center;
-        font-size: 15px;    
-        cursor: pointer;    
+        font-size: 15px;
+        cursor: pointer;
     }
 
     .form-register {
-       width: 600px;
-       flex-direction: column;
-       display: flex;
-       align-items: center;
-       padding-left: 30px;
+        width: 600px;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
     }
 
 }
 
 /******************* Desktop **************** */
 
- @media (min-width: 769px){
+@media (min-width: 769px) {
 
+    /*******************/
     /* **** Login **** */
+    /*******************/
 
     body {
         flex-direction: row;
     }
 
     .img-logo {
-        max-width: 80%;
+        max-width: 70%;
         margin-top: 20px;
-        margin-left: 165px;
     }
 
     .img-people {
-        max-width: 80%;
-        position: absolute;
         margin-left: 110px;
         margin-top: 70px;
     }
-    
+
     .div-login {
         display: flex;
         flex-direction: row;
-        position: relative;
     }
 
     .div-pink-login {
         background-color: #E89A9F;
         width: 45%;
-        height: 150%;
-        position: absolute;
     }
 
     .form-login {
-       width: 45%;
-       flex-direction: column;
-       display: flex;
-       align-items: center;
-       padding-left: 30px;
-       position: relative;
-       margin-left: 45%;
+        width: 55%;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
     }
 
     .border-container-login {
@@ -664,7 +672,6 @@ body {
         padding-right: 80px;
         padding-bottom: 40px;
         margin-top: -5px;
-        margin-left: 180px;
         margin-bottom: 40px;
     }
 
@@ -736,8 +743,9 @@ body {
         flex-direction: row;
         align-content: center;
         justify-content: space-around;
-        
+
     }
+
     .input-remember[type='checkbox'] {
         accent-color: #9A4C4C;
         cursor: pointer;
@@ -746,7 +754,7 @@ body {
     .text-remember {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 14px; 
+        font-size: 14px;
         margin-right: 80px;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -754,7 +762,7 @@ body {
     .forget-password {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 13px;  
+        font-size: 13px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -776,106 +784,100 @@ body {
     .button-google {
         width: 330px;
         height: 39px;
-        margin-top: 12px; 
+        margin-top: 12px;
         background: #FFFFFF;
         border: 3px solid #8CA961;
         border-radius: 39px;
         justify-content: center;
         font-weight: 500;
         font-size: 15px;
-        color:#194F37;
+        color: #194F37;
         display: flex;
-        flex-direction: row-reverse; 
+        flex-direction: row-reverse;
         cursor: pointer;
         align-items: center;
     }
 
-   .img-google {
+    .img-google {
         width: 28px;
         padding-right: 10px;
-   }
+    }
 
     h4 {
         font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
-        color:#194F37;
+        color: #194F37;
         font-size: 15px;
         margin-bottom: 0px;
     }
 
     .button-register {
-       width: 145px;
-       height: 39px;
-       background: #9A4C4C;
-       border-radius: 39px; 
-       color: #FFFFFF;
-       border: none;
-       font-weight: 500;
-       justify-content: center;
-       font-size: 15px;
-       cursor: pointer;
+        width: 145px;
+        height: 39px;
+        background: #9A4C4C;
+        border-radius: 39px;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 500;
+        justify-content: center;
+        font-size: 15px;
+        cursor: pointer;
     }
 
-    hr {  
-        width: 200px; 
+    hr {
+        width: 200px;
         border-color: #E89A9F;
         opacity: 40%;
         margin-top: 30px;
-     }
-
-    h4 {
-        font-family: 'Raleway', sans-serif;
-        font-style: normal;
-        font-weight: 700;
-        color:#194F37;
-        font-size: 15px;
+        margin-bottom: 30px;
     }
 
     .button-register {
-       width: 145px;
-       height: 39px;
-       margin-top: 25px;
-       background: #9A4C4C;
-       border-radius: 39px; 
-       color: #FFFFFF;
-       border: none;
-       font-weight: 500;
-       justify-content: center;
-       font-size: 15px;
-       cursor: pointer;
+        width: 145px;
+        height: 39px;
+        margin-top: 25px;
+        background: #9A4C4C;
+        border-radius: 39px;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 500;
+        justify-content: center;
+        font-size: 15px;
+        cursor: pointer;
     }
 
-   /* **** Register **** */
+    /**********************/
+    /* **** Register **** */
+    /**********************/
 
-   
+
     body {
         flex-direction: row;
     }
 
-    .img-logo {
-        max-width: 80%;
+    .img-logo-register {
+        max-width: 70%;
         margin-top: 20px;
-        margin-left: 165px;
+        margin-bottom: 40px;
     }
 
-    .img-people-register{
-        max-width: 200%;
-        position: absolute;
+    .img-people-register {
         margin-left: 80px;
         margin-top: 210px;
     }
 
     .div-register {
         display: flex;
-        flex-direction: row;        
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
     }
 
     .div-pink-register {
         background-color: #E89A9F;
         width: 45%;
         height: 100%;
-        position: absolute;
     }
 
     .border-container-register {
@@ -889,14 +891,21 @@ body {
         padding-right: 80px;
         padding-bottom: 40px;
         margin-top: 0px;
-        margin-left: 180px;
         margin-bottom: 40px;
     }
 
-   .input-name {
+    .div-username {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        width: 330px;     
+    }
+
+    .input-name {
         box-sizing: border-box;
         margin-top: 20px;
-        width: 330px;
+        width: 155px;
         height: 38px;
         background: #FFFFFF;
         border: 1px solid #8CA961;
@@ -920,12 +929,12 @@ body {
     .input-lastname {
         box-sizing: border-box;
         margin-top: 20px;
-        width: 330px;
+        width: 155px;
         height: 38px;
         background: #FFFFFF;
         border: 1px solid #8CA961;
         border-radius: 8px;
-        outline: none; 
+        outline: none;
         font-size: 16px;
     }
 
@@ -954,29 +963,28 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
-    
+
     .button-login-back {
         width: 145px;
         height: 39px;
         margin-top: 25px;
         background: #9A4C4C;
-        border-radius: 39px; 
+        border-radius: 39px;
         color: #FFFFFF;
         border: none;
         font-weight: 500;
         justify-content: center;
-        font-size: 15px;    
-        cursor: pointer;    
+        font-size: 15px;
+        cursor: pointer;
     }
-.form-register {
-    width: 600px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-    position: absolute;
-    margin-left: 45%;
-}
+
+    .form-register {
+        width: 55%;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+    }
 
     .div-remember {
         display: flex;
@@ -985,7 +993,7 @@ body {
         margin-bottom: -10px;
         flex-direction: row;
         align-content: center;
-        justify-content: space-around;        
+        justify-content: space-around;
     }
 
     .input-remember[type='checkbox'] {
@@ -996,7 +1004,7 @@ body {
     .text-remember {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 14px; 
+        font-size: 14px;
         margin-right: 80px;
         color: rgba(0, 0, 0, 0.84);
     }
@@ -1004,10 +1012,9 @@ body {
     .forget-password {
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
-        font-size: 13px;  
+        font-size: 13px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
     }
 
-} 
-
+}
