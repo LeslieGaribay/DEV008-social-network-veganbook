@@ -327,7 +327,11 @@ body {
 
     .div-login {
         display: flex;
-        flex-direction: row;
+        margin: 0;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12%;
     }
 
     .form-login {
@@ -530,9 +534,11 @@ body {
 
     .div-register {
         display: flex;
-        flex-direction: row;
         margin: 0;
         width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12%;
     }
 
     .border-container-register {
@@ -642,7 +648,6 @@ body {
         flex-direction: column;
         display: flex;
         align-items: center;
-        padding-left: 30px;
     }
 
 }
@@ -675,12 +680,14 @@ body {
         display: flex;
         flex-direction: row;
         height: 100%;
+        margin: 0;
     }
 
     .div-pink-login {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
+        height: 100%
     }
 
     .form-login {
@@ -888,7 +895,7 @@ body {
 
     .img-logo-register {
         max-width: 70%;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-bottom: 40px;
     }
 
@@ -902,12 +909,14 @@ body {
         display: flex;
         flex-direction: row;
         height: 100%;
+        margin: 0;
     }
 
     .div-pink-register {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
+        height: 100%;
     }
 
     .border-container-register {
