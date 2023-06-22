@@ -674,13 +674,13 @@ body {
     .div-login {
         display: flex;
         flex-direction: row;
+        height: 100%;
     }
 
     .div-pink-login {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
-        height: 928px;
     }
 
     .form-login {
@@ -901,14 +901,13 @@ body {
     .div-register {
         display: flex;
         flex-direction: row;
-
+        height: 100%;
     }
 
     .div-pink-register {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
-        height: 928px;
     }
 
     .border-container-register {
