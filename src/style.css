@@ -655,6 +655,7 @@ body {
     /* **** Login **** */
     /*******************/
 
+
     body {
         flex-direction: row;
     }
@@ -679,6 +680,7 @@ body {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
+        height: 928px;
     }
 
     .form-login {
@@ -906,6 +908,7 @@ body {
         background-color: #E89A9F;
         width: 45%;
         display: initial;
+        height: 928px;
     }
 
     .border-container-register {
