@@ -44,9 +44,13 @@ body {
     }
 
     .img-logo {
-        max-width: 85%;
+        max-width: 70%;
         margin-top: 40px;
         justify-content: center;
+    }
+
+    .img-people {
+        display: none;
     }
 
     h2 {
@@ -210,6 +214,15 @@ body {
     /* **** register **** */
     /**********************/
 
+    .img-logo-register {
+        max-width: 70%;
+        margin-top: 40px;
+    }
+
+    .img-people-register {
+        display: none;
+    }
+
     .input-name {
         box-sizing: border-box;
         margin-top: 27px;
@@ -308,7 +321,8 @@ body {
         margin-bottom: 40px;
     }
 
-    .img-people {
+    .div-pink-login {
+        display: none;
     }
 
     .div-login {
@@ -462,7 +476,7 @@ body {
     }
 
     .img-google {
-        width: 20px;
+        width: 28px;
         padding-right: 10px;
     }
 
@@ -505,9 +519,13 @@ body {
         flex-direction: row;
     }
 
-    .img-logo {
+    .img-logo-register {
         max-width: 80%;
         margin-bottom: 40px;
+    }
+
+    .div-pink-register {
+        display: none;
     }
 
     .div-register {
@@ -515,10 +533,6 @@ body {
         flex-direction: row;
         margin: 0;
         width: 100%;
-        height: 100%;
-    }
-
-    .img-people-register {
     }
 
     .border-container-register {
@@ -533,6 +547,14 @@ body {
         padding-bottom: 40px;
         margin-top: 20px;
         margin-bottom: 40px;
+    }
+
+    .div-username {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 330px;     
     }
 
     .input-name {
@@ -597,6 +619,10 @@ body {
         cursor: pointer;
     }
 
+    hr {
+        margin-bottom: 30px;
+    }
+
     .button-login-back {
         width: 145px;
         height: 39px;
@@ -639,8 +665,9 @@ body {
     }
 
     .img-people {
-        margin-left: 110px;
-        margin-top: 70px;
+        margin-left: 15%;
+        margin-top: 10%;
+        width: 145%;
     }
 
     .div-login {
@@ -651,6 +678,7 @@ body {
     .div-pink-login {
         background-color: #E89A9F;
         width: 45%;
+        display: initial;
     }
 
     .form-login {
@@ -863,21 +891,21 @@ body {
     }
 
     .img-people-register {
-        margin-left: 80px;
-        margin-top: 210px;
+        margin-left: 8%;
+        margin-top: 15%;
+        width: 110%;
     }
 
     .div-register {
         display: flex;
         flex-direction: row;
-        width: 100%;
-        height: 100%;
+
     }
 
     .div-pink-register {
         background-color: #E89A9F;
         width: 45%;
-        height: 100%;
+        display: initial;
     }
 
     .border-container-register {
