@@ -94,6 +94,7 @@ export const register = (onNavigate) => {
         // Signed in
         const user = userCredential.user;
         // ...
+        
       })
       .catch((error) => {
         let errorCode = error.code;

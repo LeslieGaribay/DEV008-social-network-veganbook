@@ -1,3 +1,4 @@
-// export const timeline = (onNavigate) => {
+export const timeline = (onNavigate) => {
 
-// }
+
+}
