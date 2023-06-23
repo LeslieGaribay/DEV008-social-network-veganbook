@@ -94,7 +94,7 @@ export const register = (onNavigate) => {
         // Signed in
         const user = userCredential.user;
         // ...
-        
+
       })
       .catch((error) => {
         let errorCode = error.code;
@@ -124,7 +124,8 @@ export const register = (onNavigate) => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
-        // ...
+        console.log(user);
+        onNavigate("/timeline");
       })
       .catch((error) => {
         // Handle Errors here.
@@ -137,7 +138,6 @@ export const register = (onNavigate) => {
         // ...
       });
   });
-  //buttonGoogle.addEventListener("click", () => onNavigate("/")); // muro red social
   const imgGoogle = document.createElement('img');
   imgGoogle.className = 'img-google';
   imgGoogle.src = './images/google.png';
