@@ -299,7 +299,61 @@ body {
         cursor: pointer;
     }
 
+    /*******************/
+    /* **** Timeline **** */
+    /*******************/
+
+    .div-timeline {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .div-navegation {
+        display: flex;
+        flex-direction: row;
+        margin-top: 2%;
+        justify-content: space-around;
+        
+    }
+
+    .img-logo-VB {
+        max-width: 25%;
+        margin-right: 10px;
+        
+    }
+
+    .img-user {
+        width: 65%;
+        border-radius: 50%;
+        margin-bottom: 3%;
+        border: 2px solid #9A4C4C;
+    }
+
+    .img-logout {
+        max-width: 10%;
+    }
+
+    .div-Profile-User {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        margin-right: 50px;
+
+    }
+
+    .user-Name {
+        font-size: 15px;
+        font-family: 'Raleway', sans-serif;
+        color: #9A4C4C;
+    }
+
+    .hr-timeline {
+        width: 100%;
+    }
+
 }
+
 
 /********************************************/
 /* *****************Tablet***************** */
@@ -560,7 +614,7 @@ body {
         flex-direction: column;
         align-content: center;
         justify-content: center;
-        width: 330px;     
+        width: 330px;
     }
 
     .input-name {
@@ -938,7 +992,7 @@ body {
         flex-direction: row;
         align-content: center;
         justify-content: space-between;
-        width: 330px;     
+        width: 330px;
     }
 
     .input-name {
