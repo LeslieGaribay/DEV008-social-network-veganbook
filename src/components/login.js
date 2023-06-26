@@ -1,5 +1,5 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { signIn } from '../firebase';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInUser } from '../firebase';
 
 const provider = new GoogleAuthProvider();
 
@@ -87,95 +87,114 @@ export const login = (onNavigate) => {
 
     errorText.textContent = '';
 
+    if (email === '' && password === '') {
+      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña!';
+      return;
+    } 
+    
+    if (email !== '' && password === '') {
+      errorText.textContent = 'Ups 🙉, ingresa una contraseña';
+      return;
+    } 
+    
+    if (email === '' && password !== '') {
+      errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
+      return;
+    } 
+
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
       return;
     }
 
-    if (password.length !== 6) {
-      errorText.textContent = 'La contraseña debe tener 6 caracteres.';
+    if (password.length < 6) {
+      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres.';
       return;
     }
 
-    signIn(email, password);
-    // signIn(inputEmailLogin.value, inputPasswordLogin.value);
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
-      .then((userCredential) => {
+   
+    signInUser(email, password)
+    .then((userCredential) => {
         const user = userCredential.user;
-        // ...
+        console.log(user);
+        onNavigate('/timeline');
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
 
-        errorText.textContent = errorMessage;
-      });
+      errorText.textContent = errorMessage;
+    });
   });
 
-  borderContainerLogin.appendChild(buttonLogin);
 
-  // buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
+//   firebase
+//     .auth()
+//     .signInWithEmailAndPassword(email, password)
+//     // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
+// });
 
-  const buttonGoogle = document.createElement('button');
-  buttonGoogle.className = 'button-google';
-  buttonGoogle.id = 'button-google-login';
-  buttonGoogle.textContent = 'Iniciar sesión con Google';
-  buttonGoogle.type = 'submit';
-  borderContainerLogin.appendChild(buttonGoogle);
+borderContainerLogin.appendChild(buttonLogin);
 
-  buttonGoogle.addEventListener('click', (e) => {
-    e.preventDefault();
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  });
+// buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
 
-  const imgGoogle = document.createElement('img');
-  imgGoogle.className = 'img-google';
-  imgGoogle.src = './images/google.png';
-  imgGoogle.alt = 'imagen Google';
-  buttonGoogle.appendChild(imgGoogle);
+const buttonGoogle = document.createElement('button');
+buttonGoogle.className = 'button-google';
+buttonGoogle.id = 'button-google-login';
+buttonGoogle.textContent = 'Iniciar sesión con Google';
+buttonGoogle.type = 'submit';
+borderContainerLogin.appendChild(buttonGoogle);
 
-  // buttonGoogle.addEventListener('click', () => onNavigate('/')); // autentificación con google
+buttonGoogle.addEventListener('click', (e) => {
+  e.preventDefault();
+  const auth = getAuth();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      console.log(user);
+      onNavigate('/timeline');
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+});
 
-  const hr = document.createElement('hr');
-  borderContainerLogin.appendChild(hr);
+const imgGoogle = document.createElement('img');
+imgGoogle.className = 'img-google';
+imgGoogle.src = './images/google.png';
+imgGoogle.alt = 'imagen Google';
+buttonGoogle.appendChild(imgGoogle);
 
-  const optionalText = document.createElement('h4');
-  optionalText.textContent = '¿Eres nuevo en VeganBook?';
-  borderContainerLogin.appendChild(optionalText);
+// buttonGoogle.addEventListener('click', () => onNavigate('/')); // autentificación con google
 
-  const buttonRegister = document.createElement('button');
-  buttonRegister.className = 'button-register';
-  buttonRegister.textContent = '¡Regístrate!';
-  buttonRegister.type = 'submit';
-  borderContainerLogin.appendChild(buttonRegister);
+const hr = document.createElement('hr');
+borderContainerLogin.appendChild(hr);
 
-  buttonRegister.addEventListener('click', () => onNavigate('/register'));
+const optionalText = document.createElement('h4');
+optionalText.textContent = '¿Eres nuevo en VeganBook?';
+borderContainerLogin.appendChild(optionalText);
 
-  return divLogin;
+const buttonRegister = document.createElement('button');
+buttonRegister.className = 'button-register';
+buttonRegister.textContent = '¡Regístrate!';
+buttonRegister.type = 'submit';
+borderContainerLogin.appendChild(buttonRegister);
+
+buttonRegister.addEventListener('click', () => onNavigate('/register'));
+
+return divLogin;
 };

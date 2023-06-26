@@ -86,7 +86,7 @@ export const register = (onNavigate) => {
   borderContainerRegister.appendChild(divError);
 
   const errorText = document.createElement('p');
-  errorText.className = 'error-text-register';
+  errorText.classList.add('error-text-register', 'error-text-hidden');
   divError.appendChild(errorText);
 
   buttonCreateAccount.addEventListener('click', (e) => {
@@ -96,31 +96,55 @@ export const register = (onNavigate) => {
     const password = inputPassword.value;
 
     errorText.textContent = '';
+    errorText.classList.add('error-text-hidden');
+
+
+    if (email === '' && password === '') {
+      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña!';
+      errorText.classList.remove('error-text-hidden')
+      return;
+    } 
+    
+    if (email !== '' && password === '') {
+      errorText.textContent = 'Ups 🙉, ingresa una contraseña';
+      errorText.classList.remove('error-text-hidden')
+      return;
+    } 
+    
+    if (email === '' && password !== '') {
+      errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
+      errorText.classList.remove('error-text-hidden')
+      return;
+    } 
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
+      errorText.classList.remove('error-text-hidden')
       return;
     }
 
-    if (password.length !== 6) {
-      errorText.textContent = 'La contraseña debe tener 6 caracteres.';
+    if (password.length < 6) {
+      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+      errorText.classList.remove('error-text-hidden')
       return;
     }
 
-    // console.log('im here');
-    // createUser(inputEmail.value, inputPassword.value);
-    createUser(email, password);
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(inputEmail, inputPassword)
+    errorText.textContent = '';    
+    errorText.classList.add('error-text-hidden');
+
+    createUser(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // ...
+        console.log(user);
+        onNavigate('/timeline');
       })
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+
         // ..
         errorText.textContent = errorMessage;
       });
