@@ -81,9 +81,13 @@ export const register = (onNavigate) => {
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.type = 'submit';
 
+  const divError = document.createElement('div');
+  divError.className = 'div-error';
+  borderContainerRegister.appendChild(divError);
+
   const errorText = document.createElement('p');
   errorText.className = 'error-text-register';
-  borderContainerRegister.appendChild(errorText);
+  divError.appendChild(errorText);
 
   buttonCreateAccount.addEventListener('click', (e) => {
     e.preventDefault();

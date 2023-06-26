@@ -210,8 +210,10 @@ body {
         cursor: pointer;
     }
     .error-text{
-        color: red;
+        color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
     /**********************/
@@ -304,8 +306,10 @@ body {
     }
 
     .error-text-register{
-        color: red;
+        color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
     /*******************/
@@ -578,8 +582,10 @@ body {
     }
 
     .error-text{
-        color: red;
+        color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
     /**********************/
@@ -718,8 +724,10 @@ body {
         align-items: center;
     }
     .error-text-register{
-        color: red;
+        color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
 }
@@ -956,8 +964,10 @@ body {
         cursor: pointer;
     }
     .error-text{
-        color: red;
+        color:  rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
     /**********************/
@@ -1131,9 +1141,12 @@ body {
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
     }
+
     .error-text-register{
-        color: red;
+        color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
+        font-weight: bolder;
+        font-size: 15px;
     }
 
 }
