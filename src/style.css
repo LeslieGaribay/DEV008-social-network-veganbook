@@ -209,6 +209,10 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
+    .error-text{
+        color: red;
+        font-family: 'Raleway', sans-serif;
+    }
 
     /**********************/
     /* **** register **** */
@@ -297,6 +301,11 @@ body {
         justify-content: center;
         font-size: 15px;
         cursor: pointer;
+    }
+
+    .error-text-register{
+        color: red;
+        font-family: 'Raleway', sans-serif;
     }
 
     /*******************/
@@ -568,6 +577,11 @@ body {
         cursor: pointer;
     }
 
+    .error-text{
+        color: red;
+        font-family: 'Raleway', sans-serif;
+    }
+
     /**********************/
     /* **** Register **** */
     /**********************/
@@ -702,6 +716,10 @@ body {
         flex-direction: column;
         display: flex;
         align-items: center;
+    }
+    .error-text-register{
+        color: red;
+        font-family: 'Raleway', sans-serif;
     }
 
 }
@@ -937,6 +955,10 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
+    .error-text{
+        color: red;
+        font-family: 'Raleway', sans-serif;
+    }
 
     /**********************/
     /* **** Register **** */
@@ -1108,6 +1130,10 @@ body {
         font-size: 13px;
         text-decoration: underline;
         color: rgba(0, 0, 0, 0.84);
+    }
+    .error-text-register{
+        color: red;
+        font-family: 'Raleway', sans-serif;
     }
 
 }

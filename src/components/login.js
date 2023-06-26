@@ -1,8 +1,4 @@
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { signIn } from '../firebase';
 
 const provider = new GoogleAuthProvider();
@@ -78,18 +74,37 @@ export const login = (onNavigate) => {
   buttonLogin.className = 'button-login';
   buttonLogin.textContent = 'Iniciar sesión';
   buttonLogin.type = 'submit';
+
+  const errorText = document.createElement('p');
+  errorText.className = 'error-text';
+  borderContainerLogin.appendChild(errorText);
+
   buttonLogin.addEventListener('click', (e) => {
     e.preventDefault();
 
-    signIn(inputEmailLogin.value, inputPasswordLogin.value);
-    console.log(inputEmailLogin.value);
-    console.log(inputPasswordLogin.value);
+    const email = inputEmailLogin.value;
+    const password = inputPasswordLogin.value;
+
+    errorText.textContent = '';
+
+    if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
+      errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
+      return;
+    }
+
+    if (password.length !== 6) {
+      errorText.textContent = 'La contraseña debe tener 6 caracteres.';
+      return;
+    }
+
+    signIn(email, password);
+    // signIn(inputEmailLogin.value, inputPasswordLogin.value);
 
     firebase
       .auth()
-      .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
+      .signInWithEmailAndPassword(email, password)
+      // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         // ...
       })
@@ -98,6 +113,8 @@ export const login = (onNavigate) => {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+
+        errorText.textContent = errorMessage;
       });
   });
 

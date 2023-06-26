@@ -80,13 +80,32 @@ export const register = (onNavigate) => {
   buttonCreateAccount.className = 'button-create-account';
   buttonCreateAccount.textContent = 'Crear cuenta';
   buttonCreateAccount.type = 'submit';
+
+  const errorText = document.createElement('p');
+  errorText.className = 'error-text-register';
+  borderContainerRegister.appendChild(errorText);
+
   buttonCreateAccount.addEventListener('click', (e) => {
     e.preventDefault();
 
+    const email = inputEmail.value;
+    const password = inputPassword.value;
+
+    errorText.textContent = '';
+
+    if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
+      errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
+      return;
+    }
+
+    if (password.length !== 6) {
+      errorText.textContent = 'La contraseña debe tener 6 caracteres.';
+      return;
+    }
+
     // console.log('im here');
-    createUser(inputEmail.value, inputPassword.value);
-    console.log(inputEmail.value);
-    console.log(inputPassword.value);
+    // createUser(inputEmail.value, inputPassword.value);
+    createUser(email, password);
     firebase
       .auth()
       .createUserWithEmailAndPassword(inputEmail, inputPassword)
@@ -94,12 +113,12 @@ export const register = (onNavigate) => {
         // Signed in
         const user = userCredential.user;
         // ...
-
       })
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
         // ..
+        errorText.textContent = errorMessage;
       });
 
     //   .then((response) => { console.log(response) })
@@ -125,7 +144,7 @@ export const register = (onNavigate) => {
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
         console.log(user);
-        onNavigate("/timeline");
+        onNavigate('/timeline');
       })
       .catch((error) => {
         // Handle Errors here.
