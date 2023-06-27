@@ -100,32 +100,32 @@ export const register = (onNavigate) => {
 
 
     if (email === '' && password === '') {
-      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña!';
-      errorText.classList.remove('error-text-hidden')
+      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña';
+      errorText.classList.remove('error-text-hidden');
       return;
     } 
     
     if (email !== '' && password === '') {
       errorText.textContent = 'Ups 🙉, ingresa una contraseña';
-      errorText.classList.remove('error-text-hidden')
+      errorText.classList.remove('error-text-hidden');
       return;
     } 
     
     if (email === '' && password !== '') {
       errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
-      errorText.classList.remove('error-text-hidden')
+      errorText.classList.remove('error-text-hidden');
       return;
     } 
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
-      errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
-      errorText.classList.remove('error-text-hidden')
+      errorText.textContent = 'Por favor ingresa un correo electrónico válido';
+      errorText.classList.remove('error-text-hidden');
       return;
     }
 
     if (password.length < 6) {
-      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres.';
-      errorText.classList.remove('error-text-hidden')
+      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres';
+      errorText.classList.remove('error-text-hidden');
       return;
     }
 
@@ -140,17 +140,20 @@ export const register = (onNavigate) => {
         onNavigate('/timeline');
       })
       .catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-
-        // ..
-        errorText.textContent = errorMessage;
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        
+        switch (errorCode) {
+          case 'auth/email-already-exists':
+          case 'auth/email-already-in-use':
+            errorText.textContent = '⚡ El correo electrónico ya está registrado ⚡';
+            errorText.classList.remove('error-text-hidden');
+            break;
+          default:
+            errorText.textContent = errorMessage;
+            errorText.classList.add('error-text-hidden');
+          }
       });
-
-    //   .then((response) => { console.log(response) })
-    //   .catch(console.log);
   });
 
   borderContainerRegister.appendChild(buttonCreateAccount);

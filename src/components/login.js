@@ -88,7 +88,7 @@ export const login = (onNavigate) => {
     errorText.textContent = '';
 
     if (email === '' && password === '') {
-      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña!';
+      errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña';
       return;
     } 
     
@@ -103,12 +103,12 @@ export const login = (onNavigate) => {
     } 
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
-      errorText.textContent = 'Por favor ingresa un correo electrónico válido.';
+      errorText.textContent = 'Por favor ingresa un correo electrónico válido';
       return;
     }
 
     if (password.length < 6) {
-      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres';
       return;
     }
 
@@ -125,7 +125,22 @@ export const login = (onNavigate) => {
       console.log(errorCode);
       console.log(errorMessage);
 
-      errorText.textContent = errorMessage;
+      switch (errorCode) {
+        case 'auth/wrong-password':
+          errorText.textContent = '⚡ La contraseña es incorrecta ⚡';
+          break;
+        case 'auth/invalid-email':
+          errorText.textContent = '⚡ El correo ingresado no es válido ⚡';
+          break;
+        case 'auth/user-not-found':
+          errorText.textContent = '⚡ Usuario y/o contraseña incorrecta ⚡';
+          break;
+        case 'auth/too-many-requests':
+          errorText.textContent = '⚡ Superaste el número de intentos permitidos, vuelve a intentarlo luego ⚡';
+          break;
+        default:
+          errorText.textContent = errorMessage;
+        }
     });
   });
 
