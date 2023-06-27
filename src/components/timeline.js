@@ -44,6 +44,7 @@ export const timeline = (onNavigate) => {
   imgLogOut.className = 'img-logout';
   imgLogOut.src = './images/logout.png';
   imgLogOut.alt = 'Imagen Logout';
+  imgLogOut.addEventListener('click', () => onNavigate('/'));
   divNavTimeline.appendChild(imgLogOut);
 
   const hrTimeline = document.createElement('hr');

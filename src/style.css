@@ -199,10 +199,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 25px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -295,10 +295,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 25px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -346,6 +346,7 @@ body {
 
     .img-logout {
         max-width: 10%;
+        cursor: pointer;
     }
 
     .div-Profile-User {
@@ -611,10 +612,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 30px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -747,10 +748,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 25px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -977,10 +978,10 @@ body {
     .button-register {
         width: 145px;
         height: 39px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -999,10 +1000,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 25px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -1139,10 +1140,10 @@ body {
         width: 145px;
         height: 39px;
         margin-top: 25px;
-        background: #9A4C4C;
+        background: #FFFFFF;
         border-radius: 39px;
-        color: #FFFFFF;
-        border: none;
+        color: #9A4C4C;
+        border: 2px solid #9A4C4C;
         font-weight: 500;
         justify-content: center;
         font-size: 15px;
@@ -1236,6 +1237,7 @@ body {
     .img-logout {
         max-width: 4%;
         margin-left: -6%;
+        cursor: pointer;
     }
 
     .div-Profile-User {

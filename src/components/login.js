@@ -112,7 +112,6 @@ export const login = (onNavigate) => {
       return;
     }
 
-   
     signInUser(email, password)
     .then((userCredential) => {
         const user = userCredential.user;
