@@ -898,7 +898,6 @@ body {
         flex-direction: row;
         align-content: center;
         justify-content: space-around;
-
     }
 
     .input-remember[type='checkbox'] {
@@ -999,11 +998,6 @@ body {
     /**********************/
     /* **** Register **** */
     /**********************/
-
-
-    body {
-        flex-direction: row;
-    }
 
     .img-logo-register {
         max-width: 70%;
@@ -1135,36 +1129,6 @@ body {
         display: flex;
         align-items: center;
         padding-left: 30px;
-    }
-
-    .div-remember {
-        display: flex;
-        width: 320px;
-        margin-top: 18px;
-        flex-direction: row;
-        align-content: center;
-        justify-content: space-around;
-    }
-
-    .input-remember[type='checkbox'] {
-        accent-color: #9A4C4C;
-        cursor: pointer;
-    }
-
-    .text-remember {
-        font-family: 'Raleway', sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        margin-right: 80px;
-        color: rgba(0, 0, 0, 0.84);
-    }
-
-    .forget-password {
-        font-family: 'Raleway', sans-serif;
-        font-weight: 400;
-        font-size: 13px;
-        text-decoration: underline;
-        color: rgba(0, 0, 0, 0.84);
     }
 
     .error-text-register {
