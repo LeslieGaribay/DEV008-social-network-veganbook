@@ -110,19 +110,19 @@ export const register = (onNavigate) => {
     }
 
     if (email === '' && password !== '') {
-      errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
+      errorText.textContent = 'Ups 🙉, ingresa un correo electrónico';
       errorText.classList.remove('error-text-hidden');
       return;
     }
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
-      errorText.textContent = 'Por favor ingresa un correo electrónico válido';
+      errorText.textContent = 'Ups 🙉, ingresa un correo electrónico válido';
       errorText.classList.remove('error-text-hidden');
       return;
     }
 
     if (password.length < 6) {
-      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres';
+      errorText.textContent = 'Ups 🙉, la contraseña debe tener al menos 6 caracteres';
       errorText.classList.remove('error-text-hidden');
       return;
     }
