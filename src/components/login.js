@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { signInUser } from '../firebase';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signInUser } from '../lib/firebase';
 
 const provider = new GoogleAuthProvider();
 
@@ -90,17 +90,17 @@ export const login = (onNavigate) => {
     if (email === '' && password === '') {
       errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña';
       return;
-    } 
-    
+    }
+
     if (email !== '' && password === '') {
       errorText.textContent = 'Ups 🙉, ingresa una contraseña';
       return;
-    } 
-    
+    }
+
     if (email === '' && password !== '') {
       errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
       return;
-    } 
+    }
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       errorText.textContent = 'Por favor ingresa un correo electrónico válido';
@@ -113,102 +113,101 @@ export const login = (onNavigate) => {
     }
 
     signInUser(email, password)
-    .then((userCredential) => {
+      .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
         onNavigate('/timeline');
       })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
-
-      switch (errorCode) {
-        case 'auth/wrong-password':
-          errorText.textContent = '⚡ La contraseña es incorrecta ⚡';
-          break;
-        case 'auth/invalid-email':
-          errorText.textContent = '⚡ El correo ingresado no es válido ⚡';
-          break;
-        case 'auth/user-not-found':
-          errorText.textContent = '⚡ Usuario y/o contraseña incorrecta ⚡';
-          break;
-        case 'auth/too-many-requests':
-          errorText.textContent = '⚡ Superaste el número de intentos permitidos, vuelve a intentarlo luego ⚡';
-          break;
-        default:
-          errorText.textContent = errorMessage;
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        switch (errorCode) {
+          case 'auth/wrong-password':
+            errorText.textContent = '⚡ La contraseña es incorrecta ⚡';
+            break;
+          case 'auth/invalid-email':
+            errorText.textContent = '⚡ El correo ingresado no es válido ⚡';
+            break;
+          case 'auth/user-not-found':
+            errorText.textContent = '⚡ Usuario y/o contraseña incorrecta ⚡';
+            break;
+          case 'auth/too-many-requests':
+            errorText.textContent = '⚡ Superaste el número de intentos permitidos, vuelve a intentarlo luego ⚡';
+            break;
+          default:
+            errorText.textContent = errorMessage;
         }
-    });
+      });
   });
 
+  //   firebase
+  //     .auth()
+  //     .signInWithEmailAndPassword(email, password)
+  //     // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
+  // });
 
-//   firebase
-//     .auth()
-//     .signInWithEmailAndPassword(email, password)
-//     // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
-// });
+  borderContainerLogin.appendChild(buttonLogin);
 
-borderContainerLogin.appendChild(buttonLogin);
+  // buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
 
-// buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
+  const buttonGoogle = document.createElement('button');
+  buttonGoogle.className = 'button-google';
+  buttonGoogle.id = 'button-google-login';
+  buttonGoogle.textContent = 'Iniciar sesión con Google';
+  buttonGoogle.type = 'submit';
+  borderContainerLogin.appendChild(buttonGoogle);
 
-const buttonGoogle = document.createElement('button');
-buttonGoogle.className = 'button-google';
-buttonGoogle.id = 'button-google-login';
-buttonGoogle.textContent = 'Iniciar sesión con Google';
-buttonGoogle.type = 'submit';
-borderContainerLogin.appendChild(buttonGoogle);
+  buttonGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        console.log(token);
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        console.log(user);
+        onNavigate('/timeline');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log(email, credential);
+      });
+  });
 
-buttonGoogle.addEventListener('click', (e) => {
-  e.preventDefault();
-  const auth = getAuth();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      console.log(user);
-      onNavigate('/timeline');
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-});
+  const imgGoogle = document.createElement('img');
+  imgGoogle.className = 'img-google';
+  imgGoogle.src = './images/google.png';
+  imgGoogle.alt = 'imagen Google';
+  buttonGoogle.appendChild(imgGoogle);
 
-const imgGoogle = document.createElement('img');
-imgGoogle.className = 'img-google';
-imgGoogle.src = './images/google.png';
-imgGoogle.alt = 'imagen Google';
-buttonGoogle.appendChild(imgGoogle);
+  // buttonGoogle.addEventListener('click', () => onNavigate('/')); // autentificación con google
 
-// buttonGoogle.addEventListener('click', () => onNavigate('/')); // autentificación con google
+  const hr = document.createElement('hr');
+  borderContainerLogin.appendChild(hr);
 
-const hr = document.createElement('hr');
-borderContainerLogin.appendChild(hr);
+  const optionalText = document.createElement('h4');
+  optionalText.textContent = '¿Eres nuevo en VeganBook?';
+  borderContainerLogin.appendChild(optionalText);
 
-const optionalText = document.createElement('h4');
-optionalText.textContent = '¿Eres nuevo en VeganBook?';
-borderContainerLogin.appendChild(optionalText);
+  const buttonRegister = document.createElement('button');
+  buttonRegister.className = 'button-register';
+  buttonRegister.textContent = '¡Regístrate!';
+  buttonRegister.type = 'submit';
+  borderContainerLogin.appendChild(buttonRegister);
 
-const buttonRegister = document.createElement('button');
-buttonRegister.className = 'button-register';
-buttonRegister.textContent = '¡Regístrate!';
-buttonRegister.type = 'submit';
-borderContainerLogin.appendChild(buttonRegister);
+  buttonRegister.addEventListener('click', () => onNavigate('/register'));
 
-buttonRegister.addEventListener('click', () => onNavigate('/register'));
-
-return divLogin;
+  return divLogin;
 };

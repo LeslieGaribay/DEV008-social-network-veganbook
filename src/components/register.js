@@ -2,11 +2,10 @@
 // import { auth } from "./firebase.js";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { createUser, signInGoogle } from '../firebase';
+import { createUser } from '../lib/firebase';
 
 const provider = new GoogleAuthProvider();
 
@@ -98,24 +97,23 @@ export const register = (onNavigate) => {
     errorText.textContent = '';
     errorText.classList.add('error-text-hidden');
 
-
     if (email === '' && password === '') {
       errorText.textContent = 'Ups 🙈, ingresa un correo y una contraseña';
       errorText.classList.remove('error-text-hidden');
       return;
-    } 
-    
+    }
+
     if (email !== '' && password === '') {
       errorText.textContent = 'Ups 🙉, ingresa una contraseña';
       errorText.classList.remove('error-text-hidden');
       return;
-    } 
-    
+    }
+
     if (email === '' && password !== '') {
       errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
       errorText.classList.remove('error-text-hidden');
       return;
-    } 
+    }
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       errorText.textContent = 'Por favor ingresa un correo electrónico válido';
@@ -129,7 +127,7 @@ export const register = (onNavigate) => {
       return;
     }
 
-    errorText.textContent = '';    
+    errorText.textContent = '';
     errorText.classList.add('error-text-hidden');
 
     createUser(email, password)
@@ -142,17 +140,20 @@ export const register = (onNavigate) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        
+
         switch (errorCode) {
           case 'auth/email-already-exists':
           case 'auth/email-already-in-use':
             errorText.textContent = '⚡ El correo electrónico ya está registrado ⚡';
             errorText.classList.remove('error-text-hidden');
             break;
+          case 'auth/invalid-email':
+            errorText.textContent = '⚡ El correo ingresado no es válido ⚡';
+            break;
           default:
             errorText.textContent = errorMessage;
             errorText.classList.add('error-text-hidden');
-          }
+        }
       });
   });
 
@@ -171,6 +172,7 @@ export const register = (onNavigate) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+        console.log(token);
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
@@ -181,11 +183,13 @@ export const register = (onNavigate) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
+        console.log(email, credential);
       });
   });
   const imgGoogle = document.createElement('img');
