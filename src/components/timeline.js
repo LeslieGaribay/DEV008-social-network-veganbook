@@ -14,7 +14,7 @@ export const timeline = (onNavigate) => {
   divTimeline.appendChild(divNavTimeline);
 
   const imgLogoVB = document.createElement('img');
-  imgLogoVB.className = 'img-logo-VB';
+  imgLogoVB.classList.add('img-logo-VB', 'img-logo-VB-hidden');
   imgLogoVB.src = './images/LogoVB.png';
   imgLogoVB.alt = 'VeganBook Logo';
   divNavTimeline.appendChild(imgLogoVB);
