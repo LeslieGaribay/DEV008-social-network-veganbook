@@ -2,7 +2,7 @@ import {
   getAuth,
 
 } from 'firebase/auth';
-import { createUser, signInGoogle } from '../firebase';
+// import { createUser, signInGoogle } from '../lib/firebase';
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;

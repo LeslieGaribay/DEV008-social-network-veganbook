@@ -606,6 +606,7 @@ body {
         border-color: #E89A9F;
         opacity: 40%;
         margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     .button-register {
@@ -632,11 +633,6 @@ body {
     /**********************/
     /* **** Register **** */
     /**********************/
-
-
-    body {
-        flex-direction: row;
-    }
 
     .img-logo-register {
         max-width: 80%;
@@ -738,10 +734,6 @@ body {
         font-weight: 700;
         font-size: 15px;
         cursor: pointer;
-    }
-
-    hr {
-        margin-bottom: 30px;
     }
 
     .button-login-back {
@@ -906,7 +898,6 @@ body {
         flex-direction: row;
         align-content: center;
         justify-content: space-around;
-
     }
 
     .input-remember[type='checkbox'] {
@@ -978,6 +969,7 @@ body {
     .button-register {
         width: 145px;
         height: 39px;
+        margin-top: 25px;
         background: #FFFFFF;
         border-radius: 39px;
         color: #9A4C4C;
@@ -996,20 +988,6 @@ body {
         margin-bottom: 30px;
     }
 
-    .button-register {
-        width: 145px;
-        height: 39px;
-        margin-top: 25px;
-        background: #FFFFFF;
-        border-radius: 39px;
-        color: #9A4C4C;
-        border: 2px solid #9A4C4C;
-        font-weight: 500;
-        justify-content: center;
-        font-size: 15px;
-        cursor: pointer;
-    }
-
     .error-text {
         color: rgb(165, 90, 43);
         font-family: 'Raleway', sans-serif;
@@ -1020,11 +998,6 @@ body {
     /**********************/
     /* **** Register **** */
     /**********************/
-
-
-    body {
-        flex-direction: row;
-    }
 
     .img-logo-register {
         max-width: 70%;
@@ -1156,36 +1129,6 @@ body {
         display: flex;
         align-items: center;
         padding-left: 30px;
-    }
-
-    .div-remember {
-        display: flex;
-        width: 320px;
-        margin-top: 18px;
-        flex-direction: row;
-        align-content: center;
-        justify-content: space-around;
-    }
-
-    .input-remember[type='checkbox'] {
-        accent-color: #9A4C4C;
-        cursor: pointer;
-    }
-
-    .text-remember {
-        font-family: 'Raleway', sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        margin-right: 80px;
-        color: rgba(0, 0, 0, 0.84);
-    }
-
-    .forget-password {
-        font-family: 'Raleway', sans-serif;
-        font-weight: 400;
-        font-size: 13px;
-        text-decoration: underline;
-        color: rgba(0, 0, 0, 0.84);
     }
 
     .error-text-register {
