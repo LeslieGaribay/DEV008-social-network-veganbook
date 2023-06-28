@@ -1,7 +1,5 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { signInUser } from '../lib/firebase';
-
-const provider = new GoogleAuthProvider();
+import { GoogleAuthProvider } from 'firebase/auth';
+import { signInUser, signInGoogle } from '../lib/firebase';
 
 export const login = (onNavigate) => {
   const divLogin = document.createElement('div');
@@ -140,15 +138,7 @@ export const login = (onNavigate) => {
       });
   });
 
-  //   firebase
-  //     .auth()
-  //     .signInWithEmailAndPassword(email, password)
-  //     // .signInWithEmailAndPassword(inputEmailLogin, inputPasswordLogin)
-  // });
-
   borderContainerLogin.appendChild(buttonLogin);
-
-  // buttonLogin.addEventListener('click', () => onNavigate('/timeline')); // muro red social
 
   const buttonGoogle = document.createElement('button');
   buttonGoogle.className = 'button-google';
@@ -159,8 +149,7 @@ export const login = (onNavigate) => {
 
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
+    signInGoogle()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -173,11 +162,8 @@ export const login = (onNavigate) => {
         onNavigate('/timeline');
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
 
         switch (errorCode) {
           case 'auth/internal-error':
@@ -187,7 +173,6 @@ export const login = (onNavigate) => {
             errorText.textContent = errorMessage;
             errorText.classList.add('error-text-hidden');
         }
-        console.log(email, credential);
       });
   });
 
@@ -196,8 +181,6 @@ export const login = (onNavigate) => {
   imgGoogle.src = './images/google.png';
   imgGoogle.alt = 'imagen Google';
   buttonGoogle.appendChild(imgGoogle);
-
-  // buttonGoogle.addEventListener('click', () => onNavigate('/')); // autentificación con google
 
   const hr = document.createElement('hr');
   borderContainerLogin.appendChild(hr);

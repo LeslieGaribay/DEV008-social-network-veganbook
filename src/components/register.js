@@ -1,13 +1,7 @@
 // import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 // import { auth } from "./firebase.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from 'firebase/auth';
-import { createUser } from '../lib/firebase';
-
-const provider = new GoogleAuthProvider();
+import { GoogleAuthProvider } from 'firebase/auth';
+import { createUser, signInGoogle } from '../lib/firebase';
 
 export const register = (onNavigate) => {
   const divRegister = document.createElement('div');
@@ -166,8 +160,7 @@ export const register = (onNavigate) => {
   buttonGoogle.type = 'submit';
   buttonGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    signInWithPopup(auth, provider)
+    signInGoogle()
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
@@ -179,10 +172,14 @@ export const register = (onNavigate) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(email, credential);
+        switch (errorCode) {
+          case 'auth/internal-error':
+            errorText.textContent = '⚡ Error interno ⚡';
+            break;
+          default:
+            errorText.textContent = errorMessage;
+            errorText.classList.add('error-text-hidden');
+        }
       });
   });
   const imgGoogle = document.createElement('img');

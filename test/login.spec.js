@@ -1,4 +1,3 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import { signInUser, signInGoogle } from '../src/lib/firebase';
 import { login } from '../src/components/login';
 
@@ -27,23 +26,27 @@ describe('signInUser', () => {
     buttonLogin = document.getElementsByClassName('button-login')[0];
     errorText = document.getElementsByClassName('error-text')[0];
   });
+
   it('Debería mostrar un error si los campos de texto están vacíos', async () => {
     buttonLogin.click();
     await tick();
     expect(errorText.innerHTML).toBe('Ups 🙈, ingresa un correo y una contraseña');
   });
+
   it('Debería mostrar un error si el campo de la contraseña está vacío ', async () => {
     inputEmailLogin.value = 'hola@holamundo.com';
     buttonLogin.click();
     await tick();
     expect(errorText.innerHTML).toBe('Ups 🙉, ingresa una contraseña');
   });
+
   it('Debería mostrar un error si el campo del correo electrónico está vacío', async () => {
     inputPasswordLogin.value = 'abcdef';
     buttonLogin.click();
     await tick();
     expect(errorText.innerHTML).toBe('Ups 🙉, ingresa un correo electrónico');
   });
+
   it('Debería mostrar un error si el correo electrónico es inválido, sin arroba', async () => {
     inputEmailLogin.value = 'holaholamundo.com';
     inputPasswordLogin.value = 'abcdef';
@@ -67,6 +70,7 @@ describe('signInUser', () => {
     await tick();
     expect(errorText.innerHTML).toBe('Ups 🙉, ingresa un correo electrónico válido');
   });
+
   it('Debería mostrar un error si la contraseña es menor a 6 caracteres', async () => {
     inputEmailLogin.value = 'hola@holamundo.com';
     inputPasswordLogin.value = 'abc';
@@ -74,6 +78,7 @@ describe('signInUser', () => {
     await tick();
     expect(errorText.innerHTML).toBe('Ups 🙉, la contraseña debe tener al menos 6 caracteres');
   });
+
   it('Debería mostrar un error si la contraseña está incorrecta', async () => {
     const error = new Error();
     error.code = 'auth/wrong-password';
@@ -85,6 +90,7 @@ describe('signInUser', () => {
     await tick();
     expect(errorText.innerHTML).toBe('⚡ La contraseña es incorrecta ⚡');
   });
+
   it('Debería mostrar un error si el correo es invalido', async () => {
     const error = new Error();
     error.code = 'auth/invalid-email';
@@ -96,6 +102,7 @@ describe('signInUser', () => {
     await tick();
     expect(errorText.innerHTML).toBe('⚡ El correo ingresado no es válido ⚡');
   });
+
   it('Debería mostrar un error si el correo y/o contraseña es incorrecta', async () => {
     const error = new Error();
     error.code = 'auth/user-not-found';
@@ -107,6 +114,7 @@ describe('signInUser', () => {
     await tick();
     expect(errorText.innerHTML).toBe('⚡ Usuario y/o contraseña incorrecta ⚡');
   });
+
   it('Debería mostrar un error si supera el limite de intentos', async () => {
     const error = new Error();
     error.code = 'auth/too-many-requests';
@@ -149,15 +157,11 @@ describe('signInGoogle', () => {
 
   it('Debería dar un error interno', async () => {
     const error = new Error();
-    const provider = new GoogleAuthProvider();
-    error.code = 'hola/mundo';
+    error.code = 'auth/internal-error';
     error.message = '';
-    // const auth = getAuth();
-    // const credential = GoogleAuthProvider.credentialFromError(error);
-    // const email = error.customData.email;
 
     signInGoogle.mockImplementationOnce(() => Promise.reject(error));
-    buttonGoogle.click(provider);
+    buttonGoogle.click();
     await tick();
     expect(errorText.innerHTML).toBe('⚡ Error interno ⚡');
   });

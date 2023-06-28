@@ -1,4 +1,4 @@
-import { createUser } from '../src/lib/firebase';
+import { createUser, signInGoogle } from '../src/lib/firebase';
 import { register } from '../src/components/register';
 
 jest.mock('../src/lib/firebase');
@@ -116,5 +116,32 @@ describe('createUser', () => {
     buttonCreateAccount.click();
     await tick();
     expect(errorText.innerHTML).toBe('Error genérico. Firebase falló');
+  });
+});
+
+describe('signInGoogle', () => {
+  let buttonGoogle;
+  let errorText;
+
+  beforeEach(() => {
+    const onNavigateMockGoogle = () => {};
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    document.body.appendChild(register(onNavigateMockGoogle));
+
+    buttonGoogle = document.getElementsByClassName('button-google')[0];
+    errorText = document.getElementsByClassName('error-text-register')[0];
+  });
+
+  it('Debería dar un error interno', async () => {
+    const error = new Error();
+    error.code = 'auth/internal-error';
+    error.message = '';
+
+    signInGoogle.mockImplementationOnce(() => Promise.reject(error));
+    buttonGoogle.click();
+    await tick();
+    expect(errorText.innerHTML).toBe('⚡ Error interno ⚡');
   });
 });

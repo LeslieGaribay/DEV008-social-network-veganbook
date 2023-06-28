@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 
@@ -21,6 +22,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 export function createUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -30,7 +32,7 @@ export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-export function signInGoogle(provider) {
+export function signInGoogle() {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
 }
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional

@@ -328,13 +328,17 @@ body {
         flex-direction: row;
         margin-top: 2%;
         justify-content: space-around;
-
     }
 
+    .div-timeline .img-logo-timeline-desktop {
+        display: none;
+    }
+
+
     .img-logo-VB {
+        display: initial;
         max-width: 25%;
         margin-right: 10px;
-
     }
 
     .img-user {
