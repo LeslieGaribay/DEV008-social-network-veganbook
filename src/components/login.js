@@ -98,17 +98,17 @@ export const login = (onNavigate) => {
     }
 
     if (email === '' && password !== '') {
-      errorText.textContent = 'Ups 🙉, ingresa un correo correcto -> e.g. a@gmail.com';
+      errorText.textContent = 'Ups 🙉, ingresa un correo electrónico';
       return;
     }
 
     if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
-      errorText.textContent = 'Por favor ingresa un correo electrónico válido';
+      errorText.textContent = 'Ups 🙉, ingresa un correo electrónico válido';
       return;
     }
 
     if (password.length < 6) {
-      errorText.textContent = 'La contraseña debe tener al menos 6 caracteres';
+      errorText.textContent = 'Ups 🙉, la contraseña debe tener al menos 6 caracteres';
       return;
     }
 
@@ -176,12 +176,17 @@ export const login = (onNavigate) => {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+
+        switch (errorCode) {
+          case 'auth/internal-error':
+            errorText.textContent = '⚡ Error interno ⚡';
+            break;
+          default:
+            errorText.textContent = errorMessage;
+            errorText.classList.add('error-text-hidden');
+        }
         console.log(email, credential);
       });
   });
