@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
+import { } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
 // https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js
 
@@ -34,6 +35,10 @@ export function signInUser(email, password) {
 
 export function signInGoogle() {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
+}
+
+export const savePost = (description) => {
+ console.log(description);
 }
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional
 

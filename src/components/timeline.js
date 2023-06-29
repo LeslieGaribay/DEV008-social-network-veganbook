@@ -1,7 +1,5 @@
-import {
-  getAuth,
-
-} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { savePost } from '../lib/firebase';
 // import { createUser, signInGoogle } from '../lib/firebase';
 
 export const timeline = (onNavigate) => {
@@ -14,7 +12,7 @@ export const timeline = (onNavigate) => {
   divTimeline.appendChild(divNavTimeline);
 
   const imgLogoVB = document.createElement('img');
-  imgLogoVB.classList.add('img-logo-VB', 'img-logo-VB-hidden');
+  imgLogoVB.className = 'img-logo-VB';
   imgLogoVB.src = './images/LogoVB.png';
   imgLogoVB.alt = 'VeganBook Logo';
   divNavTimeline.appendChild(imgLogoVB);
@@ -57,6 +55,7 @@ export const timeline = (onNavigate) => {
 
   const textPost = document.createElement('textarea');
   textPost.className = 'input-post';
+  textPost.id = 'inputpostid';
   divPostContainer.appendChild(textPost);
   textPost.placeholder = '¿Qué estás pensando?';
 
@@ -70,6 +69,14 @@ export const timeline = (onNavigate) => {
   buttonPost.type = 'submit';
   buttonPost.textContent = 'Publicar';
 
+  buttonPost.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    const description = divPostContainer['inputpostid'];
+    savePost(description.value);
+    
+  });
+
   const actions = document.createElement('img');
   actions.className = 'img-actions';
   actions.src = './images/actions.png';
@@ -78,6 +85,10 @@ export const timeline = (onNavigate) => {
   const hrTimeline2 = document.createElement('hr');
   hrTimeline2.className = 'hr-timeline-post';
   divPostContainer.appendChild(hrTimeline2);
+
+  const publicationsContainer = document.createElement('div');
+  publicationsContainer.className = 'publications-container';
+  divTimeline.appendChild(publicationsContainer);
 
   return divTimeline;
 };
