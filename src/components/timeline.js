@@ -1,6 +1,14 @@
 import { getAuth } from 'firebase/auth';
-import { savePost } from '../lib/firebase';
+import { savePost, getPosts } from '../lib/firebase';
 // import { createUser, signInGoogle } from '../lib/firebase';
+
+window.addEventListener('DOMContentLoaded', async ()=> {
+  const querySnapshot = await getPosts()
+
+  querySnapshot.forEach(doc => {
+    console.log(doc.data());
+  })
+});
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;
@@ -49,8 +57,9 @@ export const timeline = (onNavigate) => {
   hrTimeline.className = 'hr-timeline';
   divTimeline.appendChild(hrTimeline);
 
-  const divPostContainer = document.createElement('div');
+  const divPostContainer = document.createElement('form');
   divPostContainer.className = 'div-post';
+  divPostContainer.id = 'div-post';
   divTimeline.appendChild(divPostContainer);
 
   const textPost = document.createElement('textarea');
@@ -69,14 +78,6 @@ export const timeline = (onNavigate) => {
   buttonPost.type = 'submit';
   buttonPost.textContent = 'Publicar';
 
-  buttonPost.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    const description = divPostContainer['inputpostid'];
-    savePost(description.value);
-    
-  });
-
   const actions = document.createElement('img');
   actions.className = 'img-actions';
   actions.src = './images/actions.png';
@@ -88,7 +89,25 @@ export const timeline = (onNavigate) => {
 
   const publicationsContainer = document.createElement('div');
   publicationsContainer.className = 'publications-container';
+  publicationsContainer.id = 'publications-container';
   divTimeline.appendChild(publicationsContainer);
+
+  const divPost = document.getElementById('div-post');
+  const postsContainer = document.getElementById('publications-container');
+
+  postsContainer.innerHTML = '';
+
+
+   buttonPost.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+   // const description = divPostContainer['inputpostid'];
+    const description = document.getElementById('inputpostid');
+    savePost(description.value);
+
+    divPostContainer.reset();
+    
+  });
 
   return divTimeline;
 };

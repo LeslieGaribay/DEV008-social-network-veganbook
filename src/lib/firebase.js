@@ -6,7 +6,8 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
-import { } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+ // https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
 
 // https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js
 
@@ -25,6 +26,26 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+//Firestore
+
+const db = getFirestore();
+
+// try {
+//   const docRef = await addDoc(collection(db, "Usuarios"), {
+//     first: "Ada",
+//     last: "Lovelace",
+//     born: 1815
+//   });
+//   console.log("Document written with ID: ", docRef.id);
+// } catch (e) {
+//   console.error("Error adding document: ", e);
+// }
+
+// const querySnapshot = await getDocs(collection(db, "Usuarios"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+// });
+
 export function createUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
@@ -37,9 +58,12 @@ export function signInGoogle() {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
 }
 
-export const savePost = (description) => {
- console.log(description);
-}
+export const savePost = (description) =>
+  addDoc(collection(db, 'Usuarios'), {description});
+
+export const getPosts = () => getDocs(collection(db, 'Usuarios'));
+
+
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional
 
 // function observator() {
