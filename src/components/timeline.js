@@ -116,6 +116,18 @@ export const timeline = (onNavigate) => {
 
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
+
+      const imgUserPosts = document.createElement('img');
+      imgUserPosts.className = 'img-user';
+      imgUserPosts.src = currentUser.photoURL;
+      imgUserPosts.alt = 'Imagen User';
+      publicationsContainer.appendChild(imgUserPosts);
+
+      const userNamePosts = document.createElement('h3');
+      userNamePosts.className = 'user-Name';
+      userNamePosts.textContent = currentUser.displayName;
+      publicationsContainer.appendChild(userNamePosts);
+
       const messagePost = document.createElement('p');
       messagePost.textContent = doc.data().description;
       publicationsContainer.appendChild(messagePost);
