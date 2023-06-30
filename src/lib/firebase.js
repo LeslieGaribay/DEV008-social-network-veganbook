@@ -31,7 +31,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-
 // Firestore
 const db = getFirestore();
 
@@ -63,9 +62,23 @@ export function signInGoogle() {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
 }
 
-export const savePost = (description) => addDoc(collection(db, 'Usuarios'), { description });
+export const savePost = (postContent) => {
+  const user = auth.currentUser;
+  let emailPost = '';
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    // ...
+    emailPost = user.email;
+  } else {
+    // No user is signed in.
+    emailPost = undefined;
+  }
 
-export const getPosts = () => getDocs(collection(db, 'Usuarios'));
+  return addDoc(collection(db, 'Posts'), { postContent, emailPost });
+};
+
+export const getPosts = () => getDocs(collection(db, 'Posts'));
 
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional
 

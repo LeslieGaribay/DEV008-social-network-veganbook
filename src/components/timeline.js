@@ -89,7 +89,7 @@ export const timeline = (onNavigate) => {
   divPostContainer.appendChild(hrTimeline2);
 
   const publicationsContainer = document.createElement('div');
-  publicationsContainer.className = 'publications-container';
+  publicationsContainer.className = 'publications-container-class';
   publicationsContainer.id = 'publications-container';
   divTimeline.appendChild(publicationsContainer);
 
@@ -106,31 +106,43 @@ export const timeline = (onNavigate) => {
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    // const description = divPostContainer['inputpostid'];
-    const description = document.getElementById('inputpostid');
-    savePost(description.value);
+    const postContent = document.getElementById('inputpostid');
+    savePost(postContent.value);
 
     divPostContainer.reset();
 
     const querySnapshot = await getPosts();
 
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
+    // console.log(doc.data());
+
+      const divUserPost = document.createElement('div');
+      divUserPost.className = 'div-user-post';
+      publicationsContainer.appendChild(divUserPost);
+
+      const divUserImageAndUsername = document.createElement('div');
+      divUserImageAndUsername.className = 'div-user-image-and-username';
+      divUserPost.appendChild(divUserImageAndUsername);
 
       const imgUserPosts = document.createElement('img');
-      imgUserPosts.className = 'img-user';
+      imgUserPosts.className = 'img-user-post';
       imgUserPosts.src = currentUser.photoURL;
       imgUserPosts.alt = 'Imagen User';
-      publicationsContainer.appendChild(imgUserPosts);
+      divUserImageAndUsername.appendChild(imgUserPosts);
 
       const userNamePosts = document.createElement('h3');
-      userNamePosts.className = 'user-Name';
+      userNamePosts.className = 'user-Name-post';
       userNamePosts.textContent = currentUser.displayName;
-      publicationsContainer.appendChild(userNamePosts);
+      divUserImageAndUsername.appendChild(userNamePosts);
 
       const messagePost = document.createElement('p');
-      messagePost.textContent = doc.data().description;
-      publicationsContainer.appendChild(messagePost);
+      messagePost.className = 'message-posts';
+      messagePost.textContent = doc.data().postContent;
+
+      const nombre = document.createElement('p');
+      nombre.textContent = doc.data().emailPost;
+
+      divUserPost.append(messagePost, nombre);
     });
   });
 
