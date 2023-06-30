@@ -320,7 +320,6 @@ body {
     .div-timeline {
         display: flex;
         align-items: center;
-
     }
 
     .div-navegation {
@@ -409,8 +408,44 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
-    
-
+    /* **** Timeline Posts *****/
+    .publications-container-class{
+        display: flex;
+        
+        margin-top: 10px;
+    }
+    .div-user-post{   
+    display: flex;
+    align-items: baseline; 
+    margin-bottom: 10px;
+    width: 325px;
+    border: 1px solid #194F37;
+    height: 153px;
+    border-radius: 16px;
+    }
+    .div-user-image-and-username{
+        display: flex;
+        flex-direction: row;
+        margin-left: 10px;
+    }
+    .img-user-post{
+        margin: 10px;
+        width: 20%;
+        border-radius: 50%;
+        margin-bottom: 3%;
+        border: 2px solid #9A4C4C;  
+    }
+    .user-Name-post{
+        font-size: 20px;
+        font-family: 'Raleway', sans-serif;
+        color: #9A4C4C;   
+    }
+    .message-posts{
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        padding-left: 10px;
+        margin-top: 10px; 
+    }
 }
 
 
@@ -771,7 +806,26 @@ body {
     /*******************/
     /* ** Timeline ** */
     /*******************/
+    /* .div-timeline .img-logo-timeline-desktop {
+        display: none;
+    }
+    .img-logo-VB {
+        display: initial;
+        max-width: 25%;
+        margin-right: 10px;
+    }
 
+    .img-user {
+        width: 20%;
+        border-radius: 50%;
+        margin-bottom: 3%;
+        border: 2px solid #9A4C4C;
+    }
+
+    .img-logout {
+        max-width: 10%;
+        cursor: pointer;
+    } */
 }
 
 /******************* Desktop **************** */
