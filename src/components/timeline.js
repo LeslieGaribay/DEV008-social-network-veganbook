@@ -116,6 +116,9 @@ export const timeline = (onNavigate) => {
 
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
+      const messagePost = document.createElement('p');
+      messagePost.textContent = doc.data().description;
+      publicationsContainer.appendChild(messagePost);
     });
   });
 
