@@ -1,14 +1,15 @@
 import { getAuth } from 'firebase/auth';
 import { savePost, getPosts } from '../lib/firebase';
+// import { collection, getDocs } from "firebase/firestore";
 // import { createUser, signInGoogle } from '../lib/firebase';
 
-window.addEventListener('DOMContentLoaded', async ()=> {
-  const querySnapshot = await getPosts()
+// window.addEventListener('DOMContentLoaded', async () => {
+//   const querySnapshot = await getPosts();
 
-  querySnapshot.forEach(doc => {
-    console.log(doc.data());
-  })
-});
+//   querySnapshot.forEach((doc) => {
+//     console.log(doc.data());
+//   });
+// });
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;
@@ -92,21 +93,30 @@ export const timeline = (onNavigate) => {
   publicationsContainer.id = 'publications-container';
   divTimeline.appendChild(publicationsContainer);
 
-  const divPost = document.getElementById('div-post');
+  // const divPost = document.getElementById('div-post');
   const postsContainer = document.getElementById('publications-container');
+  console.log(postsContainer);
+  // postsContainer.innerHTML = 'hola';
 
-  postsContainer.innerHTML = '';
+  // const querySnapshot = await getDocs(collection(db, "users"));
+  // querySnapshot.forEach((doc) => {
+  // console.log(`${doc.id} => ${doc.data()}`);
+  // });
 
-
-   buttonPost.addEventListener('click', (e) => {
+  buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
-    
-   // const description = divPostContainer['inputpostid'];
+
+    // const description = divPostContainer['inputpostid'];
     const description = document.getElementById('inputpostid');
     savePost(description.value);
 
     divPostContainer.reset();
-    
+
+    const querySnapshot = await getPosts();
+
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+    });
   });
 
   return divTimeline;

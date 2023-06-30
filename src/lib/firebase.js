@@ -6,8 +6,14 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
- // https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+} from 'firebase/firestore';
+
+// https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
 
 // https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js
 
@@ -26,8 +32,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-//Firestore
-
+// Firestore
 const db = getFirestore();
 
 // try {
@@ -58,11 +63,9 @@ export function signInGoogle() {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
 }
 
-export const savePost = (description) =>
-  addDoc(collection(db, 'Usuarios'), {description});
+export const savePost = (description) => addDoc(collection(db, 'Usuarios'), { description });
 
 export const getPosts = () => getDocs(collection(db, 'Usuarios'));
-
 
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional
 
