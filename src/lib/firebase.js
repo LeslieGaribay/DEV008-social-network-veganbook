@@ -64,6 +64,7 @@ export function signInGoogle() {
 
 export const savePost = (postContent) => {
   const user = auth.currentUser;
+  console.log(user);
   let emailPost = '';
   if (user) {
     // User is signed in, see docs for a list of available properties

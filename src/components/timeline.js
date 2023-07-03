@@ -11,6 +11,8 @@ import { savePost, getPosts } from '../lib/firebase';
 //   });
 // });
 
+// Crear función llamando al getpost
+
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;
   const divTimeline = document.createElement('div');
@@ -135,14 +137,15 @@ export const timeline = (onNavigate) => {
       userNamePosts.textContent = currentUser.displayName;
       divUserImageAndUsername.appendChild(userNamePosts);
 
+      const nombre = document.createElement('p');
+      nombre.textContent = doc.data().emailPost;
+      divUserImageAndUsername.appendChild(nombre);
+
       const messagePost = document.createElement('p');
       messagePost.className = 'message-posts';
       messagePost.textContent = doc.data().postContent;
 
-      const nombre = document.createElement('p');
-      nombre.textContent = doc.data().emailPost;
-
-      divUserPost.append(messagePost, nombre);
+      divUserPost.append(messagePost);
     });
   });
 
