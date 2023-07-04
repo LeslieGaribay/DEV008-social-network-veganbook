@@ -1,17 +1,58 @@
 import { getAuth } from 'firebase/auth';
 import { savePost, getPosts } from '../lib/firebase';
-// import { collection, getDocs } from "firebase/firestore";
-// import { createUser, signInGoogle } from '../lib/firebase';
 
-// window.addEventListener('DOMContentLoaded', async () => {
-//   const querySnapshot = await getPosts();
+const getinfoPosts = async () => {
+  const currentUser = getAuth().currentUser;
+  const divPostContainer = document.getElementById('div-post');
+  if (divPostContainer != null) {
+    divPostContainer.reset();
+  }
 
-//   querySnapshot.forEach((doc) => {
-//     console.log(doc.data());
-//   });
-// });
+  const publicationsContainer1 = document.getElementById(
+    'publications-container',
+  );
+  if (publicationsContainer1 != null) {
+    while (publicationsContainer1.firstChild) {
+      publicationsContainer1.removeChild(publicationsContainer1.firstChild);
+    }
+  }
+  const querySnapshot = await getPosts();
 
-// Crear función llamando al getpost
+  querySnapshot.forEach((doc) => {
+    // console.log(doc.data());
+    const publicationsContainer = document.getElementById(
+      'publications-container',
+    );
+    const divUserPost = document.createElement('div');
+    divUserPost.className = 'div-user-post';
+    publicationsContainer.appendChild(divUserPost);
+
+    const divUserImageAndUsername = document.createElement('div');
+    divUserImageAndUsername.className = 'div-user-image-and-username';
+    divUserPost.appendChild(divUserImageAndUsername);
+
+    const imgUserPosts = document.createElement('img');
+    imgUserPosts.className = 'img-user-post';
+    imgUserPosts.src = currentUser.photoURL;
+    imgUserPosts.alt = 'Imagen User';
+    divUserImageAndUsername.appendChild(imgUserPosts);
+
+    const userNamePosts = document.createElement('h3');
+    userNamePosts.className = 'user-Name-post';
+    userNamePosts.textContent = currentUser.displayName;
+    divUserImageAndUsername.appendChild(userNamePosts);
+
+    const nombre = document.createElement('p');
+    nombre.textContent = doc.data().emailPost;
+    divUserImageAndUsername.appendChild(nombre);
+
+    const messagePost = document.createElement('p');
+    messagePost.className = 'message-posts';
+    messagePost.textContent = doc.data().postContent;
+
+    divUserPost.append(messagePost);
+  });
+};
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;
@@ -104,49 +145,13 @@ export const timeline = (onNavigate) => {
   // querySnapshot.forEach((doc) => {
   // console.log(`${doc.id} => ${doc.data()}`);
   // });
-
+  getinfoPosts();
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
 
     const postContent = document.getElementById('inputpostid');
     savePost(postContent.value);
-
-    divPostContainer.reset();
-
-    const querySnapshot = await getPosts();
-
-    querySnapshot.forEach((doc) => {
-    // console.log(doc.data());
-
-      const divUserPost = document.createElement('div');
-      divUserPost.className = 'div-user-post';
-      publicationsContainer.appendChild(divUserPost);
-
-      const divUserImageAndUsername = document.createElement('div');
-      divUserImageAndUsername.className = 'div-user-image-and-username';
-      divUserPost.appendChild(divUserImageAndUsername);
-
-      const imgUserPosts = document.createElement('img');
-      imgUserPosts.className = 'img-user-post';
-      imgUserPosts.src = currentUser.photoURL;
-      imgUserPosts.alt = 'Imagen User';
-      divUserImageAndUsername.appendChild(imgUserPosts);
-
-      const userNamePosts = document.createElement('h3');
-      userNamePosts.className = 'user-Name-post';
-      userNamePosts.textContent = currentUser.displayName;
-      divUserImageAndUsername.appendChild(userNamePosts);
-
-      const nombre = document.createElement('p');
-      nombre.textContent = doc.data().emailPost;
-      divUserImageAndUsername.appendChild(nombre);
-
-      const messagePost = document.createElement('p');
-      messagePost.className = 'message-posts';
-      messagePost.textContent = doc.data().postContent;
-
-      divUserPost.append(messagePost);
-    });
+    getinfoPosts();
   });
 
   return divTimeline;
