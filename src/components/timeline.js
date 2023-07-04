@@ -106,10 +106,38 @@ export const timeline = (onNavigate) => {
   hrTimeline.className = 'hr-timeline';
   divTimeline.appendChild(hrTimeline);
 
+  const divGreenInputPink = document.createElement('div');
+  divGreenInputPink.className = 'div-green-input-pink';
+  divTimeline.appendChild(divGreenInputPink);
+
+  const divGreen = document.createElement('div');
+  divGreen.className = 'div-green';
+  divGreenInputPink.appendChild(divGreen);
+
+  const imgUserGreen = document.createElement('img');
+  imgUserGreen.className = 'img-user-green';
+  imgUserGreen.src = currentUser.photoURL;
+  imgUserGreen.alt = 'Imagen User';
+  divGreen.appendChild(imgUserGreen);
+
+  const userNameGreen = document.createElement('h3');
+  userNameGreen.className = 'user-Name-green';
+  userNameGreen.textContent = currentUser.displayName;
+  divGreen.appendChild(userNameGreen);
+
+  const messagePostGreen = document.createElement('p');
+  messagePostGreen.className = 'message-posts-green';
+  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  divGreen.appendChild(messagePostGreen);
+
+  const divInputandPost = document.createElement('div');
+  divInputandPost.className = 'div-input-post';
+  divGreenInputPink.appendChild(divInputandPost);
+
   const divPostContainer = document.createElement('form');
   divPostContainer.className = 'div-post';
   divPostContainer.id = 'div-post';
-  divTimeline.appendChild(divPostContainer);
+  divInputandPost.appendChild(divPostContainer);
 
   const textPost = document.createElement('textarea');
   textPost.className = 'input-post';
@@ -139,7 +167,7 @@ export const timeline = (onNavigate) => {
   const publicationsContainer = document.createElement('div');
   publicationsContainer.className = 'publications-container-class';
   publicationsContainer.id = 'publications-container';
-  divTimeline.appendChild(publicationsContainer);
+  divInputandPost.appendChild(publicationsContainer);
 
   // const divPost = document.getElementById('div-post');
   const postsContainer = document.getElementById('publications-container');
@@ -158,6 +186,108 @@ export const timeline = (onNavigate) => {
     savePost(postContent.value);
     getinfoPosts();
   });
+
+  const divPinkTimeline = document.createElement('div');
+  divPinkTimeline.className = 'div-pink-timeline';
+  divGreenInputPink.appendChild(divPinkTimeline);
+
+  const titlePink = document.createElement('h3');
+  titlePink.className = 'title-pink';
+  titlePink.textContent = 'Personas que quizás conozcas';
+  divPinkTimeline.appendChild(titlePink);
+
+  const divFriends = document.createElement('div');
+  divFriends.className = 'div-friends';
+  divPinkTimeline.appendChild(divFriends);
+
+  const divFriend1 = document.createElement('div');
+  divFriend1.className = 'div-friend-profile';
+  divFriends.appendChild(divFriend1);
+
+  const imgFriend1 = document.createElement('img');
+  imgFriend1.className = 'img-friend';
+  imgFriend1.src = './images/manvegan.png';
+  imgFriend1.alt = 'Man User';
+  divFriend1.appendChild(imgFriend1);
+
+  const divFriendsInfo1 = document.createElement('div');
+  divFriendsInfo1.className = 'div-friends-info';
+  divFriend1.appendChild(divFriendsInfo1);
+
+  const nameFriend1 = document.createElement('h4');
+  nameFriend1.className = 'name-friend';
+  nameFriend1.textContent = 'Nicolas Hernández';
+  divFriendsInfo1.appendChild(nameFriend1);
+
+  const descriptionFriend1 = document.createElement('p');
+  descriptionFriend1.className = 'description-friend';
+  descriptionFriend1.textContent = 'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
+  divFriendsInfo1.appendChild(descriptionFriend1);
+
+  const buttonFollow1 = document.createElement('button');
+  buttonFollow1.className = 'button-follow';
+  buttonFollow1.textContent = ' ➕ Seguir';
+  divFriendsInfo1.appendChild(buttonFollow1);
+  // buttonPost.type = 'submit';
+
+  const divFriend2 = document.createElement('div');
+  divFriend2.className = 'div-friend-profile';
+  divFriends.appendChild(divFriend2);
+
+  const imgFriend2 = document.createElement('img');
+  imgFriend2.className = 'img-friend';
+  imgFriend2.src = './images/womanvegan.png';
+  imgFriend2.alt = ' User Woman';
+  divFriend2.appendChild(imgFriend2);
+
+  const divFriendsInfo2 = document.createElement('div');
+  divFriendsInfo2.className = 'div-friends-info';
+  divFriend2.appendChild(divFriendsInfo2);
+
+  const nameFriend2 = document.createElement('h4');
+  nameFriend2.className = 'name-friend';
+  nameFriend2.textContent = 'Isidora Lagos';
+  divFriendsInfo2.appendChild(nameFriend2);
+
+  const descriptionFriend2 = document.createElement('p');
+  descriptionFriend2.className = 'description-friend';
+  descriptionFriend2.textContent = 'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
+  divFriendsInfo2.appendChild(descriptionFriend2);
+
+  const buttonFollow2 = document.createElement('button');
+  buttonFollow2.className = 'button-follow';
+  buttonFollow2.textContent = ' ➕ Seguir';
+  divFriendsInfo2.appendChild(buttonFollow2);
+  // buttonPost.type = 'submit';
+
+  const divFriend3 = document.createElement('div');
+  divFriend3.className = 'div-friend-profile';
+  divFriends.appendChild(divFriend3);
+
+  const imgFriend3 = document.createElement('img');
+  imgFriend3.className = 'img-friend';
+  imgFriend3.src = './images/veganwoman.jpeg';
+  imgFriend3.alt = ' User Woman';
+  divFriend3.appendChild(imgFriend3);
+
+  const divFriendsInfo3 = document.createElement('div');
+  divFriendsInfo3.className = 'div-friends-info';
+  divFriend3.appendChild(divFriendsInfo3);
+
+  const nameFriend3 = document.createElement('h4');
+  nameFriend3.className = 'name-friend';
+  nameFriend3.textContent = 'Luisa Garay';
+  divFriendsInfo3.appendChild(nameFriend3);
+
+  const descriptionFriend3 = document.createElement('p');
+  descriptionFriend3.className = 'description-friend';
+  descriptionFriend3.textContent = 'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
+  divFriendsInfo3.appendChild(descriptionFriend3);
+
+  const buttonFollow3 = document.createElement('button');
+  buttonFollow3.className = 'button-follow';
+  buttonFollow3.textContent = ' ➕ Seguir';
+  divFriendsInfo3.appendChild(buttonFollow3);
 
   return divTimeline;
 };

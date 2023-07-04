@@ -315,7 +315,7 @@ body {
     /***********************/
     /* **** Timeline **** */
     /*********************/
-    
+
 
     .div-timeline {
         display: flex;
@@ -366,7 +366,8 @@ body {
         color: #9A4C4C;
     }
 
-    .hr-timeline, .hr-timeline-post {
+    .hr-timeline,
+    .hr-timeline-post {
         width: 100%;
     }
 
@@ -408,52 +409,58 @@ body {
         font-size: 15px;
         cursor: pointer;
     }
+
     /* **** Timeline Posts *****/
-    .publications-container-class{
+    .publications-container-class {
         display: flex;
-        
+
         margin-top: 10px;
     }
-    .div-user-post{   
-    display: flex;
-    align-items: baseline; 
-    margin-bottom: 10px;
-    width: 325px;
-    border: 1px solid #194F37;
-    height: 153px;
-    border-radius: 16px;
+
+    .div-user-post {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 10px;
+        width: 325px;
+        border: 1px solid #194F37;
+        height: 153px;
+        border-radius: 16px;
     }
-    .div-user-image-and-username{
+
+    .div-user-image-and-username {
         display: flex;
         flex-direction: row;
         margin-left: 10px;
     }
-    .img-user-post{
+
+    .img-user-post {
         margin: 10px;
         width: 20%;
         border-radius: 50%;
         margin-bottom: 3%;
-        border: 2px solid #9A4C4C;  
+        border: 2px solid #9A4C4C;
     }
-    .user-Name-post{
+
+    .user-Name-post {
         font-size: 20px;
         font-family: 'Raleway', sans-serif;
-        color: #9A4C4C;   
+        color: #9A4C4C;
     }
-    .message-posts{
+
+    .message-posts {
         font-family: 'Raleway', sans-serif;
         font-size: 16px;
         padding-left: 10px;
-        margin-top: 10px; 
+        margin-top: 10px;
     }
 
-    .email-user{
-        font-family: 'Raleway', sans-serif;  
-        color: #536471;  
+    .email-user {
+        font-family: 'Raleway', sans-serif;
+        color: #536471;
         font-size: 12px;
     }
 
-    .div-name-email{
+    .div-name-email {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -825,7 +832,7 @@ body {
     }
 
     .div-navegation {
-        display: flex; 
+        display: flex;
         margin-top: 2%;
         justify-content: space-around;
         align-items: center;
@@ -872,7 +879,7 @@ body {
         width: 100%;
     }
 
-    .hr-timeline-post{
+    .hr-timeline-post {
         width: 0%;
         margin: 0;
     }
@@ -932,7 +939,7 @@ body {
 
     /* **** Timeline Posts *****/
 
-    .div-user-post{
+    .div-user-post {
         display: flex;
         align-items: baseline;
         margin-bottom: 15px;
@@ -943,50 +950,54 @@ body {
         width: 100%;
     }
 
-    .div-user-image-and-username{
+    .div-user-image-and-username {
         display: flex;
         flex-direction: row;
         margin-left: 10px;
         align-items: center;
     }
-    .img-user-post{
+
+    .img-user-post {
         margin: 10px;
         width: 20%;
         border-radius: 50%;
         margin-bottom: 3%;
-        border: 2px solid #9A4C4C;  
+        border: 2px solid #9A4C4C;
     }
-    .user-Name-post{
+
+    .user-Name-post {
         font-size: 20px;
         font-family: 'Raleway', sans-serif;
-        color: #9A4C4C;   
+        color: #9A4C4C;
     }
-    .message-posts{
+
+    .message-posts {
         font-family: 'Raleway', sans-serif;
         font-size: 16px;
         padding-left: 10px;
-        margin-top: 10px; 
+        margin-top: 10px;
     }
 
-    .email-user{
-        font-family: 'Raleway', sans-serif;  
-        color: #536471;  
+    .email-user {
+        font-family: 'Raleway', sans-serif;
+        color: #536471;
         font-size: 12px;
     }
 
-    .div-name-email{
+    .div-name-email {
         display: flex;
         flex-direction: column;
         align-items: start;
     }
-    .publications-container-class{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 100%;
+
+    .publications-container-class {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
     }
 
-    
+
 }
 
 /******************* Desktop **************** */
@@ -1380,11 +1391,11 @@ body {
         justify-content: space-around;
     }
 
-    /* .img-logo-VB {
+    .div-timeline .img-logo-VB {
         display: none;
-    } */
+    }
 
-    .img-logo-timeline-desktop {
+    .div-timeline .img-logo-timeline-desktop {
         max-width: 30%;
         display: initial;
     }
@@ -1417,16 +1428,18 @@ body {
         color: #9A4C4C;
     }
 
-    .hr-timeline, .hr-timeline-post {
+    /* .hr-timeline, .hr-timeline-post {
         display: none;
-    }
+    } */
 
     .div-post {
-        width: 70%;
+        width: 100%;
         display: flex;
         align-items: center;
         flex-direction: column;
-        border: 1px solid #194F37;
+        border: 2px solid #CCA5A5;
+        border-radius: 10px;
+        margin-bottom: 30px;
     }
 
     .input-post {
@@ -1461,14 +1474,82 @@ body {
     .button-post {
         width: 90px;
         height: 39px;
-        background: #9A4C4C;
+        background: #65823b;
         border-radius: 39px;
         color: #FFFFFF;
         border: none;
         font-weight: 500;
-        justify-content: center;
         font-size: 15px;
         cursor: pointer;
     }
 
+    .publications-container-class {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    /*****Timeline Friends*****/
+    .div-green {
+        background-color: #C9FFBF;
+        margin-right: 20px;
+        border-radius: 20px;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .img-user-green {
+        width: 150px;
+        border-radius: 50%;
+        margin: 20px 0;
+
+    }
+
+    .user-Name-green{
+        font-family: 'Raleway', sans-serif;  
+    }
+
+    .message-posts-green{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        margin: 25px 15px;
+
+    }
+
+    .img-friend {
+        max-width: 35%;
+        border-radius: 50%;
+    }
+
+    .div-green-input-pink {
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+
+    }
+
+
+    .div-pink-timeline {
+        background: #FFAFBD;
+        margin-left: 20px;
+        border-radius: 20px;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+    }
+    .title-pink{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        margin: 25px 15px;
+    }
+
+    .div-friend-profile{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
 }
+}   
