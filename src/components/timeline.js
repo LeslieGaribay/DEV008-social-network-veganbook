@@ -33,13 +33,13 @@ const getinfoPosts = async () => {
 
     const imgUserPosts = document.createElement('img');
     imgUserPosts.className = 'img-user-post';
-    imgUserPosts.src = currentUser.photoURL;
+    imgUserPosts.src = doc.data().photoURL;
     imgUserPosts.alt = 'Imagen User';
     divUserImageAndUsername.appendChild(imgUserPosts);
 
     const userNamePosts = document.createElement('h3');
     userNamePosts.className = 'user-Name-post';
-    userNamePosts.textContent = currentUser.displayName;
+    userNamePosts.textContent = doc.data().displayName;
     divUserImageAndUsername.appendChild(userNamePosts);
 
     const nombre = document.createElement('p');

@@ -66,17 +66,22 @@ export const savePost = (postContent) => {
   const user = auth.currentUser;
   console.log(user);
   let emailPost = '';
-  if (user) {
+  let displayName = '';
+  let photoURL = '';
+
+  if (user !== null) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
     // ...
+    displayName = user.displayName;
+    photoURL = user.photoURL;
     emailPost = user.email;
   } else {
     // No user is signed in.
     emailPost = undefined;
   }
 
-  return addDoc(collection(db, 'Posts'), { postContent, emailPost });
+  return addDoc(collection(db, 'Posts'), {postContent, emailPost, displayName, photoURL});
 };
 
 export const getPosts = () => getDocs(collection(db, 'Posts'));
