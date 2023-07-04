@@ -27,24 +27,29 @@ const getinfoPosts = async () => {
     divUserPost.className = 'div-user-post';
     publicationsContainer.appendChild(divUserPost);
 
-    const divUserImageAndUsername = document.createElement('div');
-    divUserImageAndUsername.className = 'div-user-image-and-username';
-    divUserPost.appendChild(divUserImageAndUsername);
+    const divUserImageAndUsernameEmail = document.createElement('div');
+    divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
+    divUserPost.appendChild(divUserImageAndUsernameEmail);
 
     const imgUserPosts = document.createElement('img');
     imgUserPosts.className = 'img-user-post';
     imgUserPosts.src = doc.data().photoURL;
     imgUserPosts.alt = 'Imagen User';
-    divUserImageAndUsername.appendChild(imgUserPosts);
+    divUserImageAndUsernameEmail.appendChild(imgUserPosts);
+
+    const divNameEmail = document.createElement('div');
+    divNameEmail.className = 'div-name-email';
+    divUserImageAndUsernameEmail.appendChild(divNameEmail);
 
     const userNamePosts = document.createElement('h3');
     userNamePosts.className = 'user-Name-post';
     userNamePosts.textContent = doc.data().displayName;
-    divUserImageAndUsername.appendChild(userNamePosts);
+    divNameEmail.appendChild(userNamePosts);
 
-    const nombre = document.createElement('p');
-    nombre.textContent = doc.data().emailPost;
-    divUserImageAndUsername.appendChild(nombre);
+    const emailUser = document.createElement('p');
+    emailUser.textContent = doc.data().emailPost;
+    emailUser.className = 'email-user';
+    divNameEmail.appendChild(emailUser);
 
     const messagePost = document.createElement('p');
     messagePost.className = 'message-posts';
