@@ -289,5 +289,24 @@ export const timeline = (onNavigate) => {
   buttonFollow3.textContent = ' ➕ Seguir';
   divFriendsInfo3.appendChild(buttonFollow3);
 
+  const titlePink2 = document.createElement('h3');
+  titlePink2.className = 'title-pink';
+  titlePink2.textContent = 'Grupos que pueden interesarte';
+  divPinkTimeline.appendChild(titlePink2);
+
+  const divGroups = document.createElement('div');
+  divGroups.className = 'div-groups';
+  divPinkTimeline.appendChild(divGroups);
+
+  const divGroup1 = document.createElement('div');
+  divGroup1.className = 'div-group';
+  divGroups.appendChild(divGroup1);
+
+  const imgGroup1 = document.createElement('img');
+  imgGroup1.className = 'img-group';
+  imgGroup1.src = './images/foodvegan.jpg';
+  imgGroup1.alt = 'Food';
+  divGroup1.appendChild(imgGroup1);
+
   return divTimeline;
 };
