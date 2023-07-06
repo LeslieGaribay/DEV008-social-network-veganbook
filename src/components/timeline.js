@@ -308,5 +308,82 @@ export const timeline = (onNavigate) => {
   imgGroup1.alt = 'Food';
   divGroup1.appendChild(imgGroup1);
 
+  const nameAndMembersGroup1 = document.createElement('div');
+  nameAndMembersGroup1.className = 'name-and-members';
+  divGroup1.appendChild(nameAndMembersGroup1);
+
+  const nameGroup1 = document.createElement('h4');
+  nameGroup1.className = 'name-group';
+  nameGroup1.textContent = 'Vegan Club';
+  nameAndMembersGroup1.appendChild(nameGroup1);
+
+  const membersGroup1 = document.createElement('p');
+  membersGroup1.className = 'members-group';
+  membersGroup1.textContent = '230 miembros';
+  nameAndMembersGroup1.appendChild(membersGroup1);
+
+  const buttonJoinMe1 = document.createElement('button');
+  buttonJoinMe1.className = 'button-follow';
+  buttonJoinMe1.textContent = ' ➕ Unirme';
+  nameAndMembersGroup1.appendChild(buttonJoinMe1);
+
+  const divGroup2 = document.createElement('div');
+  divGroup2.className = 'div-group';
+  divGroups.appendChild(divGroup2);
+  
+  const imgGroup2 = document.createElement('img');
+  imgGroup2.className = 'img-group';
+  imgGroup2.src = './images/nutrivega.jpeg';
+  imgGroup2.alt = 'Nutrición Vegana';
+  divGroup2.appendChild(imgGroup2);
+
+  const nameAndMembersGroup2 = document.createElement('div');
+  nameAndMembersGroup2.className = 'name-and-members';
+  divGroup2.appendChild(nameAndMembersGroup2);
+
+  const nameGroup2 = document.createElement('h4');
+  nameGroup2.className = 'name-group';
+  nameGroup2.textContent = 'NutriVeg';
+  nameAndMembersGroup2.appendChild(nameGroup2);
+
+  const membersGroup2 = document.createElement('p');
+  membersGroup2.className = 'members-group';
+  membersGroup2.textContent = '1500 miembros';
+  nameAndMembersGroup2.appendChild(membersGroup2);
+
+  const buttonJoinMe2 = document.createElement('button');
+  buttonJoinMe2.className = 'button-follow';
+  buttonJoinMe2.textContent = ' ➕ Unirme';
+  nameAndMembersGroup2.appendChild(buttonJoinMe2);
+
+  const divGroup3 = document.createElement('div');
+  divGroup3.className = 'div-group';
+  divGroups.appendChild(divGroup3);
+
+  const imgGroup3 = document.createElement('img');
+  imgGroup3.className = 'img-group';
+  imgGroup3.src = './images/yoga.jpeg';
+  imgGroup3.alt = 'Yoga';
+  divGroup3.appendChild(imgGroup3);
+
+  const nameAndMembersGroup3 = document.createElement('div');
+  nameAndMembersGroup3.className = 'name-and-members';
+  divGroup3.appendChild(nameAndMembersGroup3);
+
+  const nameGroup3 = document.createElement('h4');
+  nameGroup3.className = 'name-group';
+  nameGroup3.textContent = 'yoga_woman';
+  nameAndMembersGroup3.appendChild(nameGroup3);
+
+  const membersGroup3 = document.createElement('p');
+  membersGroup3.className = 'members-group';
+  membersGroup3.textContent = '900 miembros';
+  nameAndMembersGroup3.appendChild(membersGroup3);
+
+  const buttonJoinMe3 = document.createElement('button');
+  buttonJoinMe3.className = 'button-follow';
+  buttonJoinMe3.textContent = ' ➕ Unirme';
+  nameAndMembersGroup3.appendChild(buttonJoinMe3);
+
   return divTimeline;
 };
