@@ -400,7 +400,7 @@ body {
     .button-post {
         width: 90px;
         height: 39px;
-        background: #9A4C4C;
+        background: #65823b;
         border-radius: 39px;
         color: #FFFFFF;
         border: none;
@@ -466,7 +466,7 @@ body {
         align-items: start;
     }
 
-    .div-green {
+     .div-green {
         display: none;
     }
 
@@ -492,9 +492,6 @@ body {
 
     .button-follow{
         display: none;
-    }
-    .div-green-input-pink {
-
     }
 
     .div-pink-timeline {
@@ -930,6 +927,7 @@ body {
 
     .div-Profile-User {
         flex-direction: column;
+        align-items: center;
         display: flex;
         justify-content: center;
         margin-right: 50px;
@@ -951,6 +949,13 @@ body {
         margin: 0;
     }
 
+    .div-input-post {
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+    }
+
     .div-post {
         width: 85%;
         border: 2px solid #CCA5A5;
@@ -964,12 +969,15 @@ body {
     .input-post {
         width: 80%;
         height: 100px;
-        margin-bottom: 20px;
         border: none;
         border-radius: 10px;
         font-family: 'Raleway', sans-serif;
         font-size: 20px;
         padding: 5px 10px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border-color: #E89A9F;
+        outline: none;
     }
 
     .input-post::placeholder {
@@ -1008,13 +1016,13 @@ body {
 
     .div-user-post {
         display: flex;
-        align-items: baseline;
-        margin-bottom: 15px;
-        border: 1px solid #194F37;
-        height: 153px;
-        border-radius: 16px;
         flex-direction: column;
-        width: 100%;
+        align-items: baseline;
+        margin-bottom: 20px;
+        border: 1px solid #194F37;
+        height: fit-content;
+        border-radius: 16px;
+        padding: 10px 20px 10px 0px;
     }
 
     .div-user-image-and-username {
@@ -1057,11 +1065,75 @@ body {
         align-items: start;
     }
 
+    /* **** Timeline Posts *****/
+
     .publications-container-class {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        max-width: 100%;
+        width: 85%;
+    }
+
+    .div-green {
+        visibility: hidden;
+    }
+
+    .img-user-green {
+        display: none;
+    }
+
+    .user-Name-green{
+        display: none;
+    }
+
+    .message-posts-green{
+        display: none;
+
+    }
+    .img-friend {
+        display: none;
+    }
+
+    .description-friend{
+        display: none;
+    }
+
+    .button-follow{
+        display: none;
+    }
+
+    .div-pink-timeline {
+        display: none;
+    }
+    .title-pink{
+        display: none;
+    }
+
+    .div-friend-profile{
+        display: none;
+    }
+
+    .div-friends{
+        display: none;
+    }
+
+    .div-groups {
+        display: none;
+    }
+
+    .div-group{
+        display: none;
+    }
+    
+    .img-group{
+        display: none;
+    }
+
+    .name-and-members{
+        display: none;
+    }
+
+    .members-group {
+        display: none;
     }
 
 
@@ -1518,6 +1590,7 @@ body {
         border-radius: 10px;
         font-family: 'Raleway', sans-serif;
         font-size: 20px;
+        outline: none;
         padding: 5px 10px;
     }
 
@@ -1555,12 +1628,12 @@ body {
      .publications-container-class {
         display: flex;
         flex-direction: column;
-        align-items: center;
         max-width: 100%;
     }
 
     .div-user-post {
         display: flex;
+        flex-direction: column;
         align-items: baseline;
         margin-bottom: 20px;
         border: 1px solid #194F37;
@@ -1615,6 +1688,7 @@ body {
         align-items: center;
         flex-direction: column;
         margin-right: 50px;
+        visibility: visible;
     }
 
     .img-user-green {
