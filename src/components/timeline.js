@@ -1,5 +1,5 @@
 import { getAuth } from 'firebase/auth';
-import { savePost, getPosts } from '../lib/firebase';
+import { savePost, getPosts, deletePost } from '../lib/firebase';
 
 const getinfoPosts = async () => {
   const currentUser = getAuth().currentUser;
@@ -56,6 +56,24 @@ const getinfoPosts = async () => {
     messagePost.textContent = doc.data().postContent;
 
     divUserPost.append(messagePost);
+
+    if (doc.data().emailPost === currentUser.email) {
+
+      const deleteButton = document.createElement('button');
+      deleteButton.className = 'delete-button';
+      deleteButton.textContent = 'Eliminar';
+      deleteButton.addEventListener('click', async () => {
+        const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
+        if (deleteAlert) {
+          await deletePost(doc);
+          getinfoPosts();
+        }
+      });
+
+      divUserPost.appendChild(deleteButton);
+
+    }
+
   });
 };
 
@@ -330,7 +348,7 @@ export const timeline = (onNavigate) => {
   const divGroup2 = document.createElement('div');
   divGroup2.className = 'div-group';
   divGroups.appendChild(divGroup2);
-  
+
   const imgGroup2 = document.createElement('img');
   imgGroup2.className = 'img-group';
   imgGroup2.src = './images/nutrivega.jpeg';

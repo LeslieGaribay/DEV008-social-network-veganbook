@@ -11,6 +11,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  deleteDoc,
   serverTimestamp,
   query,
   orderBy,
@@ -95,21 +96,16 @@ export const savePost = (postContent) => {
 
 export const getPosts = () => getDocs(query(collection(db, 'Posts'), orderBy('createAt', 'desc')));
 
-// Configura un observador de estado de autenticación y obtén datos del usuario //opcional
-
-// function observator() {
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       console.log('existe usuario activo');
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/v8/firebase.User
-//       var uid = user.uid;
-//       // ...
-//     } else {
-//       // User is signed out
-//       console.log('no existe usuario activo');
-//       // ...
-//     }
-//   });
-// }
-// observator();
+export const deletePost = async(Posts) => {
+  try {
+    const user = auth.currentUser;
+    if (Posts.data().emailPost === user.email) {
+      await deleteDoc(Posts.ref);
+      console.log("Post eliminado exitosamente");
+    }
+    getPosts();
+  } catch (error) {
+    console.error('Error al eliminar el post:', error);
+  }
+    
+  };
