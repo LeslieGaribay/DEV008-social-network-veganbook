@@ -950,7 +950,6 @@ body {
     }
 
     .div-input-post {
-        justify-content: center;
         flex-direction: column;
         display: flex;
         align-items: center;
@@ -1073,8 +1072,13 @@ body {
         width: 85%;
     }
 
+    .div-green-input-pink {
+        display: initial;
+        width: 100%;
+    }
+
     .div-green {
-        visibility: hidden;
+        display: none;
     }
 
     .img-user-green {
@@ -1567,10 +1571,6 @@ body {
         color: #9A4C4C;
     }
 
-    /* .hr-timeline, .hr-timeline-post {
-        display: none;
-    } */
-
     .div-post {
         width: 100%;
         display: flex;
@@ -1579,6 +1579,12 @@ body {
         border: 2px solid #CCA5A5;
         border-radius: 10px;
         margin-bottom: 30px;
+    }
+
+    .div-input-post {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
     }
 
     .input-post {
@@ -1592,6 +1598,7 @@ body {
         font-size: 20px;
         outline: none;
         padding: 5px 10px;
+        resize: none;
     }
 
     .input-post::placeholder {
@@ -1628,7 +1635,7 @@ body {
      .publications-container-class {
         display: flex;
         flex-direction: column;
-        max-width: 100%;
+        width: 100%;
     }
 
     .div-user-post {
@@ -1695,18 +1702,21 @@ body {
         width: 150px;
         border-radius: 50%;
         margin: 20px 0;
+        display: initial;
 
     }
 
     .user-Name-green{
         font-family: 'Raleway', sans-serif; 
-        font-size: 20px; 
+        font-size: 20px;
+        display: initial;
     }
 
     .message-posts-green{
         font-family: 'Raleway', sans-serif;  
         text-align: center;
         margin: 25px 15px;
+        display: initial;
 
     }
     .img-friend {
@@ -1714,12 +1724,14 @@ body {
         border-radius: 50%;
         height: 25%;
         margin-right: 15px;
+        display: initial;
     }
 
     .description-friend{
         font-family: 'Raleway', sans-serif; 
         font-size: 13px;
         margin-top: 5px;
+        display: initial;
     }
 
     .button-follow{
@@ -1731,6 +1743,7 @@ body {
         border: none;
         font-family: 'Raleway', sans-serif; 
         cursor: pointer;
+        display: initial;
     }
     .div-green-input-pink {
         display: grid;
@@ -1753,6 +1766,7 @@ body {
         text-align: center;
         margin: 25px 15px;
         font-size: 20px;
+        display: initial;
     }
 
     .div-friend-profile{
@@ -1763,10 +1777,12 @@ body {
 
     .div-friends{
         margin: 0 15px;
+        display: initial;
     }
 
     .div-groups {
         margin: 0 15px;
+        display: initial;
     }
 
     .div-group{
@@ -1780,17 +1796,20 @@ body {
         border-radius: 50%;
         height: 25%;
         margin-right: 15px;
+        display: initial;
     }
 
     .name-and-members{
         display: flex;
         flex-direction: column;
+        display: initial;
     }
 
     .members-group {
         font-family: 'Raleway', sans-serif; 
         font-size: 12px;
         margin-top: 5px;
+        display: initial;
     }
 
 
