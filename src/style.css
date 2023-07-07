@@ -1631,8 +1631,7 @@ body {
     }
 
      /* **** Timeline Posts *****/ 
-     
-     .publications-container-class {
+    .publications-container-class {
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -1686,7 +1685,7 @@ body {
         align-items: start;
     }
 
-    /*****Timeline Friends*****/
+    /*****Timeline Green*****/
     .div-green {
         background-color: #C9FFBF;
         border-radius: 20px;
@@ -1701,7 +1700,7 @@ body {
     .img-user-green {
         width: 150px;
         border-radius: 50%;
-        margin: 20px 0;
+        margin: 40px 0;
         display: initial;
 
     }
@@ -1710,15 +1709,26 @@ body {
         font-family: 'Raleway', sans-serif; 
         font-size: 20px;
         display: initial;
+        margin-bottom: 15px;
     }
 
     .message-posts-green{
         font-family: 'Raleway', sans-serif;  
         text-align: center;
-        margin: 25px 15px;
+        margin: 30px 20px;
         display: initial;
 
     }
+
+    .options{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        font-size: 20px;
+        margin: 70px 0;
+
+    }
+
+    /*****Timeline Pink*****/
     .img-friend {
         width: 25%;
         border-radius: 50%;

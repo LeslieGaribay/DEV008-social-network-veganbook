@@ -58,7 +58,6 @@ const getinfoPosts = async () => {
     divUserPost.append(messagePost);
 
     if (doc.data().emailPost === currentUser.email) {
-
       const deleteButton = document.createElement('button');
       deleteButton.className = 'delete-button';
       deleteButton.textContent = 'Eliminar';
@@ -71,9 +70,7 @@ const getinfoPosts = async () => {
       });
 
       divUserPost.appendChild(deleteButton);
-
     }
-
   });
 };
 
@@ -147,6 +144,11 @@ export const timeline = (onNavigate) => {
   messagePostGreen.className = 'message-posts-green';
   messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
   divGreen.appendChild(messagePostGreen);
+
+  const options = document.createElement('h4');
+  options.className = 'options';
+  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');
   divInputandPost.className = 'div-input-post';
