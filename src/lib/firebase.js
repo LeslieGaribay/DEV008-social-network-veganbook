@@ -11,6 +11,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  serverTimestamp,
+  query,
+  orderBy,
 } from 'firebase/firestore';
 
 // https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
@@ -81,10 +84,16 @@ export const savePost = (postContent) => {
     emailPost = undefined;
   }
 
-  return addDoc(collection(db, 'Posts'), {postContent, emailPost, displayName, photoURL});
+  return addDoc(collection(db, 'Posts'), {
+    postContent,
+    emailPost,
+    displayName,
+    photoURL,
+    createAt: serverTimestamp(),
+  });
 };
 
-export const getPosts = () => getDocs(collection(db, 'Posts'));
+export const getPosts = () => getDocs(query(collection(db, 'Posts'), orderBy('createAt', 'desc')));
 
 // Configura un observador de estado de autenticación y obtén datos del usuario //opcional
 
