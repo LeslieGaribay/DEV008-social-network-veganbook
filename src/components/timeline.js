@@ -27,9 +27,14 @@ const getinfoPosts = async () => {
     divUserPost.className = 'div-user-post';
     publicationsContainer.appendChild(divUserPost);
 
+    const divUserandOption = document.createElement('div');
+    divUserandOption.className = 'div-user-and-option';
+    divUserPost.appendChild(divUserandOption);
+
+
     const divUserImageAndUsernameEmail = document.createElement('div');
     divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
-    divUserPost.appendChild(divUserImageAndUsernameEmail);
+    divUserandOption.appendChild(divUserImageAndUsernameEmail);
 
     const imgUserPosts = document.createElement('img');
     imgUserPosts.className = 'img-user-post';
@@ -51,28 +56,53 @@ const getinfoPosts = async () => {
     emailUser.className = 'email-user';
     divNameEmail.appendChild(emailUser);
 
-    const messagePost = document.createElement('p');
-    messagePost.className = 'message-posts';
-    messagePost.textContent = doc.data().postContent;
+    const divOptionsPost = document.createElement('div');
+    divOptionsPost.className = 'div-option-post';
+    divUserandOption.appendChild(divOptionsPost);
 
-    divUserPost.append(messagePost);
+    const imgOptionsPost = document.createElement('img');
+    imgOptionsPost.className = 'img-options-post';
+    imgOptionsPost.src = './images/options.png';
+    imgOptionsPost.alt = 'Icon Option';
+    divOptionsPost.appendChild(imgOptionsPost);
+
+    const divMenuOptions = document.createElement('div');
+    divMenuOptions.className = 'div-menu-options';
+    divMenuOptions.style.display = 'none';
+    divUserandOption.appendChild(divMenuOptions);
 
     if (doc.data().emailPost === currentUser.email) {
-      const deleteButton = document.createElement('button');
-      deleteButton.className = 'delete-button';
-      deleteButton.textContent = 'Eliminar';
-      deleteButton.addEventListener('click', async () => {
+      const deleteOption = document.createElement('div');
+      deleteOption.className = 'delete-button';
+      deleteOption.textContent = 'Eliminar';
+      deleteOption.addEventListener('click', async () => {
         const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
         if (deleteAlert) {
           await deletePost(doc);
           getinfoPosts();
         }
       });
-
-      divUserPost.appendChild(deleteButton);
+      divMenuOptions.appendChild(deleteOption);
     }
+
+    
+    
+
+    let isMenuVisible = false;
+    imgOptionsPost.addEventListener('click', () => {
+      divMenuOptions.style.display = isMenuVisible ? 'none' : 'block';
+      isMenuVisible = !isMenuVisible;
+      console.log(imgOptionsPost);
+    });
+
+    const messagePost = document.createElement('p');
+    messagePost.className = 'message-posts';
+    messagePost.textContent = doc.data().postContent;
+    divUserPost.append(messagePost);
   });
 };
+
+
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;

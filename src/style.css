@@ -428,6 +428,13 @@ body {
         padding: 0px 5px 5px;
     }
 
+    .div-user-and-option{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
     .div-user-image-and-username {
         display: flex;
         flex-direction: row;
@@ -1022,6 +1029,13 @@ body {
         height: fit-content;
         border-radius: 16px;
         padding: 10px 20px 10px 0px;
+    }
+
+    .div-user-and-option{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .div-user-image-and-username {
@@ -1647,7 +1661,12 @@ body {
         border-radius: 16px;
         padding: 10px 20px 10px 0px;
     }
-
+    .div-user-and-option{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
     .div-user-image-and-username {
         display: flex;
         flex-direction: row;
@@ -1821,6 +1840,8 @@ body {
         margin-top: 5px;
         display: initial;
     }
+
+
 
 
 }   
