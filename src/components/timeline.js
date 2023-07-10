@@ -1,5 +1,6 @@
 import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost } from '../lib/firebase';
+import { savePost, getPosts, deletePost, editPost } from '../lib/firebase';
+import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
   const currentUser = getAuth().currentUser;
@@ -73,7 +74,7 @@ const getinfoPosts = async () => {
 
     if (doc.data().emailPost === currentUser.email) {
       const deleteOption = document.createElement('div');
-      deleteOption.className = 'delete-button';
+      deleteOption.className = 'delete-option';
       deleteOption.textContent = 'Eliminar';
       deleteOption.addEventListener('click', async () => {
         const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
@@ -85,8 +86,19 @@ const getinfoPosts = async () => {
       divMenuOptions.appendChild(deleteOption);
     }
 
-    
-    
+    if (doc.data().emailPost === currentUser.email) {
+      const editOption = document.createElement('div');
+      editOption.className = 'edit-option';
+      editOption.textContent = 'Editar';
+      editOption.addEventListener('click', async () => {
+        const newContent = prompt('Edita tu post aquí:');
+        if (newContent) {
+          await editPost(doc, newContent);
+          getinfoPosts();
+        }
+      });
+      divMenuOptions.appendChild(editOption);
+    }
 
     let isMenuVisible = false;
     imgOptionsPost.addEventListener('click', () => {

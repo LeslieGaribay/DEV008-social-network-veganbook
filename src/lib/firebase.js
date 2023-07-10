@@ -12,10 +12,12 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   serverTimestamp,
   query,
   orderBy,
 } from 'firebase/firestore';
+import { async } from 'regenerator-runtime';
 
 // https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
 
@@ -96,16 +98,29 @@ export const savePost = (postContent) => {
 
 export const getPosts = () => getDocs(query(collection(db, 'Posts'), orderBy('createAt', 'desc')));
 
-export const deletePost = async(Posts) => {
+export const deletePost = async (Posts) => {
   try {
     const user = auth.currentUser;
     if (Posts.data().emailPost === user.email) {
       await deleteDoc(Posts.ref);
-      console.log("Post eliminado exitosamente");
+      console.log('Post eliminado exitosamente');
     }
     getPosts();
   } catch (error) {
     console.error('Error al eliminar el post:', error);
   }
-    
-  };
+};
+
+export const editPost = async (doc, newContent) => {
+  try {
+    const user = auth.currentUser;
+    if (doc.data().emailPost === user.email) {
+      await updateDoc(doc.ref, {
+        postContent: newContent,
+      });
+      console.log('Post editado exitosamente');
+    }
+  } catch (error) {
+    console.error('Error al editar el post', error);
+  }
+};
