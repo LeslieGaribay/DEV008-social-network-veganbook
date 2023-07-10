@@ -1867,8 +1867,6 @@ body {
     }
 
     .name-and-members{
-        display: flex;
-        flex-direction: column;
         display: initial;
     }
 
@@ -1878,8 +1876,5 @@ body {
         margin-top: 5px;
         display: initial;
     }
-
-
-
 
 }   

@@ -17,7 +17,7 @@ import {
   query,
   orderBy,
 } from 'firebase/firestore';
-import { async } from 'regenerator-runtime';
+// import { async } from 'regenerator-runtime';
 
 // https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
 
@@ -70,7 +70,6 @@ export function signInGoogle() {
 
 export const savePost = (postContent) => {
   const user = auth.currentUser;
-  console.log(user);
   let emailPost = '';
   let displayName = '';
   let photoURL = '';

@@ -1,6 +1,11 @@
 import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost, editPost } from '../lib/firebase';
-import { async } from 'regenerator-runtime';
+import {
+  savePost,
+  getPosts,
+  deletePost,
+  editPost,
+} from '../lib/firebase';
+// import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
   const currentUser = getAuth().currentUser;
@@ -31,7 +36,6 @@ const getinfoPosts = async () => {
     const divUserandOption = document.createElement('div');
     divUserandOption.className = 'div-user-and-option';
     divUserPost.appendChild(divUserandOption);
-
 
     const divUserImageAndUsernameEmail = document.createElement('div');
     divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
@@ -91,7 +95,7 @@ const getinfoPosts = async () => {
       deleteOption.className = 'delete-option';
       deleteOption.textContent = 'Eliminar';
       deleteOption.addEventListener('click', async () => {
-        const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
+        const deleteAlert = window.confirm('¿Estás seguro de que deseas eliminar este post?');
         if (deleteAlert) {
           await deletePost(doc);
           getinfoPosts();
@@ -229,15 +233,9 @@ export const timeline = (onNavigate) => {
   publicationsContainer.id = 'publications-container';
   divInputandPost.appendChild(publicationsContainer);
 
-  // const divPost = document.getElementById('div-post');
   const postsContainer = document.getElementById('publications-container');
   console.log(postsContainer);
-  // postsContainer.innerHTML = 'hola';
 
-  // const querySnapshot = await getDocs(collection(db, "users"));
-  // querySnapshot.forEach((doc) => {
-  // console.log(`${doc.id} => ${doc.data()}`);
-  // });
   getinfoPosts();
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -288,7 +286,6 @@ export const timeline = (onNavigate) => {
   buttonFollow1.className = 'button-follow';
   buttonFollow1.textContent = ' ➕ Seguir';
   divFriendsInfo1.appendChild(buttonFollow1);
-  // buttonPost.type = 'submit';
 
   const divFriend2 = document.createElement('div');
   divFriend2.className = 'div-friend-profile';
@@ -318,7 +315,6 @@ export const timeline = (onNavigate) => {
   buttonFollow2.className = 'button-follow';
   buttonFollow2.textContent = ' ➕ Seguir';
   divFriendsInfo2.appendChild(buttonFollow2);
-  // buttonPost.type = 'submit';
 
   const divFriend3 = document.createElement('div');
   divFriend3.className = 'div-friend-profile';

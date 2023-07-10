@@ -9,8 +9,6 @@ function tick() {
   });
 }
 describe('createUser', () => {
-  // let divRegister;
-  // let formRegister;
   let inputEmail;
   let inputPassword;
   let buttonCreateAccount;
@@ -21,8 +19,6 @@ describe('createUser', () => {
       document.body.removeChild(document.body.firstChild);
     }
     document.body.appendChild(register(onNavigateMock));
-    // divRegister = document.getElementsByClassName('div-register')[0];
-    // formRegister = document.getElementsByClassName('form-register')[0];
     inputEmail = document.getElementById('email');
     inputPassword = document.getElementById('password');
     buttonCreateAccount = document.getElementsByClassName('button-create-account')[0];
