@@ -73,20 +73,6 @@ const getinfoPosts = async () => {
     divUserandOption.appendChild(divMenuOptions);
 
     if (doc.data().emailPost === currentUser.email) {
-      const deleteOption = document.createElement('div');
-      deleteOption.className = 'delete-option';
-      deleteOption.textContent = 'Eliminar';
-      deleteOption.addEventListener('click', async () => {
-        const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
-        if (deleteAlert) {
-          await deletePost(doc);
-          getinfoPosts();
-        }
-      });
-      divMenuOptions.appendChild(deleteOption);
-    }
-
-    if (doc.data().emailPost === currentUser.email) {
       const editOption = document.createElement('div');
       editOption.className = 'edit-option';
       editOption.textContent = 'Editar';
@@ -98,6 +84,20 @@ const getinfoPosts = async () => {
         }
       });
       divMenuOptions.appendChild(editOption);
+    }
+
+    if (doc.data().emailPost === currentUser.email) {
+      const deleteOption = document.createElement('div');
+      deleteOption.className = 'delete-option';
+      deleteOption.textContent = 'Eliminar';
+      deleteOption.addEventListener('click', async () => {
+        const deleteAlert = confirm('¿Estás seguro de que deseas eliminar este post?');
+        if (deleteAlert) {
+          await deletePost(doc);
+          getinfoPosts();
+        }
+      });
+      divMenuOptions.appendChild(deleteOption);
     }
 
     let isMenuVisible = false;
@@ -113,8 +113,6 @@ const getinfoPosts = async () => {
     divUserPost.append(messagePost);
   });
 };
-
-
 
 export const timeline = (onNavigate) => {
   const currentUser = getAuth().currentUser;

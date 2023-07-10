@@ -21,6 +21,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
+    font-family: 'Raleway', sans-serif;  
 }
 
 
@@ -425,7 +426,7 @@ body {
         border: 1px solid #194F37;
         height: fit-content;
         border-radius: 16px;
-        padding: 0px 5px 5px;
+        padding: 5px;
     }
 
     .div-user-and-option{
@@ -438,7 +439,25 @@ body {
     .div-user-image-and-username {
         display: flex;
         flex-direction: row;
-        margin-top: 10px;
+    }
+
+    .edit-option{
+        cursor: pointer;
+        background-color: #DDFFAB;
+        padding: 2px; 
+        font-size: 13px;
+        font-weight: bold;  
+        border: 1px solid #65823b;
+        margin-bottom: 3px; 
+    }
+
+    .delete-option{
+     cursor: pointer;
+     background-color: #ffe2e7;
+     padding: 2px;
+     font-size: 13px;
+     font-weight: bold;  
+     border: 1px solid #9A4C4C; 
     }
 
     .img-user-post {
@@ -1028,7 +1047,7 @@ body {
         border: 1px solid #194F37;
         height: fit-content;
         border-radius: 16px;
-        padding: 10px 20px 10px 0px;
+        padding: 10px; 
     }
 
     .div-user-and-option{
@@ -1041,7 +1060,6 @@ body {
     .div-user-image-and-username {
         display: flex;
         flex-direction: row;
-        margin-left: 10px;
         align-items: center;
     }
 
@@ -1059,11 +1077,31 @@ body {
         color: #9A4C4C;
     }
 
+    .edit-option{
+        cursor: pointer;
+        background-color: #DDFFAB;
+        padding: 2px; 
+        font-size: 14px;
+        font-weight: bold;  
+        border: 1px solid #65823b;
+        margin-bottom: 5px; 
+        text-align: center;
+    }
+
+    .delete-option{
+     cursor: pointer;
+     background-color: #ffe2e7;
+     padding: 2px;
+     font-size: 14px;
+     font-weight: bold;  
+     border: 1px solid #9A4C4C; 
+    }
+
     .message-posts {
         font-family: 'Raleway', sans-serif;
         font-size: 16px;
         padding-left: 10px;
-        margin-top: 10px;
+        margin: 10px 0;
     }
 
     .email-user {
