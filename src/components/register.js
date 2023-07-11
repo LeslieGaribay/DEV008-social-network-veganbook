@@ -128,6 +128,7 @@ export const register = (onNavigate) => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        localStorage.setItem('Usuario', JSON.stringify(user));
         console.log(user);
         onNavigate('/timeline');
       })
