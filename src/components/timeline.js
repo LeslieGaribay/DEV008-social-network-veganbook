@@ -8,7 +8,7 @@ import {
 // import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
-  const currentUser = getAuth().currentUser;
+  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
   const divPostContainer = document.getElementById('div-post');
   if (divPostContainer != null) {
     divPostContainer.reset();
@@ -119,7 +119,7 @@ const getinfoPosts = async () => {
 };
 
 export const timeline = (onNavigate) => {
-  const currentUser = getAuth().currentUser;
+  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
   const divTimeline = document.createElement('div');
   divTimeline.className = 'div-timeline';
 
@@ -203,7 +203,7 @@ export const timeline = (onNavigate) => {
   divPostContainer.id = 'div-post';
   divInputandPost.appendChild(divPostContainer);
 
-  const textPost = document.createElement('textarea');
+  const textPost = document.createElement('input');
   textPost.className = 'input-post';
   textPost.id = 'inputpostid';
   divPostContainer.appendChild(textPost);
@@ -240,11 +240,15 @@ export const timeline = (onNavigate) => {
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const postContent = document.getElementById('inputpostid');
-    savePost(postContent.value);
-    getinfoPosts();
+    const postContent = document.getElementById('inputpostid').value;
+    console.log(postContent);
+    if (!postContent.length) {
+      alert('Ups! No has escrito tu post!!');
+    } else {
+      savePost(postContent.value);
+      getinfoPosts();
+    }
   });
-
   const divPinkTimeline = document.createElement('div');
   divPinkTimeline.className = 'div-pink-timeline';
   divGreenInputPink.appendChild(divPinkTimeline);

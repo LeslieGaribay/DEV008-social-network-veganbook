@@ -9,16 +9,16 @@ function tick() {
     });
 }
 
-describe('savePost', () => {
-    let emailPost;
-    let displayName;
-    let photoURL;
-    beforeEach(() => {
-        const onNavigateMockTimeline = () => { };
-        while (document.body.firstChild) {
-            document.body.removeChild(document.body.firstChild);
-          }
-          document.body.appendChild(timeline(onNavigateMockTimeline));
+// describe('savePost', () => {
+//     let emailPost;
+//     let displayName;
+//     let photoURL;
+//     beforeEach(() => {
+//         const onNavigateMockTimeline = () => { };
+//         while (document.body.firstChild) {
+//             document.body.removeChild(document.body.firstChild);
+//           }
+//           document.body.appendChild(timeline(onNavigateMockTimeline));
 
-    });
-});
+//     });
+// });
