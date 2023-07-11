@@ -112,6 +112,33 @@ const getinfoPosts = async () => {
     messagePost.className = 'message-posts';
     messagePost.textContent = doc.data().postContent;
     divUserPost.append(messagePost);
+
+    const divLikeAndComment = document.createElement('div');
+    divLikeAndComment.className = 'div-like-and-comment';
+    divUserPost.appendChild(divLikeAndComment);
+
+    const likeIcon = document.createElement('img');
+    likeIcon.className = 'img-icon';
+    likeIcon.src = './images/corazon-en-blanco.png';
+    likeIcon.alt = 'Like';
+    divLikeAndComment.appendChild(likeIcon);
+
+    const countLike = document.createElement('p');
+    countLike.className = 'counter';
+    countLike.textContent = '1';
+    divLikeAndComment.appendChild(countLike);
+
+    const commentIcon = document.createElement('img');
+    commentIcon.className = 'img-icon';
+    commentIcon.src = './images/comentarios.png';
+    commentIcon.alt = 'Comment';
+    divLikeAndComment.appendChild(commentIcon);
+
+    const countComment = document.createElement('p');
+    countComment.className = 'counter';
+    countComment.textContent = '1';
+    divLikeAndComment.appendChild(countComment);
+
   });
 };
 

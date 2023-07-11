@@ -1785,6 +1785,21 @@ body {
 
     }
 
+    .div-like-and-comment{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+    }
+
+    .img-icon {
+        width: 24px;
+        margin-right: 3px;
+    }
+
+    .counter {
+        margin-right: 15px;
+    }
+
     /*****Timeline Pink*****/
     .img-friend {
         width: 25%;
