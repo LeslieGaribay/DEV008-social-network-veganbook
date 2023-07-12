@@ -274,7 +274,7 @@ export const timeline = (onNavigate) => {
     if (!postContent.length) {
       alert('Ups! No has escrito tu post!!');
     } else {
-      savePost(postContent.value);
+      savePost(postContent);
       getinfoPosts();
     }
   });
