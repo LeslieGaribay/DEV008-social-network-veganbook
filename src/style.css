@@ -480,6 +480,30 @@ body {
         padding: 10px 10px;
     }
 
+    .options{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        font-size: 20px;
+        margin: 70px 0;
+
+    }
+
+    .div-like-and-comment{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .img-icon {
+        width: 24px;
+        margin-right: 3px;
+    }
+
+    .counter {
+        margin-right: 15px;
+    }
+
     .email-user {
         font-family: 'Raleway', sans-serif;
         color: #536471;
@@ -1102,6 +1126,29 @@ body {
         font-size: 16px;
         padding-left: 10px;
         margin: 10px 0;
+    }
+
+    .options{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        font-size: 20px;
+        margin: 70px 0;
+
+    }
+
+    .div-like-and-comment{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+    }
+
+    .img-icon {
+        width: 24px;
+        margin-right: 3px;
+    }
+
+    .counter {
+        margin-right: 15px;
     }
 
     .email-user {
@@ -1730,6 +1777,29 @@ body {
         margin-top: 10px;
     }
 
+    .options{
+        font-family: 'Raleway', sans-serif;  
+        text-align: center;
+        font-size: 20px;
+        margin: 70px 0;
+
+    }
+
+    .div-like-and-comment{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+    }
+
+    .img-icon {
+        width: 24px;
+        margin-right: 3px;
+    }
+
+    .counter {
+        margin-right: 15px;
+    }
+
     .email-user {
         font-family: 'Raleway', sans-serif;
         color: #536471;
@@ -1775,29 +1845,6 @@ body {
         margin: 30px 20px;
         display: initial;
 
-    }
-
-    .options{
-        font-family: 'Raleway', sans-serif;  
-        text-align: center;
-        font-size: 20px;
-        margin: 70px 0;
-
-    }
-
-    .div-like-and-comment{
-        display: flex;
-        justify-content: end;
-        width: 100%;
-    }
-
-    .img-icon {
-        width: 24px;
-        margin-right: 3px;
-    }
-
-    .counter {
-        margin-right: 15px;
     }
 
     /*****Timeline Pink*****/
