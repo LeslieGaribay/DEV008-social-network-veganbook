@@ -19,7 +19,8 @@
     "dev": "vite dev src --host",
     "start": "npm run dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsst": "jest -- test/timeline.spec.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",

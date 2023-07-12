@@ -1,5 +1,10 @@
-import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost, editPost } from '../lib/firebase';
+// import { getAuth } from 'firebase/auth';
+import {
+  savePost,
+  getPosts,
+  deletePost,
+  editPost,
+} from '../lib/firebase';
 // import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
@@ -10,7 +15,7 @@ const getinfoPosts = async () => {
   }
 
   const publicationsContainer1 = document.getElementById(
-    'publications-container'
+    'publications-container',
   );
   if (publicationsContainer1 != null) {
     while (publicationsContainer1.firstChild) {
@@ -22,7 +27,7 @@ const getinfoPosts = async () => {
   querySnapshot.forEach((doc) => {
     // console.log(doc.data());
     const publicationsContainer = document.getElementById(
-      'publications-container'
+      'publications-container',
     );
     const divUserPost = document.createElement('div');
     divUserPost.className = 'div-user-post';
@@ -91,7 +96,7 @@ const getinfoPosts = async () => {
       deleteOption.textContent = 'Eliminar';
       deleteOption.addEventListener('click', async () => {
         const deleteAlert = window.confirm(
-          '¿Estás seguro de que deseas eliminar este post?'
+          '¿Estás seguro de que deseas eliminar este post?',
         );
         if (deleteAlert) {
           await deletePost(doc);
@@ -138,7 +143,6 @@ const getinfoPosts = async () => {
     countComment.className = 'counter';
     countComment.textContent = '1';
     divLikeAndComment.appendChild(countComment);
-
   });
 };
 
@@ -213,14 +217,12 @@ export const timeline = (onNavigate) => {
 
   const messagePostGreen = document.createElement('p');
   messagePostGreen.className = 'message-posts-green';
-  messagePostGreen.textContent =
-    '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
   divGreen.appendChild(messagePostGreen);
 
   const options = document.createElement('h4');
   options.className = 'options';
-  options.innerHTML =
-    'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
   divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');
@@ -272,7 +274,7 @@ export const timeline = (onNavigate) => {
     const postContent = document.getElementById('inputpostid').value;
     console.log(postContent);
     if (!postContent.length) {
-      alert('Ups! No has escrito tu post!!');
+      alert('Ups! No has escrito tu post!');
     } else {
       savePost(postContent);
       getinfoPosts();
@@ -312,8 +314,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend1 = document.createElement('p');
   descriptionFriend1.className = 'description-friend';
-  descriptionFriend1.textContent =
-    'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
+  descriptionFriend1.textContent = 'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
   divFriendsInfo1.appendChild(descriptionFriend1);
 
   const buttonFollow1 = document.createElement('button');
@@ -342,8 +343,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend2 = document.createElement('p');
   descriptionFriend2.className = 'description-friend';
-  descriptionFriend2.textContent =
-    'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
+  descriptionFriend2.textContent = 'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
   divFriendsInfo2.appendChild(descriptionFriend2);
 
   const buttonFollow2 = document.createElement('button');
@@ -372,8 +372,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend3 = document.createElement('p');
   descriptionFriend3.className = 'description-friend';
-  descriptionFriend3.textContent =
-    'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
+  descriptionFriend3.textContent = 'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
   divFriendsInfo3.appendChild(descriptionFriend3);
 
   const buttonFollow3 = document.createElement('button');

@@ -114,7 +114,6 @@ export const login = (onNavigate) => {
       .then((userCredential) => {
         const user = userCredential.user;
         localStorage.setItem('Usuario', JSON.stringify(user));
-        console.log(user);
         onNavigate('/timeline');
       })
       .catch((error) => {
@@ -160,7 +159,6 @@ export const login = (onNavigate) => {
         const user = result.user;
         localStorage.setItem('Usuario', JSON.stringify(user));
         // IdP data available using getAdditionalUserInfo(result)
-        console.log(user);
         onNavigate('/timeline');
       })
       .catch((error) => {
