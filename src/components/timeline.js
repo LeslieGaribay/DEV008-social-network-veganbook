@@ -274,9 +274,9 @@ export const timeline = (onNavigate) => {
     const postContent = document.getElementById('inputpostid').value;
     console.log(postContent);
     if (!postContent.length) {
-      alert('Ups! No has escrito tu post!!');
+      alert('Ups! No has escrito tu post!');
     } else {
-      savePost(postContent.value);
+      savePost(postContent);
       getinfoPosts();
     }
   });
