@@ -7,6 +7,7 @@ const email = 'test values';
 const displayName = 'test values';
 const photoURL = 'test values';
 const timestamp = 12345;
+
 jest.mock('firebase/auth', () => ({
   ...(jest.requireActual('firebase/auth')),
   getAuth: () => ({
@@ -42,20 +43,22 @@ describe('savePost', () => {
       },
     );
   });
-});
 
-/*
-describe('savePost', () => {
-  let emailPost;
-  let displayName;
-  let photoURL;
-  beforeEach(() => {
-    const onNavigateMockTimeline = () => { };
-    while (document.body.firstChild) {
-      document.body.removeChild(document.body.firstChild);
-    }
-    document.body.appendChild(timeline(onNavigateMockTimeline));
+  it('El usuario es nulo', () => {
+    addDoc.mockImplementationOnce(() => { });
+    serverTimestamp.mockImplementationOnce(() => timestamp);
 
+    savePost(postContent);
+    expect(addDoc.mock.calls).toHaveLength(1);
+    expect(addDoc).toBeCalledWith(
+      undefined,
+      {
+        postContent,
+        emailPost: 'test values',
+        displayName,
+        photoURL,
+        createAt: timestamp,
+      },
+    );
   });
 });
-*/
