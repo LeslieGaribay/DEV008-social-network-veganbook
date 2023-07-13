@@ -1,10 +1,5 @@
 // import { getAuth } from 'firebase/auth';
-import {
-  savePost,
-  getPosts,
-  deletePost,
-  editPost,
-} from '../lib/firebase';
+import { savePost, getPosts, deletePost, editPost } from '../lib/firebase';
 // import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
@@ -15,23 +10,23 @@ const getinfoPosts = async () => {
   }
 
   const publicationsContainer1 = document.getElementById(
-    'publications-container',
+    'publications-container'
   );
   if (publicationsContainer1 != null) {
     while (publicationsContainer1.firstChild) {
       publicationsContainer1.removeChild(publicationsContainer1.firstChild);
     }
   }
+
   const querySnapshot = await getPosts();
+  const publicationsContainer = document.getElementById(
+    'publications-container'
+  );
 
   querySnapshot.forEach((doc) => {
     // console.log(doc.data());
-    const publicationsContainer = document.getElementById(
-      'publications-container',
-    );
     const divUserPost = document.createElement('div');
     divUserPost.className = 'div-user-post';
-    publicationsContainer.appendChild(divUserPost);
 
     const divUserandOption = document.createElement('div');
     divUserandOption.className = 'div-user-and-option';
@@ -96,7 +91,7 @@ const getinfoPosts = async () => {
       deleteOption.textContent = 'Eliminar';
       deleteOption.addEventListener('click', async () => {
         const deleteAlert = window.confirm(
-          '¿Estás seguro de que deseas eliminar este post?',
+          '¿Estás seguro de que deseas eliminar este post?'
         );
         if (deleteAlert) {
           await deletePost(doc);
@@ -122,15 +117,36 @@ const getinfoPosts = async () => {
     divLikeAndComment.className = 'div-like-and-comment';
     divUserPost.appendChild(divLikeAndComment);
 
+    let count = 0;
+    // let like = false;
+    // const contador = document.getElementById('counterId');
     const likeIcon = document.createElement('img');
     likeIcon.className = 'img-icon';
     likeIcon.src = './images/corazon-en-blanco.png';
     likeIcon.alt = 'Like';
+    const countLike = document.createElement('p');
+    function changeImage() {
+      const imagen = this;
+      if (imagen.src.endsWith('images/corazon-rosa.png')) {
+        // Cambiar a la imagen 2
+        imagen.src = './images/corazon-en-blanco.png';
+        imagen.alt = 'Imagen 2';
+        count += -1;
+      } else {
+        imagen.src = './images/corazon-rosa.png';
+        imagen.alt = 'Imagen 1';
+        count += 1;
+      }
+      countLike.textContent = count;
+    }
+    likeIcon.addEventListener('click', changeImage);
+    // <img id="myImage" src="imagen1.jpg" alt="Imagen 1" onclick="changeImage()">
     divLikeAndComment.appendChild(likeIcon);
 
-    const countLike = document.createElement('p');
     countLike.className = 'counter';
-    countLike.textContent = '1';
+    countLike.id = 'counterId';
+    // countLike.innerText = Number(count) + 1;
+    countLike.textContent = count;
     divLikeAndComment.appendChild(countLike);
 
     const commentIcon = document.createElement('img');
@@ -143,6 +159,8 @@ const getinfoPosts = async () => {
     countComment.className = 'counter';
     countComment.textContent = '1';
     divLikeAndComment.appendChild(countComment);
+
+    publicationsContainer.appendChild(divUserPost);
   });
 };
 
@@ -217,12 +235,14 @@ export const timeline = (onNavigate) => {
 
   const messagePostGreen = document.createElement('p');
   messagePostGreen.className = 'message-posts-green';
-  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  messagePostGreen.textContent =
+    '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
   divGreen.appendChild(messagePostGreen);
 
   const options = document.createElement('h4');
   options.className = 'options';
-  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  options.innerHTML =
+    'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
   divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');
@@ -314,7 +334,8 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend1 = document.createElement('p');
   descriptionFriend1.className = 'description-friend';
-  descriptionFriend1.textContent = 'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
+  descriptionFriend1.textContent =
+    'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
   divFriendsInfo1.appendChild(descriptionFriend1);
 
   const buttonFollow1 = document.createElement('button');
@@ -343,7 +364,8 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend2 = document.createElement('p');
   descriptionFriend2.className = 'description-friend';
-  descriptionFriend2.textContent = 'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
+  descriptionFriend2.textContent =
+    'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
   divFriendsInfo2.appendChild(descriptionFriend2);
 
   const buttonFollow2 = document.createElement('button');
@@ -372,7 +394,8 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend3 = document.createElement('p');
   descriptionFriend3.className = 'description-friend';
-  descriptionFriend3.textContent = 'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
+  descriptionFriend3.textContent =
+    'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
   divFriendsInfo3.appendChild(descriptionFriend3);
 
   const buttonFollow3 = document.createElement('button');
