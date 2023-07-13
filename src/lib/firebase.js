@@ -39,11 +39,18 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-// Firestore
-const db = getFirestore();
+let app = null;
+let auth = null;
+let provider = null;
+let db = null;
+export function initializeFirebase() {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  provider = new GoogleAuthProvider();
+  // Firestore
+  db = getFirestore();
+}
+initializeFirebase();
 
 // try {
 //   const docRef = await addDoc(collection(db, "Usuarios"), {
