@@ -166,6 +166,14 @@ const getinfoPosts = async () => {
 
 export const timeline = (onNavigate) => {
   const currentUser = JSON.parse(localStorage.getItem('Usuario'));
+
+  // Verificar si el usuario está autenticado
+  if (!currentUser) {
+    // Redirigir al usuario a la página de inicio de sesión
+    onNavigate('/');
+    return;
+  }
+
   const divTimeline = document.createElement('div');
   divTimeline.className = 'div-timeline';
 
