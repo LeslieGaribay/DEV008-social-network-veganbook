@@ -1,5 +1,5 @@
 // import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost, editPost } from '../lib/firebase';
+import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } from '../lib/firebase';
 // import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
@@ -24,8 +24,9 @@ const getinfoPosts = async () => {
   );
 
   querySnapshot.forEach((doc) => {
-    // console.log(doc.data());
+    console.log(doc.id);
     const divUserPost = document.createElement('div');
+    divUserPost.setAttribute('key', doc.id);
     divUserPost.className = 'div-user-post';
 
     const divUserandOption = document.createElement('div');
@@ -117,36 +118,52 @@ const getinfoPosts = async () => {
     divLikeAndComment.className = 'div-like-and-comment';
     divUserPost.appendChild(divLikeAndComment);
 
-    let count = 0;
-    // let like = false;
-    // const contador = document.getElementById('counterId');
+    // let count = 0;
     const likeIcon = document.createElement('img');
     likeIcon.className = 'img-icon';
     likeIcon.src = './images/corazon-en-blanco.png';
     likeIcon.alt = 'Like';
     const countLike = document.createElement('p');
-    function changeImage() {
-      const imagen = this;
-      if (imagen.src.endsWith('images/corazon-rosa.png')) {
-        // Cambiar a la imagen 2
-        imagen.src = './images/corazon-en-blanco.png';
-        imagen.alt = 'Imagen 2';
-        count += -1;
-      } else {
-        imagen.src = './images/corazon-rosa.png';
-        imagen.alt = 'Imagen 1';
-        count += 1;
-      }
-      countLike.textContent = count;
+    function changeImage(publicationData) {
+      const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
+      getPostData(publicationId).then((response) => {
+        console.log(response.data());
+        const findUserLike = response.data().likes.includes(currentUser.email);
+        console.log(findUserLike);
+        // const imagen = publicationData;
+        if (findUserLike) {
+          disLike(currentUser.email, publicationId);
+        } else {
+          like(currentUser.email, publicationId);
+        }
+        // if (imagen.src.endsWith('images/corazon-rosa.png')) {
+        //   // Cambiar a la imagen 2
+        //   imagen.src = './images/corazon-en-blanco.png';
+        //   imagen.alt = 'Imagen 2';
+        //   if (findUserLike) {
+        //     // count += -1;
+        //     disLike(currentUser.email, publicationId);
+        //   } else {
+        //     imagen.src = './images/corazon-rosa.png';
+        //     imagen.alt = 'Imagen 1';
+        //     if (findUserLike) {
+        //       like(currentUser.email, publicationId);
+        //       // count += 1;
+        //     }
+        //     // countLike.textContent = count;
+        //   }
+        // }
+      });
     }
-    likeIcon.addEventListener('click', changeImage);
-    // <img id="myImage" src="imagen1.jpg" alt="Imagen 1" onclick="changeImage()">
+    likeIcon.addEventListener('click', (e) => {
+      changeImage(e.target);
+    });
+
     divLikeAndComment.appendChild(likeIcon);
 
     countLike.className = 'counter';
     countLike.id = 'counterId';
     // countLike.innerText = Number(count) + 1;
-    countLike.textContent = count;
     divLikeAndComment.appendChild(countLike);
 
     const commentIcon = document.createElement('img');

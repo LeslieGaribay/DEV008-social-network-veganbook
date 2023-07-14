@@ -55,7 +55,6 @@ body {
     }
 
     h2 {
-        font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 25px;
@@ -129,7 +128,6 @@ body {
     }
 
     .text-remember {
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 12px;
         margin-right: 80px;
@@ -137,7 +135,6 @@ body {
     }
 
     .forget-password {
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 10px;
         text-decoration: underline;

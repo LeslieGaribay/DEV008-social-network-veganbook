@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -11,11 +12,15 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   deleteDoc,
   updateDoc,
   serverTimestamp,
   query,
   orderBy,
+  arrayUnion,
+  doc,
+  arrayRemove,
 } from 'firebase/firestore';
 // import { async } from 'regenerator-runtime';
 
@@ -73,6 +78,7 @@ export const savePost = (postContent) => {
   let emailPost = '';
   let displayName = '';
   let photoURL = '';
+  let likes = '';
 
   if (user !== null) {
     // User is signed in, see docs for a list of available properties
@@ -92,6 +98,7 @@ export const savePost = (postContent) => {
     displayName,
     photoURL,
     createAt: serverTimestamp(),
+    likes,
   });
 };
 
@@ -123,3 +130,45 @@ export const editPost = async (doc, newContent) => {
     console.error('Error al editar el post', error);
   }
 };
+
+export const like = (emailUser, idPost) => {
+  const postRef = doc(db, 'Posts', idPost);
+  updateDoc(postRef, {
+    likes: arrayUnion(emailUser),
+  });
+};
+
+export const disLike = (emailUser, idPost) => {
+  const postRef = doc(db, 'Posts', idPost);
+  updateDoc(postRef, {
+    likes: arrayRemove(emailUser),
+  });
+};
+
+//Método para obtener el Post apartir de Id
+
+export const getPostData = (id) => {
+  const docRef = doc(db, 'Posts', id);
+  return getDoc(docRef);
+}
+
+// METODO PARA ACTUALIZAR LOS CORAZONES DE LOS POSTS
+// export const updateLikes = (emailPost, likes) => {
+//   const updatePostById = firebase.firestore().collection('Posts').doc(emailPost)
+//     .update(
+//       { likes },
+//     );
+//   return updatePostById;
+// };
+
+// function getCount(ref) {
+//   // Sum the count of each shard in the subcollection
+//   return ref.collection('Posts').get().then((snapshot) => {
+//       let total_count = 0;
+//       snapshot.forEach((doc) => {
+//           total_count += doc.data().count;
+//       });
+
+//       return total_count;
+//   });
+// }
