@@ -1,5 +1,6 @@
 // import { getAuth } from 'firebase/auth';
 import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } from '../lib/firebase';
+import { myGetItem } from '../lib/utils';
 // import { async } from 'regenerator-runtime';
 
 const getinfoPosts = async () => {
@@ -190,7 +191,7 @@ const getinfoPosts = async () => {
 };
 
 export const timeline = (onNavigate) => {
-  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
+  const currentUser = JSON.parse(myGetItem('Usuario'));
 
   // Verificar si el usuario está autenticado
   if (!currentUser) {

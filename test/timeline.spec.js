@@ -1,7 +1,8 @@
 import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { savePost, initializeFirebase } from '../src/lib/firebase'; /* getPosts */
-// import { timeline } from '../src/components/timeline';
+import { savePost, initializeFirebase } from '../src/lib/firebase';
+import { timeline } from '../src/components/timeline';
+import { myGetItem } from '../src/lib/utils';
 
 const displayName = 'test values';
 const photoURL = 'test values';
@@ -9,6 +10,11 @@ const email = 'test values';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
+jest.mock('../src/lib/utils');
+jest.mock('../src/lib/firebase', () => ({
+  ...jest.requireActual('../src/lib/firebase'),
+  getPosts: () => Promise.resolve([]),
+}));
 
 describe('savePost', () => {
   beforeEach(() => {
@@ -72,39 +78,48 @@ describe('savePost', () => {
   });
 });
 
-// function tick() {
-//   return new Promise((resolve) => {
-//     setTimeout(resolve, 0);
-//   });
-// }
+function tick() {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 0);
+  });
+}
 
-// describe('getinfoPosts', () => {
-//   // let publicationsContainer;
-//   // let divUserPost;
-//   let buttonPost;
-//   let textPost;
+describe('getinfoPosts', () => {
+  // let publicationsContainer;
+  // let divUserPost;
+  let buttonPost;
+  let textPost;
 
-//   beforeEach(() => {
-//     const onNavigateMockTimeline = () => {};
-//     while (document.body.firstChild) {
-//       document.body.removeChild(document.body.firstChild);
-//     }
-//     document.body.appendChild(timeline(onNavigateMockTimeline));
+  beforeEach(() => {
+    const onNavigateMockTimeline = () => {};
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
 
-//     // publicationsContainer = document.getElementById('publications-container');
-//     // divUserPost = document.getElementsByClassName('div-user-post');
-//     buttonPost = document.getElementsByClassName('button-post')[0];
-//     textPost = document.getElementById('inputpostid');
-//   });
+    getAuth.mockImplementationOnce(() => ({
+      currentUser: {
+        displayName,
+        photoURL,
+        email,
+      },
+    }));
+    myGetItem.mockImplementationOnce(() => '{"photoURL":"https://www.google.com/", "displayName":"MockTest"}');
+    initializeFirebase();
 
-//   it('Debería mostrar una alerta si el input está vacío al momento de publicar', async () => {
-//     const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+    document.body.appendChild(timeline(onNavigateMockTimeline));
 
-//     getPosts.mockImplementationOnce(() => Promise.resolve([]));
-//     getItem.mockImplementationOnce(() => '{"uid":"abcdefgh1234567","email":"mock@gmail.com","emailVerified":true,"displayName":"MockTest","isAnonymous":false,"photoURL":"https://googleusercontent.com","providerData":[{"providerId":"google.com","uid":"1234567890","displayName":"MockTest","email":"mock@gmail.com","phoneNumber":null,"photoURL":"https://lh3.googleusercontent.com/"}],"stsTokenManager":{"refreshToken":"abc123","accessToken":"zxcvbnm12345677","expirationTime":123456745},"createdAt":"1234567","lastLoginAt":"12345","apiKey":"abc123abc","appName":"[DEFAULT]"}');
-//     textPost.value = '';
-//     buttonPost.click();
-//     await tick();
-//     expect(alertSpy).toHaveBeenCalledWith('Ups! No has escrito tu post!');
-//   });
-// });
+    // publicationsContainer = document.getElementById('publications-container');
+    // divUserPost = document.getElementsByClassName('div-user-post');
+    buttonPost = document.getElementsByClassName('button-post')[0];
+    textPost = document.getElementById('inputpostid');
+  });
+
+  it('Debería mostrar una alerta si el input está vacío al momento de publicar', async () => {
+    const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+
+    textPost.value = '';
+    buttonPost.click();
+    await tick();
+    expect(alertSpy).toHaveBeenCalledWith('Ups! No has escrito tu post!');
+  });
+});
