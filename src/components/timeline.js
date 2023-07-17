@@ -118,7 +118,7 @@ const getinfoPosts = async () => {
     divLikeAndComment.className = 'div-like-and-comment';
     divUserPost.appendChild(divLikeAndComment);
 
-    // let count = 0;
+    let count = 0;
     const likeIcon = document.createElement('img');
     likeIcon.className = 'img-icon';
     likeIcon.src = './images/corazon-en-blanco.png';
@@ -130,27 +130,35 @@ const getinfoPosts = async () => {
         console.log(response.data());
         const findUserLike = response.data().likes.includes(currentUser.email);
         console.log(findUserLike);
-        // const imagen = publicationData;
+        const imagen = publicationData;
         if (findUserLike) {
           disLike(currentUser.email, publicationId);
+          count += -1;
+          if (imagen.src.endsWith('images/corazon-en-blanco.png')){
+            imagen.src = './images/corazon-rosa.png';
+          }
+          // imagen.src = './images/corazon-rosa.png';
         } else {
           like(currentUser.email, publicationId);
+          count += 1;
+          imagen.src = './images/corazon-en-blanco.png';
+          
         }
         // if (imagen.src.endsWith('images/corazon-rosa.png')) {
         //   // Cambiar a la imagen 2
         //   imagen.src = './images/corazon-en-blanco.png';
         //   imagen.alt = 'Imagen 2';
         //   if (findUserLike) {
-        //     // count += -1;
+        //     // 
         //     disLike(currentUser.email, publicationId);
         //   } else {
         //     imagen.src = './images/corazon-rosa.png';
         //     imagen.alt = 'Imagen 1';
         //     if (findUserLike) {
         //       like(currentUser.email, publicationId);
-        //       // count += 1;
+        //       // 
         //     }
-        //     // countLike.textContent = count;
+        countLike.textContent = count;
         //   }
         // }
       });
