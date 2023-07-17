@@ -3,6 +3,174 @@ import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } 
 import { myGetItem } from '../lib/utils';
 // import { async } from 'regenerator-runtime';
 
+const createPost = (doc, currentUser) => {
+  console.log(doc.id);
+  const divUserPost = document.createElement('div');
+  divUserPost.setAttribute('key', doc.id);
+  divUserPost.className = 'div-user-post';
+
+  const divUserandOption = document.createElement('div');
+  divUserandOption.className = 'div-user-and-option';
+  divUserPost.appendChild(divUserandOption);
+
+  const divUserImageAndUsernameEmail = document.createElement('div');
+  divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
+  divUserandOption.appendChild(divUserImageAndUsernameEmail);
+
+  const imgUserPosts = document.createElement('img');
+  imgUserPosts.className = 'img-user-post';
+  imgUserPosts.src = doc.data().photoURL;
+  imgUserPosts.alt = 'Imagen User';
+  divUserImageAndUsernameEmail.appendChild(imgUserPosts);
+
+  const divNameEmail = document.createElement('div');
+  divNameEmail.className = 'div-name-email';
+  divUserImageAndUsernameEmail.appendChild(divNameEmail);
+
+  const userNamePosts = document.createElement('h3');
+  userNamePosts.className = 'user-Name-post';
+  userNamePosts.textContent = doc.data().displayName;
+  divNameEmail.appendChild(userNamePosts);
+
+  const emailUser = document.createElement('p');
+  emailUser.textContent = doc.data().emailPost;
+  emailUser.className = 'email-user';
+  divNameEmail.appendChild(emailUser);
+
+  const divOptionsPost = document.createElement('div');
+  divOptionsPost.className = 'div-option-post';
+  divUserandOption.appendChild(divOptionsPost);
+
+  const imgOptionsPost = document.createElement('img');
+  imgOptionsPost.className = 'img-options-post';
+  imgOptionsPost.src = './images/options.png';
+  imgOptionsPost.alt = 'Icon Option';
+  divOptionsPost.appendChild(imgOptionsPost);
+
+  const divMenuOptions = document.createElement('div');
+  divMenuOptions.className = 'div-menu-options';
+  divMenuOptions.style.display = 'none';
+  divUserandOption.appendChild(divMenuOptions);
+
+  if (doc.data().emailPost === currentUser.email) {
+    const editOption = document.createElement('div');
+    editOption.className = 'edit-option';
+    editOption.textContent = 'Editar';
+    editOption.addEventListener('click', async () => {
+      const newContent = prompt('Edita tu post aquí:');
+      if (newContent) {
+        await editPost(doc, newContent);
+        getinfoPosts();
+      }
+    });
+    divMenuOptions.appendChild(editOption);
+  }
+
+  if (doc.data().emailPost === currentUser.email) {
+    const deleteOption = document.createElement('div');
+    deleteOption.className = 'delete-option';
+    deleteOption.textContent = 'Eliminar';
+    deleteOption.addEventListener('click', async () => {
+      const deleteAlert = window.confirm(
+        '¿Estás seguro de que deseas eliminar este post?'
+      );
+      if (deleteAlert) {
+        await deletePost(doc);
+        getinfoPosts();
+      }
+    });
+    divMenuOptions.appendChild(deleteOption);
+  }
+
+  let isMenuVisible = false;
+  imgOptionsPost.addEventListener('click', () => {
+    divMenuOptions.style.display = isMenuVisible ? 'none' : 'block';
+    isMenuVisible = !isMenuVisible;
+    console.log(imgOptionsPost);
+  });
+
+  const messagePost = document.createElement('p');
+  messagePost.className = 'message-posts';
+  messagePost.textContent = doc.data().postContent;
+  divUserPost.append(messagePost);
+
+  const divLikeAndComment = document.createElement('div');
+  divLikeAndComment.className = 'div-like-and-comment';
+  divUserPost.appendChild(divLikeAndComment);
+
+  let count = 0;
+  const likeIcon = document.createElement('img');
+  likeIcon.className = 'img-icon';
+  likeIcon.src = './images/corazon-en-blanco.png';
+  likeIcon.alt = 'Like';
+  const countLike = document.createElement('p');
+  function changeImage(publicationData) {
+    const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
+    getPostData(publicationId).then((response) => {
+      console.log(response.data());
+      const findUserLike = response.data().likes.includes(currentUser.email);
+      console.log(findUserLike);
+      const imagen = publicationData;
+      if (findUserLike) {
+        disLike(currentUser.email, publicationId);
+        count += -1;
+        if (imagen.src.endsWith('images/corazon-en-blanco.png')){
+          imagen.src = './images/corazon-rosa.png';
+        }
+        // imagen.src = './images/corazon-rosa.png';
+      } else {
+        like(currentUser.email, publicationId);
+        count += 1;
+        imagen.src = './images/corazon-en-blanco.png';
+        
+      }
+      // if (imagen.src.endsWith('images/corazon-rosa.png')) {
+      //   // Cambiar a la imagen 2
+      //   imagen.src = './images/corazon-en-blanco.png';
+      //   imagen.alt = 'Imagen 2';
+      //   if (findUserLike) {
+      //     // 
+      //     disLike(currentUser.email, publicationId);
+      //   } else {
+      //     imagen.src = './images/corazon-rosa.png';
+      //     imagen.alt = 'Imagen 1';
+      //     if (findUserLike) {
+      //       like(currentUser.email, publicationId);
+      //       // 
+      //     }
+      countLike.textContent = count;
+      //   }
+      // }
+    });
+  }
+  likeIcon.addEventListener('click', (e) => {
+    changeImage(e.target);
+  });
+
+  divLikeAndComment.appendChild(likeIcon);
+
+  countLike.className = 'counter';
+  countLike.id = 'counterId';
+  // countLike.innerText = Number(count) + 1;
+  divLikeAndComment.appendChild(countLike);
+
+  const commentIcon = document.createElement('img');
+  commentIcon.className = 'img-icon';
+  commentIcon.src = './images/comentarios.png';
+  commentIcon.alt = 'Comment';
+  divLikeAndComment.appendChild(commentIcon);
+
+  const countComment = document.createElement('p');
+  countComment.className = 'counter';
+  countComment.textContent = '1';
+  divLikeAndComment.appendChild(countComment);
+
+  const publicationsContainer = document.getElementById(
+    'publications-container'
+  );
+  publicationsContainer.appendChild(divUserPost);
+}
+
 const getinfoPosts = async () => {
   const currentUser = JSON.parse(localStorage.getItem('Usuario'));
   const divPostContainer = document.getElementById('div-post');
@@ -20,174 +188,8 @@ const getinfoPosts = async () => {
   }
 
   const querySnapshot = await getPosts();
-  const publicationsContainer = document.getElementById(
-    'publications-container'
-  );
 
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id);
-    const divUserPost = document.createElement('div');
-    divUserPost.setAttribute('key', doc.id);
-    divUserPost.className = 'div-user-post';
-
-    const divUserandOption = document.createElement('div');
-    divUserandOption.className = 'div-user-and-option';
-    divUserPost.appendChild(divUserandOption);
-
-    const divUserImageAndUsernameEmail = document.createElement('div');
-    divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
-    divUserandOption.appendChild(divUserImageAndUsernameEmail);
-
-    const imgUserPosts = document.createElement('img');
-    imgUserPosts.className = 'img-user-post';
-    imgUserPosts.src = doc.data().photoURL;
-    imgUserPosts.alt = 'Imagen User';
-    divUserImageAndUsernameEmail.appendChild(imgUserPosts);
-
-    const divNameEmail = document.createElement('div');
-    divNameEmail.className = 'div-name-email';
-    divUserImageAndUsernameEmail.appendChild(divNameEmail);
-
-    const userNamePosts = document.createElement('h3');
-    userNamePosts.className = 'user-Name-post';
-    userNamePosts.textContent = doc.data().displayName;
-    divNameEmail.appendChild(userNamePosts);
-
-    const emailUser = document.createElement('p');
-    emailUser.textContent = doc.data().emailPost;
-    emailUser.className = 'email-user';
-    divNameEmail.appendChild(emailUser);
-
-    const divOptionsPost = document.createElement('div');
-    divOptionsPost.className = 'div-option-post';
-    divUserandOption.appendChild(divOptionsPost);
-
-    const imgOptionsPost = document.createElement('img');
-    imgOptionsPost.className = 'img-options-post';
-    imgOptionsPost.src = './images/options.png';
-    imgOptionsPost.alt = 'Icon Option';
-    divOptionsPost.appendChild(imgOptionsPost);
-
-    const divMenuOptions = document.createElement('div');
-    divMenuOptions.className = 'div-menu-options';
-    divMenuOptions.style.display = 'none';
-    divUserandOption.appendChild(divMenuOptions);
-
-    if (doc.data().emailPost === currentUser.email) {
-      const editOption = document.createElement('div');
-      editOption.className = 'edit-option';
-      editOption.textContent = 'Editar';
-      editOption.addEventListener('click', async () => {
-        const newContent = prompt('Edita tu post aquí:');
-        if (newContent) {
-          await editPost(doc, newContent);
-          getinfoPosts();
-        }
-      });
-      divMenuOptions.appendChild(editOption);
-    }
-
-    if (doc.data().emailPost === currentUser.email) {
-      const deleteOption = document.createElement('div');
-      deleteOption.className = 'delete-option';
-      deleteOption.textContent = 'Eliminar';
-      deleteOption.addEventListener('click', async () => {
-        const deleteAlert = window.confirm(
-          '¿Estás seguro de que deseas eliminar este post?'
-        );
-        if (deleteAlert) {
-          await deletePost(doc);
-          getinfoPosts();
-        }
-      });
-      divMenuOptions.appendChild(deleteOption);
-    }
-
-    let isMenuVisible = false;
-    imgOptionsPost.addEventListener('click', () => {
-      divMenuOptions.style.display = isMenuVisible ? 'none' : 'block';
-      isMenuVisible = !isMenuVisible;
-      console.log(imgOptionsPost);
-    });
-
-    const messagePost = document.createElement('p');
-    messagePost.className = 'message-posts';
-    messagePost.textContent = doc.data().postContent;
-    divUserPost.append(messagePost);
-
-    const divLikeAndComment = document.createElement('div');
-    divLikeAndComment.className = 'div-like-and-comment';
-    divUserPost.appendChild(divLikeAndComment);
-
-    let count = 0;
-    const likeIcon = document.createElement('img');
-    likeIcon.className = 'img-icon';
-    likeIcon.src = './images/corazon-en-blanco.png';
-    likeIcon.alt = 'Like';
-    const countLike = document.createElement('p');
-    function changeImage(publicationData) {
-      const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
-      getPostData(publicationId).then((response) => {
-        console.log(response.data());
-        const findUserLike = response.data().likes.includes(currentUser.email);
-        console.log(findUserLike);
-        const imagen = publicationData;
-        if (findUserLike) {
-          disLike(currentUser.email, publicationId);
-          count += -1;
-          if (imagen.src.endsWith('images/corazon-en-blanco.png')){
-            imagen.src = './images/corazon-rosa.png';
-          }
-          // imagen.src = './images/corazon-rosa.png';
-        } else {
-          like(currentUser.email, publicationId);
-          count += 1;
-          imagen.src = './images/corazon-en-blanco.png';
-          
-        }
-        // if (imagen.src.endsWith('images/corazon-rosa.png')) {
-        //   // Cambiar a la imagen 2
-        //   imagen.src = './images/corazon-en-blanco.png';
-        //   imagen.alt = 'Imagen 2';
-        //   if (findUserLike) {
-        //     // 
-        //     disLike(currentUser.email, publicationId);
-        //   } else {
-        //     imagen.src = './images/corazon-rosa.png';
-        //     imagen.alt = 'Imagen 1';
-        //     if (findUserLike) {
-        //       like(currentUser.email, publicationId);
-        //       // 
-        //     }
-        countLike.textContent = count;
-        //   }
-        // }
-      });
-    }
-    likeIcon.addEventListener('click', (e) => {
-      changeImage(e.target);
-    });
-
-    divLikeAndComment.appendChild(likeIcon);
-
-    countLike.className = 'counter';
-    countLike.id = 'counterId';
-    // countLike.innerText = Number(count) + 1;
-    divLikeAndComment.appendChild(countLike);
-
-    const commentIcon = document.createElement('img');
-    commentIcon.className = 'img-icon';
-    commentIcon.src = './images/comentarios.png';
-    commentIcon.alt = 'Comment';
-    divLikeAndComment.appendChild(commentIcon);
-
-    const countComment = document.createElement('p');
-    countComment.className = 'counter';
-    countComment.textContent = '1';
-    divLikeAndComment.appendChild(countComment);
-
-    publicationsContainer.appendChild(divUserPost);
-  });
+  querySnapshot.forEach((doc) => createPost(doc, currentUser));
 };
 
 export const timeline = (onNavigate) => {
