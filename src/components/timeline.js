@@ -1,9 +1,41 @@
 // import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } from '../lib/firebase';
+import {
+  savePost,
+  getPosts,
+  deletePost,
+  editPost,
+  disLike,
+  like,
+  getPostData,
+} from '../lib/firebase';
 import { myGetItem } from '../lib/utils';
 // import { async } from 'regenerator-runtime';
 
-const createPost = (doc, currentUser) => {
+let createPost = null; // ¬¬
+
+const getinfoPosts = async () => {
+  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
+  const divPostContainer = document.getElementById('div-post');
+  if (divPostContainer != null) {
+    divPostContainer.reset();
+  }
+
+  const publicationsContainer1 = document.getElementById(
+    'publications-container',
+  );
+  if (publicationsContainer1 != null) {
+    while (publicationsContainer1.firstChild) {
+      publicationsContainer1.removeChild(publicationsContainer1.firstChild);
+    }
+  }
+  /* jshint latedef: nofunc */
+  const querySnapshot = await getPosts();
+
+  querySnapshot.forEach((doc) => createPost(doc, currentUser));
+};
+
+/* jshint latedef: nofunc */
+createPost = (doc, currentUser) => {
   console.log(doc.id);
   const divUserPost = document.createElement('div');
   divUserPost.setAttribute('key', doc.id);
@@ -72,7 +104,7 @@ const createPost = (doc, currentUser) => {
     deleteOption.textContent = 'Eliminar';
     deleteOption.addEventListener('click', async () => {
       const deleteAlert = window.confirm(
-        '¿Estás seguro de que deseas eliminar este post?'
+        '¿Estás seguro de que deseas eliminar este post?',
       );
       if (deleteAlert) {
         await deletePost(doc);
@@ -114,7 +146,7 @@ const createPost = (doc, currentUser) => {
       if (findUserLike) {
         disLike(currentUser.email, publicationId);
         count += -1;
-        if (imagen.src.endsWith('images/corazon-en-blanco.png')){
+        if (imagen.src.endsWith('images/corazon-en-blanco.png')) {
           imagen.src = './images/corazon-rosa.png';
         }
         // imagen.src = './images/corazon-rosa.png';
@@ -122,21 +154,18 @@ const createPost = (doc, currentUser) => {
         like(currentUser.email, publicationId);
         count += 1;
         imagen.src = './images/corazon-en-blanco.png';
-        
       }
       // if (imagen.src.endsWith('images/corazon-rosa.png')) {
       //   // Cambiar a la imagen 2
       //   imagen.src = './images/corazon-en-blanco.png';
       //   imagen.alt = 'Imagen 2';
       //   if (findUserLike) {
-      //     // 
       //     disLike(currentUser.email, publicationId);
       //   } else {
       //     imagen.src = './images/corazon-rosa.png';
       //     imagen.alt = 'Imagen 1';
       //     if (findUserLike) {
       //       like(currentUser.email, publicationId);
-      //       // 
       //     }
       countLike.textContent = count;
       //   }
@@ -166,30 +195,9 @@ const createPost = (doc, currentUser) => {
   divLikeAndComment.appendChild(countComment);
 
   const publicationsContainer = document.getElementById(
-    'publications-container'
+    'publications-container',
   );
   publicationsContainer.appendChild(divUserPost);
-}
-
-const getinfoPosts = async () => {
-  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
-  const divPostContainer = document.getElementById('div-post');
-  if (divPostContainer != null) {
-    divPostContainer.reset();
-  }
-
-  const publicationsContainer1 = document.getElementById(
-    'publications-container'
-  );
-  if (publicationsContainer1 != null) {
-    while (publicationsContainer1.firstChild) {
-      publicationsContainer1.removeChild(publicationsContainer1.firstChild);
-    }
-  }
-
-  const querySnapshot = await getPosts();
-
-  querySnapshot.forEach((doc) => createPost(doc, currentUser));
 };
 
 export const timeline = (onNavigate) => {
@@ -199,7 +207,7 @@ export const timeline = (onNavigate) => {
   if (!currentUser) {
     // Redirigir al usuario a la página de inicio de sesión
     onNavigate('/');
-    return;
+    return null;
   }
 
   const divTimeline = document.createElement('div');
@@ -271,14 +279,12 @@ export const timeline = (onNavigate) => {
 
   const messagePostGreen = document.createElement('p');
   messagePostGreen.className = 'message-posts-green';
-  messagePostGreen.textContent =
-    '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
   divGreen.appendChild(messagePostGreen);
 
   const options = document.createElement('h4');
   options.className = 'options';
-  options.innerHTML =
-    'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
   divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');
@@ -370,8 +376,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend1 = document.createElement('p');
   descriptionFriend1.className = 'description-friend';
-  descriptionFriend1.textContent =
-    'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
+  descriptionFriend1.textContent = 'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
   divFriendsInfo1.appendChild(descriptionFriend1);
 
   const buttonFollow1 = document.createElement('button');
@@ -400,8 +405,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend2 = document.createElement('p');
   descriptionFriend2.className = 'description-friend';
-  descriptionFriend2.textContent =
-    'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
+  descriptionFriend2.textContent = 'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
   divFriendsInfo2.appendChild(descriptionFriend2);
 
   const buttonFollow2 = document.createElement('button');
@@ -430,8 +434,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend3 = document.createElement('p');
   descriptionFriend3.className = 'description-friend';
-  descriptionFriend3.textContent =
-    'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
+  descriptionFriend3.textContent = 'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
   divFriendsInfo3.appendChild(descriptionFriend3);
 
   const buttonFollow3 = document.createElement('button');

@@ -48,6 +48,7 @@ describe('savePost', () => {
         displayName,
         photoURL,
         createAt: timestamp,
+        likes: '',
       },
     );
   });
@@ -73,6 +74,7 @@ describe('savePost', () => {
         displayName: '',
         photoURL: '',
         createAt: timestamp,
+        likes: '',
       },
     );
   });
