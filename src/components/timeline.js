@@ -1,3 +1,5 @@
+/* eslint import/no-self-import:0 */
+import * as module from './timeline';
 // import { getAuth } from 'firebase/auth';
 import {
   savePost,
@@ -11,9 +13,7 @@ import {
 import { myGetItem } from '../lib/utils';
 // import { async } from 'regenerator-runtime';
 
-let createPost = null; // ¬¬
-
-const getinfoPosts = async () => {
+export const getinfoPosts = async () => {
   const currentUser = JSON.parse(localStorage.getItem('Usuario'));
   const divPostContainer = document.getElementById('div-post');
   if (divPostContainer != null) {
@@ -31,11 +31,12 @@ const getinfoPosts = async () => {
   /* jshint latedef: nofunc */
   const querySnapshot = await getPosts();
 
-  querySnapshot.forEach((doc) => createPost(doc, currentUser));
+  // eslint-disable-next-line no-use-before-define
+  querySnapshot.forEach((doc) => module.createPost(doc, currentUser));
 };
 
 /* jshint latedef: nofunc */
-createPost = (doc, currentUser) => {
+export const createPost = (doc, currentUser) => {
   console.log(doc.id);
   const divUserPost = document.createElement('div');
   divUserPost.setAttribute('key', doc.id);
@@ -92,7 +93,7 @@ createPost = (doc, currentUser) => {
       const newContent = prompt('Edita tu post aquí:');
       if (newContent) {
         await editPost(doc, newContent);
-        getinfoPosts();
+        module.getinfoPosts();
       }
     });
     divMenuOptions.appendChild(editOption);
@@ -108,7 +109,7 @@ createPost = (doc, currentUser) => {
       );
       if (deleteAlert) {
         await deletePost(doc);
-        getinfoPosts();
+        module.getinfoPosts();
       }
     });
     divMenuOptions.appendChild(deleteOption);
@@ -329,7 +330,7 @@ export const timeline = (onNavigate) => {
   const postsContainer = document.getElementById('publications-container');
   console.log(postsContainer);
 
-  getinfoPosts();
+  module.getinfoPosts();
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -339,7 +340,7 @@ export const timeline = (onNavigate) => {
       alert('Ups! No has escrito tu post!');
     } else {
       savePost(postContent);
-      getinfoPosts();
+      module.getinfoPosts();
     }
   });
   const divPinkTimeline = document.createElement('div');

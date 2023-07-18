@@ -1,7 +1,9 @@
 import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { savePost, initializeFirebase } from '../src/lib/firebase';
+import * as libFirebaseModule from '../src/lib/firebase';
 import { timeline } from '../src/components/timeline';
+import * as libTimelineModule from '../src/components/timeline';
 import { myGetItem } from '../src/lib/utils';
 
 const displayName = 'test values';
@@ -11,16 +13,12 @@ const email = 'test values';
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
 jest.mock('../src/lib/utils');
-jest.mock('../src/lib/firebase', () => ({
-  ...jest.requireActual('../src/lib/firebase'),
-  getPosts: () => Promise.resolve([]),
-}));
 
 describe('savePost', () => {
   beforeEach(() => {
-    addDoc.mockReset();
-    serverTimestamp.mockReset();
-    getAuth.mockReset();
+  });
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('El usuario no es nulo', () => {
@@ -108,20 +106,42 @@ describe('getinfoPosts', () => {
     myGetItem.mockImplementationOnce(() => '{"photoURL":"https://www.google.com/", "displayName":"MockTest"}');
     initializeFirebase();
 
+    jest.spyOn(libFirebaseModule, 'getPosts').mockImplementation(() => Promise.resolve([]));
     document.body.appendChild(timeline(onNavigateMockTimeline));
 
     // publicationsContainer = document.getElementById('publications-container');
     // divUserPost = document.getElementsByClassName('div-user-post');
     buttonPost = document.getElementsByClassName('button-post')[0];
     textPost = document.getElementById('inputpostid');
+    jest.resetAllMocks();
+  });
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('Debería mostrar una alerta si el input está vacío al momento de publicar', async () => {
     const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+    const getPostsMock = jest.spyOn(libFirebaseModule, 'getPosts').mockImplementation(() => Promise.resolve([]));
 
     textPost.value = '';
     buttonPost.click();
     await tick();
+    expect(alertSpy).toBeCalledTimes(1);
     expect(alertSpy).toHaveBeenCalledWith('Ups! No has escrito tu post!');
+    expect(getPostsMock).toBeCalledTimes(0);
+  });
+
+  it('Debería publicar un post', async () => {
+    const savePostMock = jest.spyOn(libFirebaseModule, 'savePost');
+    const getinfoPostsMock = jest.spyOn(libTimelineModule, 'getinfoPosts').mockImplementation(() => {});
+    // const getPostsMock = jest.spyOn(libFirebaseModule, 'getPosts')
+    //   .mockImplementation(() => Promise.resolve([]));
+
+    textPost.value = 'Test Post';
+    buttonPost.click();
+    await tick();
+    expect(getinfoPostsMock).toBeCalledTimes(1);
+    expect(savePostMock).toBeCalledTimes(1);
+    // expect(getPostsMock).toBeCalledTimes(1);
   });
 });
