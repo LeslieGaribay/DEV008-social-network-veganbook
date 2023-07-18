@@ -72,7 +72,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
   * Si hay errores en el registro por parte del usuario, debe haber mensajes descriptivos para la corrección
   * Que tenga la opción de autenticarse con una cuenta de Google
   * La interfaz de usuario muestra el formulario de registro de manera clara y amigable. 
-  * Codigo tiene y pasa los test necesarios
+  * Código tiene y pasa los test necesarios
   * Hacer pruebas de usabilidad e incorporar feedback de los usuarios como mejora
   * Desplegar app y etiquetar la versión (git tag)
 
@@ -96,7 +96,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 * Que tenga la funcionalidad de eliminar un post
 * Al publicar, se debe validar que exista contenido en el input
 * Pedir confirmación antes de eliminar un post
-* Codigo tiene y pasa los test necesarios
+* Código tiene y pasa los test necesarios
 * Hacer pruebas de usabilidad e incorporar feedback de los usuarios como mejora
 * Desplegar app y etiquetar la versión (git tag)
 
@@ -117,7 +117,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 * Al dar click en editar un post se pueda modificar el texto y guardar los cambios
 * Al recargar la página debo de poder ver los textos editados
 * Que funcione la opción de guardar cambios
-* Codigo tiene y pasa los test necesarios
+* Código tiene y pasa los test necesarios
 * Hacer pruebas de usabilidad e incorporar feedback de los usuarios como mejora
 * Desplegar app y etiquetar la versión (git tag)
 
@@ -139,7 +139,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 * Que funcione la opción de dar like 
 * Que funcione la opción de quitar el like
 * Que muestre en el timeline el conteo de likes que ha hecho
-* Codigo tiene y pasa los test necesarios
+* Código tiene y pasa los test necesarios
 * Hacer pruebas de usabilidad e incorporar feedback de los usuarios como mejora
 * Desplegar app y etiquetar la versión (git tag)
 
