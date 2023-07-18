@@ -1,4 +1,4 @@
-// import { getAuth } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } from '../lib/firebase';
 // import { async } from 'regenerator-runtime';
 
@@ -118,51 +118,49 @@ const getinfoPosts = async () => {
     divLikeAndComment.className = 'div-like-and-comment';
     divUserPost.appendChild(divLikeAndComment);
 
-    let count = 0;
     const likeIcon = document.createElement('img');
     likeIcon.className = 'img-icon';
     likeIcon.src = './images/corazon-en-blanco.png';
     likeIcon.alt = 'Like';
     const countLike = document.createElement('p');
+
     function changeImage(publicationData) {
       const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
       getPostData(publicationId).then((response) => {
         console.log(response.data());
-        const findUserLike = response.data().likes.includes(currentUser.email);
+        const likes = response.data().likes;
+        const findUserLike = likes.includes(currentUser.email);
         console.log(findUserLike);
         const imagen = publicationData;
         if (findUserLike) {
-          disLike(currentUser.email, publicationId);
-          count += -1;
-          if (imagen.src.endsWith('images/corazon-en-blanco.png')){
-            imagen.src = './images/corazon-rosa.png';
-          }
-          // imagen.src = './images/corazon-rosa.png';
+          disLike(currentUser.email, publicationId)
+            .then((response) => {
+              console.log(response);
+              const updatedLikes = likes.filter((like) => like !== currentUser.email);
+              const count = updatedLikes.length;
+              if (imagen.src.endsWith('images/corazon-en-blanco.png')) {
+                imagen.src = './images/corazon-en-blanco.png';
+              }
+              countLike.textContent = count;
+            })
+            .catch((error) => {
+              console.error('Error al remover el like:', error);
+            });
         } else {
-          like(currentUser.email, publicationId);
-          count += 1;
-          imagen.src = './images/corazon-en-blanco.png';
-          
+          like(currentUser.email, publicationId)
+            .then(() => {
+              const updatedLikes = [...likes, currentUser.email];
+              const count = updatedLikes.length;
+              imagen.src = './images/corazon-rosa.png';
+              countLike.textContent = count;
+            })
+            .catch((error) => {
+              console.error('Error al dar like:', error);
+            });
         }
-        // if (imagen.src.endsWith('images/corazon-rosa.png')) {
-        //   // Cambiar a la imagen 2
-        //   imagen.src = './images/corazon-en-blanco.png';
-        //   imagen.alt = 'Imagen 2';
-        //   if (findUserLike) {
-        //     // 
-        //     disLike(currentUser.email, publicationId);
-        //   } else {
-        //     imagen.src = './images/corazon-rosa.png';
-        //     imagen.alt = 'Imagen 1';
-        //     if (findUserLike) {
-        //       like(currentUser.email, publicationId);
-        //       // 
-        //     }
-        countLike.textContent = count;
-        //   }
-        // }
       });
     }
+
     likeIcon.addEventListener('click', (e) => {
       changeImage(e.target);
     });
@@ -171,7 +169,10 @@ const getinfoPosts = async () => {
 
     countLike.className = 'counter';
     countLike.id = 'counterId';
-    // countLike.innerText = Number(count) + 1;
+    // const likes = response.data().likes;
+    // const updatedLikes = likes.filter((like) => like !== currentUser.email);
+    // const count = updatedLikes.length;
+    countLike.textContent = count;
     divLikeAndComment.appendChild(countLike);
 
     const commentIcon = document.createElement('img');
