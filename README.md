@@ -37,7 +37,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 * Personas con alergias e intolerancia alimentaria que necesitan opciones sin ciertos ingredientes (huevos, lácteos o gluten), esta red social les permitiría encontrar recetas alternativas y adaptaciones para satisfacer sus necesidades. 
 
 * Personas que se consideran flexitarianos, es decir que no siguen una dieta estricta vegana-vegetariana, pero que quieren reducir su consumo de productos provenientes de animales a través de ideas y opciones para incorporar en su dieta comidas basadas en plantas.
-  
+
 * Personas que quieren conocer el estilo de vida vegano y probar recetas más saludables, incorporando ingredientes naturales y disminuir/evitar productos procesados.
 
 **1.2. 	Qué problema resuelve el producto / para qué le servirá a estos usuarios.** 
