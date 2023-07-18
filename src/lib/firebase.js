@@ -133,24 +133,14 @@ export const editPost = async (doc, newContent) => {
 
 export const like = (emailUser, idPost) => {
   const postRef = doc(db, 'Posts', idPost);
-  return updateDoc(postRef, {
+  updateDoc(postRef, {
     likes: arrayUnion(emailUser),
   });
-  // return new Promise((resolve, reject) => {
-  //   
-  //   
-  //     .then(() => {
-  //       resolve();
-  //     })
-  //     .catch((error) => {
-  //       reject(error);
-  //     });
-  // });
 };
 
 export const disLike = (emailUser, idPost) => {
   const postRef = doc(db, 'Posts', idPost);
-  return updateDoc(postRef, {
+  updateDoc(postRef, {
     likes: arrayRemove(emailUser),
   });
 };
