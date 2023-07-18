@@ -39,11 +39,18 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-// Firestore
-const db = getFirestore();
+let app = null;
+let auth = null;
+let provider = null;
+let db = null;
+export function initializeFirebase() {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  provider = new GoogleAuthProvider();
+  // Firestore
+  db = getFirestore();
+}
+initializeFirebase();
 
 // try {
 //   const docRef = await addDoc(collection(db, "Usuarios"), {
@@ -78,7 +85,7 @@ export const savePost = (postContent) => {
   let emailPost = '';
   let displayName = '';
   let photoURL = '';
-  let likes = '';
+  const likes = '';
 
   if (user !== null) {
     // User is signed in, see docs for a list of available properties
@@ -145,30 +152,9 @@ export const disLike = (emailUser, idPost) => {
   });
 };
 
-//Método para obtener el Post apartir de Id
+// Método para obtener el Post apartir de Id
 
 export const getPostData = (id) => {
   const docRef = doc(db, 'Posts', id);
   return getDoc(docRef);
-}
-
-// METODO PARA ACTUALIZAR LOS CORAZONES DE LOS POSTS
-// export const updateLikes = (emailPost, likes) => {
-//   const updatePostById = firebase.firestore().collection('Posts').doc(emailPost)
-//     .update(
-//       { likes },
-//     );
-//   return updatePostById;
-// };
-
-// function getCount(ref) {
-//   // Sum the count of each shard in the subcollection
-//   return ref.collection('Posts').get().then((snapshot) => {
-//       let total_count = 0;
-//       snapshot.forEach((doc) => {
-//           total_count += doc.data().count;
-//       });
-
-//       return total_count;
-//   });
-// }
+};

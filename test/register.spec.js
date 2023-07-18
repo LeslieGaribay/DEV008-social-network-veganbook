@@ -2,7 +2,6 @@ import { createUser, signInGoogle } from '../src/lib/firebase';
 import { register } from '../src/components/register';
 
 jest.mock('../src/lib/firebase');
-
 function tick() {
   return new Promise((resolve) => {
     setTimeout(resolve, 0);

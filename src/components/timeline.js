@@ -1,8 +1,19 @@
+/* eslint import/no-self-import:0 */
+import * as module from './timeline';
 // import { getAuth } from 'firebase/auth';
-import { savePost, getPosts, deletePost, editPost, disLike, like, getPostData } from '../lib/firebase';
+import {
+  savePost,
+  getPosts,
+  deletePost,
+  editPost,
+  disLike,
+  like,
+  getPostData,
+} from '../lib/firebase';
+import { myGetItem } from '../lib/utils';
 // import { async } from 'regenerator-runtime';
 
-const getinfoPosts = async () => {
+export const getinfoPosts = async () => {
   const currentUser = JSON.parse(localStorage.getItem('Usuario'));
   const divPostContainer = document.getElementById('div-post');
   if (divPostContainer != null) {
@@ -10,193 +21,194 @@ const getinfoPosts = async () => {
   }
 
   const publicationsContainer1 = document.getElementById(
-    'publications-container'
+    'publications-container',
   );
   if (publicationsContainer1 != null) {
     while (publicationsContainer1.firstChild) {
       publicationsContainer1.removeChild(publicationsContainer1.firstChild);
     }
   }
-
+  /* jshint latedef: nofunc */
   const querySnapshot = await getPosts();
-  const publicationsContainer = document.getElementById(
-    'publications-container'
-  );
 
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id);
-    const divUserPost = document.createElement('div');
-    divUserPost.setAttribute('key', doc.id);
-    divUserPost.className = 'div-user-post';
+  // eslint-disable-next-line no-use-before-define
+  querySnapshot.forEach((doc) => module.createPost(doc, currentUser));
+};
 
-    const divUserandOption = document.createElement('div');
-    divUserandOption.className = 'div-user-and-option';
-    divUserPost.appendChild(divUserandOption);
+/* jshint latedef: nofunc */
+export const createPost = (doc, currentUser) => {
+  console.log(doc.id);
+  const divUserPost = document.createElement('div');
+  divUserPost.setAttribute('key', doc.id);
+  divUserPost.className = 'div-user-post';
 
-    const divUserImageAndUsernameEmail = document.createElement('div');
-    divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
-    divUserandOption.appendChild(divUserImageAndUsernameEmail);
+  const divUserandOption = document.createElement('div');
+  divUserandOption.className = 'div-user-and-option';
+  divUserPost.appendChild(divUserandOption);
 
-    const imgUserPosts = document.createElement('img');
-    imgUserPosts.className = 'img-user-post';
-    imgUserPosts.src = doc.data().photoURL;
-    imgUserPosts.alt = 'Imagen User';
-    divUserImageAndUsernameEmail.appendChild(imgUserPosts);
+  const divUserImageAndUsernameEmail = document.createElement('div');
+  divUserImageAndUsernameEmail.className = 'div-user-image-and-username';
+  divUserandOption.appendChild(divUserImageAndUsernameEmail);
 
-    const divNameEmail = document.createElement('div');
-    divNameEmail.className = 'div-name-email';
-    divUserImageAndUsernameEmail.appendChild(divNameEmail);
+  const imgUserPosts = document.createElement('img');
+  imgUserPosts.className = 'img-user-post';
+  imgUserPosts.src = doc.data().photoURL;
+  imgUserPosts.alt = 'Imagen User';
+  divUserImageAndUsernameEmail.appendChild(imgUserPosts);
 
-    const userNamePosts = document.createElement('h3');
-    userNamePosts.className = 'user-Name-post';
-    userNamePosts.textContent = doc.data().displayName;
-    divNameEmail.appendChild(userNamePosts);
+  const divNameEmail = document.createElement('div');
+  divNameEmail.className = 'div-name-email';
+  divUserImageAndUsernameEmail.appendChild(divNameEmail);
 
-    const emailUser = document.createElement('p');
-    emailUser.textContent = doc.data().emailPost;
-    emailUser.className = 'email-user';
-    divNameEmail.appendChild(emailUser);
+  const userNamePosts = document.createElement('h3');
+  userNamePosts.className = 'user-Name-post';
+  userNamePosts.textContent = doc.data().displayName;
+  divNameEmail.appendChild(userNamePosts);
 
-    const divOptionsPost = document.createElement('div');
-    divOptionsPost.className = 'div-option-post';
-    divUserandOption.appendChild(divOptionsPost);
+  const emailUser = document.createElement('p');
+  emailUser.textContent = doc.data().emailPost;
+  emailUser.className = 'email-user';
+  divNameEmail.appendChild(emailUser);
 
-    const imgOptionsPost = document.createElement('img');
-    imgOptionsPost.className = 'img-options-post';
-    imgOptionsPost.src = './images/options.png';
-    imgOptionsPost.alt = 'Icon Option';
-    divOptionsPost.appendChild(imgOptionsPost);
+  const divOptionsPost = document.createElement('div');
+  divOptionsPost.className = 'div-option-post';
+  divUserandOption.appendChild(divOptionsPost);
 
-    const divMenuOptions = document.createElement('div');
-    divMenuOptions.className = 'div-menu-options';
-    divMenuOptions.style.display = 'none';
-    divUserandOption.appendChild(divMenuOptions);
+  const imgOptionsPost = document.createElement('img');
+  imgOptionsPost.className = 'img-options-post';
+  imgOptionsPost.src = './images/options.png';
+  imgOptionsPost.alt = 'Icon Option';
+  divOptionsPost.appendChild(imgOptionsPost);
 
-    if (doc.data().emailPost === currentUser.email) {
-      const editOption = document.createElement('div');
-      editOption.className = 'edit-option';
-      editOption.textContent = 'Editar';
-      editOption.addEventListener('click', async () => {
-        const newContent = prompt('Edita tu post aquí:');
-        if (newContent) {
-          await editPost(doc, newContent);
-          getinfoPosts();
-        }
-      });
-      divMenuOptions.appendChild(editOption);
-    }
+  const divMenuOptions = document.createElement('div');
+  divMenuOptions.className = 'div-menu-options';
+  divMenuOptions.style.display = 'none';
+  divUserandOption.appendChild(divMenuOptions);
 
-    if (doc.data().emailPost === currentUser.email) {
-      const deleteOption = document.createElement('div');
-      deleteOption.className = 'delete-option';
-      deleteOption.textContent = 'Eliminar';
-      deleteOption.addEventListener('click', async () => {
-        const deleteAlert = window.confirm(
-          '¿Estás seguro de que deseas eliminar este post?'
-        );
-        if (deleteAlert) {
-          await deletePost(doc);
-          getinfoPosts();
-        }
-      });
-      divMenuOptions.appendChild(deleteOption);
-    }
-
-    let isMenuVisible = false;
-    imgOptionsPost.addEventListener('click', () => {
-      divMenuOptions.style.display = isMenuVisible ? 'none' : 'block';
-      isMenuVisible = !isMenuVisible;
-      console.log(imgOptionsPost);
+  if (doc.data().emailPost === currentUser.email) {
+    const editOption = document.createElement('div');
+    editOption.className = 'edit-option';
+    editOption.textContent = 'Editar';
+    editOption.addEventListener('click', async () => {
+      const newContent = prompt('Edita tu post aquí:');
+      if (newContent) {
+        await editPost(doc, newContent);
+        module.getinfoPosts();
+      }
     });
+    divMenuOptions.appendChild(editOption);
+  }
 
-    const messagePost = document.createElement('p');
-    messagePost.className = 'message-posts';
-    messagePost.textContent = doc.data().postContent;
-    divUserPost.append(messagePost);
-
-    const divLikeAndComment = document.createElement('div');
-    divLikeAndComment.className = 'div-like-and-comment';
-    divUserPost.appendChild(divLikeAndComment);
-
-    let count = 0;
-    const likeIcon = document.createElement('img');
-    likeIcon.className = 'img-icon';
-    likeIcon.src = './images/corazon-en-blanco.png';
-    likeIcon.alt = 'Like';
-    const countLike = document.createElement('p');
-    function changeImage(publicationData) {
-      const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
-      getPostData(publicationId).then((response) => {
-        console.log(response.data());
-        const findUserLike = response.data().likes.includes(currentUser.email);
-        console.log(findUserLike);
-        const imagen = publicationData;
-        if (findUserLike) {
-          disLike(currentUser.email, publicationId);
-          count += -1;
-          if (imagen.src.endsWith('images/corazon-en-blanco.png')){
-            imagen.src = './images/corazon-rosa.png';
-          }
-          // imagen.src = './images/corazon-rosa.png';
-        } else {
-          like(currentUser.email, publicationId);
-          count += 1;
-          imagen.src = './images/corazon-en-blanco.png';
-          
-        }
-        // if (imagen.src.endsWith('images/corazon-rosa.png')) {
-        //   // Cambiar a la imagen 2
-        //   imagen.src = './images/corazon-en-blanco.png';
-        //   imagen.alt = 'Imagen 2';
-        //   if (findUserLike) {
-        //     // 
-        //     disLike(currentUser.email, publicationId);
-        //   } else {
-        //     imagen.src = './images/corazon-rosa.png';
-        //     imagen.alt = 'Imagen 1';
-        //     if (findUserLike) {
-        //       like(currentUser.email, publicationId);
-        //       // 
-        //     }
-        countLike.textContent = count;
-        //   }
-        // }
-      });
-    }
-    likeIcon.addEventListener('click', (e) => {
-      changeImage(e.target);
+  if (doc.data().emailPost === currentUser.email) {
+    const deleteOption = document.createElement('div');
+    deleteOption.className = 'delete-option';
+    deleteOption.textContent = 'Eliminar';
+    deleteOption.addEventListener('click', async () => {
+      const deleteAlert = window.confirm(
+        '¿Estás seguro de que deseas eliminar este post?',
+      );
+      if (deleteAlert) {
+        await deletePost(doc);
+        module.getinfoPosts();
+      }
     });
+    divMenuOptions.appendChild(deleteOption);
+  }
 
-    divLikeAndComment.appendChild(likeIcon);
-
-    countLike.className = 'counter';
-    countLike.id = 'counterId';
-    // countLike.innerText = Number(count) + 1;
-    divLikeAndComment.appendChild(countLike);
-
-    const commentIcon = document.createElement('img');
-    commentIcon.className = 'img-icon';
-    commentIcon.src = './images/comentarios.png';
-    commentIcon.alt = 'Comment';
-    divLikeAndComment.appendChild(commentIcon);
-
-    const countComment = document.createElement('p');
-    countComment.className = 'counter';
-    countComment.textContent = '1';
-    divLikeAndComment.appendChild(countComment);
-
-    publicationsContainer.appendChild(divUserPost);
+  let isMenuVisible = false;
+  imgOptionsPost.addEventListener('click', () => {
+    divMenuOptions.style.display = isMenuVisible ? 'none' : 'block';
+    isMenuVisible = !isMenuVisible;
+    console.log(imgOptionsPost);
   });
+
+  const messagePost = document.createElement('p');
+  messagePost.className = 'message-posts';
+  messagePost.textContent = doc.data().postContent;
+  divUserPost.append(messagePost);
+
+  const divLikeAndComment = document.createElement('div');
+  divLikeAndComment.className = 'div-like-and-comment';
+  divUserPost.appendChild(divLikeAndComment);
+
+  let count = 0;
+  const likeIcon = document.createElement('img');
+  likeIcon.className = 'img-icon';
+  likeIcon.src = './images/corazon-en-blanco.png';
+  likeIcon.alt = 'Like';
+  const countLike = document.createElement('p');
+  function changeImage(publicationData) {
+    const publicationId = publicationData.parentElement.parentElement.getAttribute('key');
+    getPostData(publicationId).then((response) => {
+      console.log(response.data());
+      const findUserLike = response.data().likes.includes(currentUser.email);
+      console.log(findUserLike);
+      const imagen = publicationData;
+      if (findUserLike) {
+        disLike(currentUser.email, publicationId);
+        count += -1;
+        if (imagen.src.endsWith('images/corazon-en-blanco.png')) {
+          imagen.src = './images/corazon-rosa.png';
+        }
+        // imagen.src = './images/corazon-rosa.png';
+      } else {
+        like(currentUser.email, publicationId);
+        count += 1;
+        imagen.src = './images/corazon-en-blanco.png';
+      }
+      // if (imagen.src.endsWith('images/corazon-rosa.png')) {
+      //   // Cambiar a la imagen 2
+      //   imagen.src = './images/corazon-en-blanco.png';
+      //   imagen.alt = 'Imagen 2';
+      //   if (findUserLike) {
+      //     disLike(currentUser.email, publicationId);
+      //   } else {
+      //     imagen.src = './images/corazon-rosa.png';
+      //     imagen.alt = 'Imagen 1';
+      //     if (findUserLike) {
+      //       like(currentUser.email, publicationId);
+      //     }
+      countLike.textContent = count;
+      //   }
+      // }
+    });
+  }
+  likeIcon.addEventListener('click', (e) => {
+    changeImage(e.target);
+  });
+
+  divLikeAndComment.appendChild(likeIcon);
+
+  countLike.className = 'counter';
+  countLike.id = 'counterId';
+  // countLike.innerText = Number(count) + 1;
+  divLikeAndComment.appendChild(countLike);
+
+  const commentIcon = document.createElement('img');
+  commentIcon.className = 'img-icon';
+  commentIcon.src = './images/comentarios.png';
+  commentIcon.alt = 'Comment';
+  divLikeAndComment.appendChild(commentIcon);
+
+  const countComment = document.createElement('p');
+  countComment.className = 'counter';
+  countComment.textContent = '1';
+  divLikeAndComment.appendChild(countComment);
+
+  const publicationsContainer = document.getElementById(
+    'publications-container',
+  );
+  publicationsContainer.appendChild(divUserPost);
 };
 
 export const timeline = (onNavigate) => {
-  const currentUser = JSON.parse(localStorage.getItem('Usuario'));
+  const currentUser = JSON.parse(myGetItem('Usuario'));
 
   // Verificar si el usuario está autenticado
   if (!currentUser) {
     // Redirigir al usuario a la página de inicio de sesión
     onNavigate('/');
-    return;
+    return null;
   }
 
   const divTimeline = document.createElement('div');
@@ -268,14 +280,12 @@ export const timeline = (onNavigate) => {
 
   const messagePostGreen = document.createElement('p');
   messagePostGreen.className = 'message-posts-green';
-  messagePostGreen.textContent =
-    '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
   divGreen.appendChild(messagePostGreen);
 
   const options = document.createElement('h4');
   options.className = 'options';
-  options.innerHTML =
-    'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
   divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');
@@ -320,7 +330,7 @@ export const timeline = (onNavigate) => {
   const postsContainer = document.getElementById('publications-container');
   console.log(postsContainer);
 
-  getinfoPosts();
+  module.getinfoPosts();
   buttonPost.addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -330,7 +340,7 @@ export const timeline = (onNavigate) => {
       alert('Ups! No has escrito tu post!');
     } else {
       savePost(postContent);
-      getinfoPosts();
+      module.getinfoPosts();
     }
   });
   const divPinkTimeline = document.createElement('div');
@@ -367,8 +377,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend1 = document.createElement('p');
   descriptionFriend1.className = 'description-friend';
-  descriptionFriend1.textContent =
-    'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
+  descriptionFriend1.textContent = 'Vegano desde el 2010, me encanta comer saludable y enseñarle a otro mis dietas veganas';
   divFriendsInfo1.appendChild(descriptionFriend1);
 
   const buttonFollow1 = document.createElement('button');
@@ -397,8 +406,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend2 = document.createElement('p');
   descriptionFriend2.className = 'description-friend';
-  descriptionFriend2.textContent =
-    'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
+  descriptionFriend2.textContent = 'Soy vegana porque todos los animales son mis amigos y yo no me como a mis amigos';
   divFriendsInfo2.appendChild(descriptionFriend2);
 
   const buttonFollow2 = document.createElement('button');
@@ -427,8 +435,7 @@ export const timeline = (onNavigate) => {
 
   const descriptionFriend3 = document.createElement('p');
   descriptionFriend3.className = 'description-friend';
-  descriptionFriend3.textContent =
-    'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
+  descriptionFriend3.textContent = 'No soy vegana, pero amo comer vegano | soy flexitariana | Intolerante a la leche animal.';
   divFriendsInfo3.appendChild(descriptionFriend3);
 
   const buttonFollow3 = document.createElement('button');
