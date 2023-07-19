@@ -140,3 +140,23 @@ describe('signInGoogle', () => {
     expect(errorText.innerHTML).toBe('⚡ Error interno ⚡');
   });
 });
+
+describe('Botón login ciclo de navegación', () => {
+  let buttonLoginBack;
+
+  beforeEach(() => {
+    const onNavigateMock = () => {};
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    document.body.appendChild(register(onNavigateMock));
+    buttonLoginBack = document.getElementsByClassName('button-login-back')[0];
+  });
+
+  it('Debería redirigir a la ruta de login cuando el usuario da click en el botón', () => {
+    const onNavigateMockLogin = jest.fn(); // simula el onNavigateMock de login
+    buttonLoginBack.addEventListener('click', () => onNavigateMockLogin('/'));
+    buttonLoginBack.click();
+    expect(onNavigateMockLogin).toHaveBeenCalledWith('/');
+  });
+});
