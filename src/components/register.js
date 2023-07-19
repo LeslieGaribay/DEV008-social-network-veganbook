@@ -1,5 +1,3 @@
-// import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-// import { auth } from "./firebase.js";
 import { GoogleAuthProvider } from 'firebase/auth';
 import { createUser, signInGoogle } from '../lib/firebase';
 

@@ -11,7 +11,6 @@ import {
   getPostData,
 } from '../lib/firebase';
 import { myGetItem } from '../lib/utils';
-// import { async } from 'regenerator-runtime';
 
 export const getinfoPosts = async () => {
   const currentUser = JSON.parse(localStorage.getItem('Usuario'));
@@ -131,7 +130,6 @@ export const createPost = (doc, currentUser) => {
   divLikeAndComment.className = 'div-like-and-comment';
   divUserPost.appendChild(divLikeAndComment);
 
-  // let count = 0;
   const likeIcon = document.createElement('img');
   likeIcon.className = 'img-icon';
   likeIcon.src = './images/corazon-en-blanco.png';
@@ -147,11 +145,11 @@ export const createPost = (doc, currentUser) => {
       const imagen = publicationData;
       if (findUserLike) {
         disLike(currentUser.email, publicationId)
-          .then((response) => {
-            console.log(response);
+          .then(() => {
+            // eslint-disable-next-line no-shadow
             const updatedLikes = likes.filter((like) => like !== currentUser.email);
             const count = updatedLikes.length;
-            imagen.src = './images/corazon-en-blanco.png';      
+            imagen.src = './images/corazon-en-blanco.png';
             countLike.textContent = count;
           })
           .catch((error) => {
@@ -278,12 +276,12 @@ export const timeline = (onNavigate) => {
 
   const messagePostGreen = document.createElement('p');
   messagePostGreen.className = 'message-posts-green';
-  messagePostGreen.textContent = '"El respeto hacia todos los seres vivos es la base de una verdadera armonía en el mundo."';
+  messagePostGreen.textContent = '"El veganismo es una filosofía de vida que excluye todas las formas de explotación y crueldad hacia el reino animal e incluye una reverencia a la vida. En la práctica se aplica siguiendo una dieta vegetariana pura y anima el uso de alternativas para todas las materias derivadas parcial o totalmente de animales"';
   divGreen.appendChild(messagePostGreen);
 
   const options = document.createElement('h4');
   options.className = 'options';
-  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nConfiguración<br>\n';
+  options.innerHTML = 'Perfil<br>\n<br>\nAmigos<br>\n<br>\nMensajes<br>\n<br>\nGrupos<br>\n<br>\nConfiguración<br>\n<br>\n';
   divGreen.appendChild(options);
 
   const divInputandPost = document.createElement('div');

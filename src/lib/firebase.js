@@ -22,11 +22,6 @@ import {
   doc,
   arrayRemove,
 } from 'firebase/firestore';
-// import { async } from 'regenerator-runtime';
-
-// https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js
-
-// https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAnGqUN7btBK8WWW9uzxMt3HZrxuaj6SP0',
@@ -52,22 +47,6 @@ export function initializeFirebase() {
 }
 initializeFirebase();
 
-// try {
-//   const docRef = await addDoc(collection(db, "Usuarios"), {
-//     first: "Ada",
-//     last: "Lovelace",
-//     born: 1815
-//   });
-//   console.log("Document written with ID: ", docRef.id);
-// } catch (e) {
-//   console.error("Error adding document: ", e);
-// }
-
-// const querySnapshot = await getDocs(collection(db, "Usuarios"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
-
 export function createUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
@@ -89,8 +68,6 @@ export const savePost = (postContent) => {
 
   if (user !== null) {
     // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    // ...
     displayName = user.displayName;
     photoURL = user.photoURL;
     emailPost = user.email;
@@ -153,7 +130,6 @@ export const disLike = (emailUser, idPost) => {
 };
 
 // Método para obtener el Post apartir de Id
-
 export const getPostData = (id) => {
   const docRef = doc(db, 'Posts', id);
   return getDoc(docRef);
