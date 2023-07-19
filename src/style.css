@@ -21,7 +21,7 @@ body {
     width: 100%;
     height: 100%;
     padding: 0;
-    font-family: 'Raleway', sans-serif;  
+    font-family: 'Raleway', sans-serif;
 }
 
 
@@ -186,7 +186,7 @@ body {
     }
 
     h4 {
-        font-family: 'Raleway', sans-serif;
+
         font-style: normal;
         font-weight: 700;
         color: #194F37;
@@ -209,7 +209,6 @@ body {
 
     .error-text {
         color: rgb(165, 90, 43);
-        font-family: 'Raleway', sans-serif;
         font-weight: bolder;
         font-size: 15px;
     }
@@ -305,7 +304,6 @@ body {
 
     .error-text-register {
         color: rgb(165, 90, 43);
-        font-family: 'Raleway', sans-serif;
         font-weight: bolder;
         font-size: 15px;
     }
@@ -360,7 +358,6 @@ body {
 
     .user-Name {
         font-size: 15px;
-        font-family: 'Raleway', sans-serif;
         color: #9A4C4C;
     }
 
@@ -381,7 +378,6 @@ body {
 
     .input-post::placeholder {
         font-style: normal;
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 14px;
         line-height: 19px;
@@ -426,7 +422,7 @@ body {
         padding: 5px;
     }
 
-    .div-user-and-option{
+    .div-user-and-option {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -438,23 +434,23 @@ body {
         flex-direction: row;
     }
 
-    .edit-option{
+    .edit-option {
         cursor: pointer;
         background-color: #DDFFAB;
-        padding: 2px; 
+        padding: 2px;
         font-size: 13px;
-        font-weight: bold;  
+        font-weight: bold;
         border: 1px solid #65823b;
-        margin-bottom: 3px; 
+        margin-bottom: 3px;
     }
 
-    .delete-option{
-     cursor: pointer;
-     background-color: #ffe2e7;
-     padding: 2px;
-     font-size: 13px;
-     font-weight: bold;  
-     border: 1px solid #9A4C4C; 
+    .delete-option {
+        cursor: pointer;
+        background-color: #ffe2e7;
+        padding: 2px;
+        font-size: 13px;
+        font-weight: bold;
+        border: 1px solid #9A4C4C;
     }
 
     .img-user-post {
@@ -467,25 +463,22 @@ body {
 
     .user-Name-post {
         font-size: 20px;
-        font-family: 'Raleway', sans-serif;
         color: #9A4C4C;
     }
 
     .message-posts {
-        font-family: 'Raleway', sans-serif;
         font-size: 14px;
         padding: 10px 10px;
     }
 
-    .options{
-        font-family: 'Raleway', sans-serif;  
+    .options {
         text-align: center;
         font-size: 20px;
         margin: 70px 0;
 
     }
 
-    .div-like-and-comment{
+    .div-like-and-comment {
         display: flex;
         justify-content: end;
         width: 100%;
@@ -502,7 +495,6 @@ body {
     }
 
     .email-user {
-        font-family: 'Raleway', sans-serif;
         color: #536471;
         font-size: 12px;
     }
@@ -513,7 +505,7 @@ body {
         align-items: start;
     }
 
-     .div-green {
+    .div-green {
         display: none;
     }
 
@@ -521,38 +513,40 @@ body {
         display: none;
     }
 
-    .user-Name-green{
+    .user-Name-green {
         display: none;
     }
 
-    .message-posts-green{
+    .message-posts-green {
         display: none;
 
     }
+
     .img-friend {
         display: none;
     }
 
-    .description-friend{
+    .description-friend {
         display: none;
     }
 
-    .button-follow{
+    .button-follow {
         display: none;
     }
 
     .div-pink-timeline {
         display: none;
     }
-    .title-pink{
+
+    .title-pink {
         display: none;
     }
 
-    .div-friend-profile{
+    .div-friend-profile {
         display: none;
     }
 
-    .div-friends{
+    .div-friends {
         display: none;
     }
 
@@ -560,15 +554,15 @@ body {
         display: none;
     }
 
-    .div-group{
-        display: none;
-    }
-    
-    .img-group{
+    .div-group {
         display: none;
     }
 
-    .name-and-members{
+    .img-group {
+        display: none;
+    }
+
+    .name-and-members {
         display: none;
     }
 
@@ -635,7 +629,6 @@ body {
     }
 
     h2 {
-        font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 22px;
@@ -710,7 +703,6 @@ body {
     }
 
     .text-remember {
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 13px;
         margin-right: 80px;
@@ -718,7 +710,6 @@ body {
     }
 
     .forget-password {
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 12px;
         text-decoration: underline;
@@ -762,7 +753,6 @@ body {
     }
 
     h4 {
-        font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
         color: #194F37;
@@ -794,7 +784,6 @@ body {
 
     .error-text {
         color: rgb(165, 90, 43);
-        font-family: 'Raleway', sans-serif;
         font-weight: bolder;
         font-size: 15px;
     }
@@ -928,7 +917,6 @@ body {
 
     .error-text-register {
         color: rgb(165, 90, 43);
-        font-family: 'Raleway', sans-serif;
         font-weight: bolder;
         font-size: 15px;
     }
@@ -983,7 +971,6 @@ body {
 
     .user-Name {
         font-size: 15px;
-        font-family: 'Raleway', sans-serif;
         color: #9A4C4C;
     }
 
@@ -1017,7 +1004,6 @@ body {
         height: 100px;
         border: none;
         border-radius: 10px;
-        font-family: 'Raleway', sans-serif;
         font-size: 20px;
         padding: 5px 10px;
         margin-top: 30px;
@@ -1028,7 +1014,6 @@ body {
 
     .input-post::placeholder {
         font-style: normal;
-        font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 20px;
         padding: 30px 10px;
@@ -1068,10 +1053,10 @@ body {
         border: 1px solid #194F37;
         height: fit-content;
         border-radius: 16px;
-        padding: 10px; 
+        padding: 10px;
     }
 
-    .div-user-and-option{
+    .div-user-and-option {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -1094,46 +1079,43 @@ body {
 
     .user-Name-post {
         font-size: 20px;
-        font-family: 'Raleway', sans-serif;
         color: #9A4C4C;
     }
 
-    .edit-option{
+    .edit-option {
         cursor: pointer;
         background-color: #DDFFAB;
-        padding: 2px; 
+        padding: 2px;
         font-size: 14px;
-        font-weight: bold;  
+        font-weight: bold;
         border: 1px solid #65823b;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
         text-align: center;
     }
 
-    .delete-option{
-     cursor: pointer;
-     background-color: #ffe2e7;
-     padding: 2px;
-     font-size: 14px;
-     font-weight: bold;  
-     border: 1px solid #9A4C4C; 
+    .delete-option {
+        cursor: pointer;
+        background-color: #ffe2e7;
+        padding: 2px;
+        font-size: 14px;
+        font-weight: bold;
+        border: 1px solid #9A4C4C;
     }
 
     .message-posts {
-        font-family: 'Raleway', sans-serif;
         font-size: 16px;
         padding-left: 10px;
         margin: 10px 0;
     }
 
-    .options{
-        font-family: 'Raleway', sans-serif;  
+    .options {
         text-align: center;
         font-size: 20px;
         margin: 70px 0;
 
     }
 
-    .div-like-and-comment{
+    .div-like-and-comment {
         display: flex;
         justify-content: end;
         width: 100%;
@@ -1149,7 +1131,6 @@ body {
     }
 
     .email-user {
-        font-family: 'Raleway', sans-serif;
         color: #536471;
         font-size: 12px;
     }
@@ -1181,38 +1162,40 @@ body {
         display: none;
     }
 
-    .user-Name-green{
+    .user-Name-green {
         display: none;
     }
 
-    .message-posts-green{
+    .message-posts-green {
         display: none;
 
     }
+
     .img-friend {
         display: none;
     }
 
-    .description-friend{
+    .description-friend {
         display: none;
     }
 
-    .button-follow{
+    .button-follow {
         display: none;
     }
 
     .div-pink-timeline {
         display: none;
     }
-    .title-pink{
+
+    .title-pink {
         display: none;
     }
 
-    .div-friend-profile{
+    .div-friend-profile {
         display: none;
     }
 
-    .div-friends{
+    .div-friends {
         display: none;
     }
 
@@ -1220,15 +1203,15 @@ body {
         display: none;
     }
 
-    .div-group{
-        display: none;
-    }
-    
-    .img-group{
+    .div-group {
         display: none;
     }
 
-    .name-and-members{
+    .img-group {
+        display: none;
+    }
+
+    .name-and-members {
         display: none;
     }
 
@@ -1300,7 +1283,6 @@ body {
     }
 
     h2 {
-        font-family: 'Raleway', sans-serif;
         font-style: normal;
         font-weight: 700;
         font-size: 25px;
@@ -1726,7 +1708,7 @@ body {
         cursor: pointer;
     }
 
-     /* **** Timeline Posts *****/ 
+    /* **** Timeline Posts *****/
     .publications-container-class {
         display: flex;
         flex-direction: column;
@@ -1743,12 +1725,14 @@ body {
         border-radius: 16px;
         padding: 15px;
     }
-    .div-user-and-option{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-}
+
+    .div-user-and-option {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
     .div-user-image-and-username {
         display: flex;
         flex-direction: row;
@@ -1774,15 +1758,15 @@ body {
         margin-top: 10px;
     }
 
-    .options{
-        font-family: 'Raleway', sans-serif;  
+    .options {
+        font-family: 'Raleway', sans-serif;
         text-align: center;
         font-size: 20px;
         margin: 38px 0;
 
     }
 
-    .div-like-and-comment{
+    .div-like-and-comment {
         display: flex;
         justify-content: end;
         width: 100%;
@@ -1829,15 +1813,15 @@ body {
 
     }
 
-    .user-Name-green{
-        font-family: 'Raleway', sans-serif; 
+    .user-Name-green {
+        font-family: 'Raleway', sans-serif;
         font-size: 20px;
         display: initial;
         margin-bottom: 15px;
     }
 
-    .message-posts-green{
-        font-family: 'Raleway', sans-serif;  
+    .message-posts-green {
+        font-family: 'Raleway', sans-serif;
         text-align: justify;
         margin: 30px 36px;
         display: initial;
@@ -1853,24 +1837,25 @@ body {
         display: initial;
     }
 
-    .description-friend{
-        font-family: 'Raleway', sans-serif; 
+    .description-friend {
+        font-family: 'Raleway', sans-serif;
         font-size: 13px;
         margin-top: 5px;
         display: initial;
     }
 
-    .button-follow{
+    .button-follow {
         margin-top: 8px;
         width: 80px;
         height: 30px;
         border-radius: 25px;
         background: #D9D9D9;
         border: none;
-        font-family: 'Raleway', sans-serif; 
+        font-family: 'Raleway', sans-serif;
         cursor: pointer;
         display: initial;
     }
+
     .div-green-input-pink {
         display: grid;
         grid-template-columns: 25% 50% 25%;
@@ -1878,6 +1863,7 @@ body {
         margin: 0 auto;
 
     }
+
     .div-pink-timeline {
         background: #FFAFBD;
         margin-left: 50px;
@@ -1887,21 +1873,22 @@ body {
         align-items: center;
         flex-direction: column;
     }
-    .title-pink{
-        font-family: 'Raleway', sans-serif;  
+
+    .title-pink {
+        font-family: 'Raleway', sans-serif;
         text-align: center;
         margin: 25px 15px;
         font-size: 20px;
         display: initial;
     }
 
-    .div-friend-profile{
+    .div-friend-profile {
         display: flex;
         flex-direction: row;
         margin-bottom: 20px;
     }
 
-    .div-friends{
+    .div-friends {
         margin: 0 15px;
         display: initial;
     }
@@ -1911,13 +1898,13 @@ body {
         display: initial;
     }
 
-    .div-group{
+    .div-group {
         display: flex;
         flex-direction: row;
         margin-bottom: 20px;
     }
-    
-    .img-group{
+
+    .img-group {
         width: 25%;
         border-radius: 50%;
         height: 25%;
@@ -1925,15 +1912,15 @@ body {
         display: initial;
     }
 
-    .name-and-members{
+    .name-and-members {
         display: initial;
     }
 
     .members-group {
-        font-family: 'Raleway', sans-serif; 
+        font-family: 'Raleway', sans-serif;
         font-size: 12px;
         margin-top: 5px;
         display: initial;
     }
 
-}   
+}

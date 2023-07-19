@@ -85,8 +85,6 @@ function tick() {
 }
 
 describe('getinfoPosts', () => {
-  // let publicationsContainer;
-  // let divUserPost;
   let buttonPost;
   let textPost;
 
@@ -108,9 +106,6 @@ describe('getinfoPosts', () => {
 
     jest.spyOn(libFirebaseModule, 'getPosts').mockImplementation(() => Promise.resolve([]));
     document.body.appendChild(timeline(onNavigateMockTimeline));
-
-    // publicationsContainer = document.getElementById('publications-container');
-    // divUserPost = document.getElementsByClassName('div-user-post');
     buttonPost = document.getElementsByClassName('button-post')[0];
     textPost = document.getElementById('inputpostid');
     jest.resetAllMocks();
@@ -143,5 +138,35 @@ describe('getinfoPosts', () => {
     expect(getinfoPostsMock).toBeCalledTimes(1);
     expect(savePostMock).toBeCalledTimes(1);
     // expect(getPostsMock).toBeCalledTimes(1);
+  });
+});
+
+describe('Botón logout', () => {
+  let imgLogOut;
+
+  beforeEach(() => {
+    const onNavigateMockTimeline = () => {};
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    getAuth.mockImplementationOnce(() => ({
+      currentUser: {
+        displayName,
+        photoURL,
+        email,
+      },
+    }));
+    myGetItem.mockImplementationOnce(() => '{"photoURL":"https://www.google.com/", "displayName":"MockTest"}');
+    initializeFirebase();
+
+    document.body.appendChild(timeline(onNavigateMockTimeline));
+    imgLogOut = document.getElementsByClassName('img-logout')[0];
+  });
+
+  it('Debería redirigir a la ruta de login cuando el usuario da click en el botón', () => {
+    const onNavigateMockLogin = jest.fn(); // simula el onNavigateMock de log out
+    imgLogOut.addEventListener('click', () => onNavigateMockLogin('/'));
+    imgLogOut.click();
+    expect(onNavigateMockLogin).toHaveBeenCalledWith('/');
   });
 });
