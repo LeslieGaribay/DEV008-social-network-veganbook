@@ -55,6 +55,9 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 
 - [ ] **Yo, usuario interesado en el veganismo quiero poder registrarme en una red social relacionada al veganismo para acceder a todas las funciones, como crear publicaciones y dar like.** 
 
+Puedes ver con mayor detalle el [formulario](https://forms.gle/yUS5NCKY5RyfY3ei8) para recibir feedback de Historia de Usuarios 1.
+
+
 - [x] **Criterios de Aceptación:**
 
   * Como usuario puedo proporcionar mi nombre, email y contraseña para crear una cuenta.
@@ -104,6 +107,7 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 
 - [ ] **Yo como usuario usuario que escribe constantemente publicaciones en redes sociales quiero tener la opción de poder editar un post ya publicado para no tener que eliminar un post en caso de errores y publicarlo de nuevo**
 
+
 - [x] **Criterios de Aceptación:**
 
 * Que cada publicación creada por el usuario tenga la opción de “editar post” para que la pueda modificar cuantas veces estime necesario. 
@@ -125,6 +129,9 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 
 - [ ] **Yo como usuario activo de las redes sociales quiero poder dar y quitar likes a las publicaciones para interactuar con la comunidad**
 
+
+Puedes ver con mayor detalle el [formulario](https://forms.gle/2PPRQ1zT7WeCyVp78) para recibir feedback del proyecto final.
+
 - [x] **Criterios de Aceptación:**
 
 * Que exista un botón donde pueda dar like a la publicación
@@ -141,13 +148,85 @@ Para descubrir las necesidades de los usuarios y llegar a la definición final d
 * Que muestre en el timeline el conteo de likes que ha hecho
 * Código tiene y pasa los test necesarios
 * Hacer pruebas de usabilidad e incorporar feedback de los usuarios como mejora
-* Desplegar app y etiquetar la versión (git tag)
+* Desplegar app y etiquetar la versión (git tag).
 
 ## 4. Prototipos de la Interfaz
 
+Una vez definidas las historias de usuario, realizamos los prototipos de alta fidelidad para visualizar las ideas que se formaron a partir de las necesidades de nuestro público objetivo. El diseño del prototipo de alta fidelidad fue diseñado en Figma. Realizamos diseños para tres resoluciones distintas: vista en mobile, en tablet y en desktop.
+
+**Versión Mobile y Tablet**
+
+![DiseñoMóvilLogIn](./src/images/Celular-Inicio-de-Sesion.png)
+![DiseñoMóvilRegister](./src/images/Celular-Registrate.png)
+![DiseñoMóvilHome](./src/images/Celular-Home.png)
+
+
+**Versión Desktop**
+
+![DiseñoDesktopLogIn](./src/images/Desktop-LogIn.png)
+![DiseñoDesktopRegister](./src/images/Desktop-Register.png)
+![DiseñoDesktopHome](./src/images/Desktop-Home.png)
+
 ## 5. Funcionalidad
 
-## 6. Tests de Componentes
+Como resultado, la interfaz permite al usuario:
+
+### Creación de cuenta de usuario e inicio de sesión
+
+* Crear una cuenta y/o registrarse en la red social.
+* Crear cuenta de acceso y autenticación con cuenta de correo y contraseña, y también con una cuenta de Google.
+
+#### Validaciones:
+
+* Solamente se permite el acceso a usuarios con cuentas válidas.
+* No puede haber usuarios repetidos.
+* La cuenta de usuario debe ser un correo electrónico válido.
+* Lo que se escribe en el campo (input) de contraseña es secreto.
+
+#### Comportamiento:
+
+* Al enviarse el formulario de registro o inicio de sesión se valida con Firebase.
+* Si hay errores, se muestran mensajes descriptivos para ayudar al usuario a corregirlos.
+
+![Muestra-error-mensaje-móvil](./src/images/muestra-error.png)
+![Muestra-error-mensaje-tablet](./src/images/muestra-error-tablet.png)
+![Muestra-error-mensaje-desktop](./src/images/muestra-error-desktop.png)
+
+### Creación de Muro/timeline: 
+
+#### Validaciones:
+
+* Al publicar, se valida que exista contenido en el input.
+
+#### Comportamiento:
+* Al recargar la aplicación, se verifica si el usuario está logueado antes de mostrar contenido.
+* Se puede publicar un post.
+* Se puede dar y quitar like a una publicación. 
+* Se lleva un conteo de los likes.
+* Se puede eliminar y/o editar un post específico.
+* Se pide confirmación antes de eliminar y/o editar un post.
+* Se guardan los cambios con la información editada.
+* Al recargar la página el usuario puede ver los textos editados.
+
+## 6. Tests: 
+
+### Usabilidad: 
+
+Realizamos 2 encuestas para obtener feedback de los usuarios para la red social. 
+Algunos puntos fueron incoporados y otros se considerarán en caso de tener la oportunidad de profundizar en el proyecto. 
+
+![PreguntasForm1](./src/images/Form1.png)
+![PreguntasForm-parte2](./src/images/Form2.png)
+
+![PreguntasForm2](./src/images/Form2.png)
+![PreguntasForm2-parte2](./src/images/Form2HU2-parte2.png)
+![PreguntasForm2-parte3](./src/images/Form2HU2-parte3.png)
+![PreguntasForm2-parte4](./src/images/Form2HU2-parte4.png)
+![PreguntasForm2-parte5](./src/images/Form2HU2-parte5.png)
+
+### Componentes: 
+
+Para testear las funciones de este proyecto, construimos pruebas de componentes haciendo énfasis en Login y Register las cuales tuvieron una cobertura de más de 90% en Stmts, Branch y Lines y 75% en Funcs. 
 
 ## 7. Fundamentos
 HTML, CSS, Javascript, Firebase, Firestore, Git Colaborativo.
