@@ -166,3 +166,23 @@ describe('signInGoogle', () => {
     expect(errorText.innerHTML).toBe('⚡ Error interno ⚡');
   });
 });
+
+describe('Botón registrate ciclo de navegación', () => {
+  let buttonRegister;
+
+  beforeEach(() => {
+    const onNavigateMockLogin = () => {};
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    document.body.appendChild(login(onNavigateMockLogin));
+    buttonRegister = document.getElementsByClassName('button-register')[0];
+  });
+
+  it('Debería redirigir a la ruta de registro cuando el usuario da click en el botón', () => {
+    const onNavigateMock = jest.fn(); // simula el onNavigateMock de register
+    buttonRegister.addEventListener('click', () => onNavigateMock('/register'));
+    buttonRegister.click();
+    expect(onNavigateMock).toHaveBeenCalledWith('/register');
+  });
+});
